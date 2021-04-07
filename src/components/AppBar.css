@@ -20,13 +20,17 @@
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
-    width: 25em;
 }
 
 .appBar ul li {
     margin: 0 1em;
 }
 
-.rightbuttons {
+.menu a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.iconbutton {
     width: 77.13px;
 }

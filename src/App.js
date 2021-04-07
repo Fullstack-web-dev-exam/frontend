@@ -14,6 +14,9 @@ function App() {
             <Route exact path="/overview">
               <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
             </Route>
+            <Route exact path="/profile">
+              <p>Profile</p>
+            </Route>
             <Route exact path="/admin">
               <p>Admin siden</p>
             </Route>

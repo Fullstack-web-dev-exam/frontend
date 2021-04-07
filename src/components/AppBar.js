@@ -11,7 +11,7 @@ import {
     Menu,
     Button
 } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     navButton: {
@@ -57,9 +57,6 @@ export default function MenuAppBar() {
                             <li>
                                 <NavLink exact to="/" activeStyle={{fontWeight:"bold", textDecoration:"underline", textDecorationColor:"#4B2C20"}}><Button className={classes.navButton}>About</Button></NavLink>
                             </li>
-                            {auth && <li>
-                                <NavLink exact to="/admin" activeStyle={{fontWeight:"bold", textDecoration:"underline", textDecorationColor:"#4B2C20"}}><Button className={classes.navButton}>Admin</Button></NavLink>
-                            </li>}
                         </ul>
                     </nav>
 
@@ -75,7 +72,7 @@ export default function MenuAppBar() {
                                 aria-haspopup="true"
                                 onClick={handleMenu}
                                 color="inherit"
-                                className="rightbuttons"
+                                className="iconbutton"
                             >
                                 <AccountCircle />
                             </IconButton>
@@ -93,8 +90,10 @@ export default function MenuAppBar() {
                                 }}
                                 open={open}
                                 onClose={handleClose}
+                                className='menu'
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}><Link exact to="/profile">Profile</Link></MenuItem>
+                                <MenuItem onClick={handleClose}><Link exact to="/admin">Admin</Link></MenuItem>
                                 <MenuItem onClick={handleChange}>Log out</MenuItem>
                             </Menu>
                         </div>
