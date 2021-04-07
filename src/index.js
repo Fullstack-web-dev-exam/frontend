@@ -3,13 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import MenuAppBar from './components/AppBar'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <MenuAppBar />
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 
