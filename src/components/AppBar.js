@@ -47,7 +47,7 @@ export default function MenuAppBar() {
                         Final project
                     </Typography>
                     {!auth && (
-                        <Button variant='outlined' onClick={function(event){handleChange(); handleClose();}}>Log in</Button>
+                        <Button variant='outlined' color='inherit' onClick={function(event){handleChange(); handleClose();}}>Log in</Button>
                     )}
                     {auth && (
                         <div>
