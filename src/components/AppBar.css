@@ -1,0 +1,32 @@
+.appBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.appBar nav a {
+    color: var(--background);
+    text-decoration: none;
+}
+
+.appBar * {
+    color: var(--secondary);
+    font-size: 0.9em;
+}
+
+.appBar nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    width: 25em;
+}
+
+.appBar ul li {
+    margin: 0 1em;
+}
+
+.rightbuttons {
+    width: 77.13px;
+}

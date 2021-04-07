@@ -1,29 +1,31 @@
+import './AppBar.css';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Button from '@material-ui/core/Button';
+import { AccountCircle } from '@material-ui/icons';
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    MenuItem,
+    Menu,
+    Button
+} from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1
+    navButton: {
+        color: '#FFF',
+        opacity: '80%'
     },
     menuButton: {
         marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
+    }
 }));
 
 export default function MenuAppBar() {
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(true);
+    const [auth, setAuth] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -40,14 +42,30 @@ export default function MenuAppBar() {
     };
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static" color='primary' >
-                <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
+        <div>
+            <AppBar position="static" color='primary'  >
+                <Toolbar className="appBar">
+                    <Typography variant="h6">
                         Final project
                     </Typography>
+
+                    <nav className="navbar">
+                        <ul>
+                            <li>
+                                <NavLink exact to="/overview" activeStyle={{fontWeight:"bold", textDecoration:"underline", textDecorationColor:"#4B2C20"}}><Button className={classes.navButton}>Overview</Button></NavLink>
+                            </li>
+                            <li>
+                                <NavLink exact to="/" activeStyle={{fontWeight:"bold", textDecoration:"underline", textDecorationColor:"#4B2C20"}}><Button className={classes.navButton}>About</Button></NavLink>
+                            </li>
+                            {auth && <li>
+                                <NavLink exact to="/admin" activeStyle={{fontWeight:"bold", textDecoration:"underline", textDecorationColor:"#4B2C20"}}><Button className={classes.navButton}>Admin</Button></NavLink>
+                            </li>}
+                        </ul>
+                    </nav>
+
+
                     {!auth && (
-                        <Button variant='outlined' color='inherit' onClick={function(event){handleChange(); handleClose();}}>Log in</Button>
+                        <Button variant='outlined' color='inherit' onClick={function (event) { handleChange(); handleClose(); }}>Log in</Button>
                     )}
                     {auth && (
                         <div>
@@ -57,6 +75,7 @@ export default function MenuAppBar() {
                                 aria-haspopup="true"
                                 onClick={handleMenu}
                                 color="inherit"
+                                className="rightbuttons"
                             >
                                 <AccountCircle />
                             </IconButton>
