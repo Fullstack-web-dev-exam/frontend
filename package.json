@@ -2,22 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "description": "React application for our exam",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Fullstack-web-dev-exam/frontend.git"
-  },
-  "keywords": [
-    "NTNU",
-    "exam",
-    "IDG2100"
-  ],
-  "author": "Cornelius Sandmæl, Glenn Hansen, Tom Schrier",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Fullstack-web-dev-exam/frontend/issues"
-  },
-  "homepage": "https://github.com/Fullstack-web-dev-exam/frontend#readme",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
