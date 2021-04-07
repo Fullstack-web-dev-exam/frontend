@@ -1455,7 +1455,7 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
-"@material-ui/core@^4.11.3":
+"@material-ui/core@^4.0.0", "@material-ui/core@^4.11.3":
   "integrity" "sha512-Adt40rGW6Uds+cAyk3pVgcErpzU/qxc7KBR94jFHBYretU4AtWZltYcNsbeMn9tXL86jjVL1kuGcIHsgLgFGRw=="
   "resolved" "https://registry.npmjs.org/@material-ui/core/-/core-4.11.3.tgz"
   "version" "4.11.3"
@@ -1472,6 +1472,13 @@
     "prop-types" "^15.7.2"
     "react-is" "^16.8.0 || ^17.0.0"
     "react-transition-group" "^4.4.0"
+
+"@material-ui/icons@^4.11.2":
+  "integrity" "sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ=="
+  "resolved" "https://registry.npmjs.org/@material-ui/icons/-/icons-4.11.2.tgz"
+  "version" "4.11.2"
+  dependencies:
+    "@babel/runtime" "^7.4.4"
 
 "@material-ui/styles@^4.11.3":
   "integrity" "sha512-HzVzCG+PpgUGMUYEJ2rTEmQYeonGh41BYfILNFb/1ueqma+p1meSdu4RX6NjxYBMhf7k+jgfHFTTz+L1SXL/Zg=="
@@ -5302,6 +5309,11 @@
   "integrity" "sha512-6mPTgLxYm3r6Bkkg0vNM0HTjfGrOEtsfbhagQvbxDEsEkpNhw582upBaoRZylzen6krEmxXJgt9Ju6HiI4O7BA=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.2.tgz"
   "version" "1.13.2"
+
+"fontsource-roboto@^4.0.0":
+  "integrity" "sha512-zD6L8nvdWRcwSgp4ojxFchG+MPj8kXXQKDEAH9bfhbxy+lkpvpC1WgAK0lCa4dwobv+hvAe0uyHaawcgH7WH/g=="
+  "resolved" "https://registry.npmjs.org/fontsource-roboto/-/fontsource-roboto-4.0.0.tgz"
+  "version" "4.0.0"
 
 "for-in@^1.0.2":
   "integrity" "sha1-gQaNKVqBQuwKxybG4iAMMPttXoA="
