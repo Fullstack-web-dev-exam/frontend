@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "React application for our exam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fullstack-web-dev-exam/frontend.git"
+  },
+  "keywords": [
+    "NTNU",
+    "exam",
+    "IDG2100"
+  ],
+  "author": "Glenn Hansen, Tom Schrier, Cornelius Sandmæl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fullstack-web-dev-exam/frontend/issues"
+  },
+  "homepage": "https://github.com/Fullstack-web-dev-exam/frontend#readme"
+}
