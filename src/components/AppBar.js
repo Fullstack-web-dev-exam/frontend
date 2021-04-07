@@ -41,13 +41,13 @@ export default function MenuAppBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" color='primary' >
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         Final project
                     </Typography>
                     {!auth && (
-                        <Button onClick={function(event){handleChange(); handleClose();}}>Log in</Button>
+                        <Button variant='outlined' onClick={function(event){handleChange(); handleClose();}}>Log in</Button>
                     )}
                     {auth && (
                         <div>

@@ -1,13 +1,15 @@
-import './App.css';
-import MenuAppBar from './components/AppBar'
+//import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+import MenuAppBar from './components/AppBar';
+import { theme } from './colors';
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <MenuAppBar />
-      <p>Hei Tom</p>
       <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
-    </div>
+    </ThemeProvider>
   );
 }
 
