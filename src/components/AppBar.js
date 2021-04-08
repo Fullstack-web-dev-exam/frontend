@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
     const authContext = useContext(AuthContext);
-    console.log(authContext);
+    //console.log(authContext);
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);

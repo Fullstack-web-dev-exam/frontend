@@ -6,7 +6,6 @@ import LogInForm from './components/LogInForm'
 import { theme } from './colors';
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthConsumer } from './helpers/Auth';
-//import { AuthConsumer } from './helpers/Auth';
 
 function App() {
   return (
