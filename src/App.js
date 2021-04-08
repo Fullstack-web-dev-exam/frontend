@@ -20,6 +20,9 @@ function App() {
             <Route exact path="/admin">
               <p>Admin siden</p>
             </Route>
+            <Route exact path="/logout">
+              <p>You are now logged out!</p>
+            </Route>
             <Route exact path="/">
               <p>Hjemmesiden</p>
             </Route>
