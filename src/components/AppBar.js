@@ -39,6 +39,10 @@ export default function MenuAppBar() {
         setAnchorEl(null);
     };
 
+    const handleLogOut = () => {
+        authContext.logout();
+    }
+
     return (
             <AppBar position="static" color='primary'  >
                 <Toolbar className="appBar">
@@ -91,7 +95,7 @@ export default function MenuAppBar() {
                             >
                                 <MenuItem onClick={handleClose}><Link to="/user">Profile</Link></MenuItem>
                                 <MenuItem onClick={handleClose}><Link to="/dashboard">Admin</Link></MenuItem>
-                                <MenuItem onClick={handleClose}><Link to="/logout">Log out</Link></MenuItem>
+                                <MenuItem onClick={function (event) { handleLogOut(); handleClose(); }}><Link to="/logout">Log out</Link></MenuItem>
                             </Menu>
                         </div>
                     )}
