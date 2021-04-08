@@ -93,7 +93,7 @@ export default function LogInForm() {
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        label="Email Adress"
                         name="email"
                         autoComplete="email"
                         autoFocus
