@@ -39,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
 export default function LogInForm() {
     const classes = useStyles();
     const authContext = useContext(AuthContext);
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState();
     const [redirect, setRedirect] = useState();
     const form = React.createRef();
