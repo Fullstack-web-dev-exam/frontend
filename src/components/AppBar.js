@@ -28,13 +28,8 @@ export default function MenuAppBar() {
     const authContext = useContext(AuthContext);
 
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-
-    const handleChange = () => {
-        setAuth(!auth);
-    };
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -97,7 +92,7 @@ export default function MenuAppBar() {
                             >
                                 <MenuItem onClick={handleClose}><Link to="/user">Profile</Link></MenuItem>
                                 <MenuItem onClick={handleClose}><Link to="/dashboard">Admin</Link></MenuItem>
-                                <MenuItem onClick={handleChange}><Link to="/logout">Log out</Link></MenuItem>
+                                <MenuItem onClick={handleClose}><Link to="/logout">Log out</Link></MenuItem>
                             </Menu>
                         </div>
                     )}

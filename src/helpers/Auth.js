@@ -3,7 +3,7 @@
 import React from 'react';
 import { login } from '../api/users';
 import { getToken, setToken, getUser, setUser, clearLocalStorage } from './storage';
-const INITIAL_STATE = { auth: false, token: null, user: null };
+const INITIAL_STATE = { auth: true, token: null, user: null };
 
 const AuthContext = React.createContext();
 
