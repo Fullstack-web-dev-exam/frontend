@@ -39,23 +39,21 @@ const useStyles = makeStyles((theme) => ({
 export default function LogInForm() {
     const classes = useStyles();
     const authContext = useContext(AuthContext);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [values, setValues] = useState({email: '', password: ''});
     const [error, setError] = useState();
     const [redirect, setRedirect] = useState();
     const form = React.createRef();
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value)
-    }
-
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
+    const handleEvent = (event) => {
+        setValues({...values, [event.target.name]: event.target.value});
     }
 
     const handleLogIn = async (event) => {
         event.preventDefault();
         if(validation()){
+            const { email, password } = values;
+            console.log(email);
+            console.log(password);
             const res = await authContext.login({email, password});
             if(res.error){
                 setError(res.error.message);
@@ -95,8 +93,7 @@ export default function LogInForm() {
                         name="email"
                         autoComplete="email"
                         autoFocus
-                        onChange={handleEmail}
-                        value={email}
+                        onChange={handleEvent}
                     />
                     <TextField
                         variant="outlined"
@@ -108,8 +105,7 @@ export default function LogInForm() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
-                        onChange={handlePassword}
-                        value={password}
+                        onChange={handleEvent}
                     />
                     <Button
                         type="submit"
