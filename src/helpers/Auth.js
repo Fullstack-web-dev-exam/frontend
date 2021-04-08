@@ -2,7 +2,7 @@
 // and https://codesandbox.io/s/q9m26noky6?file=/src/helpers/AuthContext.js:0-638
 import React from 'react';
 import { login } from '../api/users';
-//import { getToken, setToken, getUser, setUser, clearLocalStorage } from './storage';
+import { getToken, setToken, getAuth, setAuth, clearLocalStorage } from './storage';
 
 const INITIAL_STATE = { auth: false, token: null, user: null };
 
@@ -11,25 +11,24 @@ const AuthContext = React.createContext();
 class AuthProvider extends React.Component {
     state = { ...INITIAL_STATE };
 
-    /* componentDidMount() {
+    componentDidMount() {
         const token = getToken();
-        const user = getUser();
+        const isAuth = getAuth();
 
-        if (token && user) {
-            this.setState({ auth: true, token, user });
+        if (token && isAuth) {
+            this.setState({ auth: true, token });
         }
-    } */
+    }
 
     login = async (userData) => {
         const { email, password } = userData;
         try {
             const response = await login(email, password);
-            const { token, user } = response.data;
-            this.setState({ auth: true, token, user });
-            /* this.setState({ auth: true, token, user }, () => {
+            const token = response.data;
+            this.setState({ auth: true, token }, () => {
                 setToken(token)
-                setUser(user)
-            }); */
+                setAuth(true)
+            });
             return response.data;
         } catch (error) {
             return error.response.data;
@@ -38,12 +37,12 @@ class AuthProvider extends React.Component {
 
     logout = () => {
         this.setState({ ...INITIAL_STATE });
-        //clearLocalStorage();
+        clearLocalStorage();
     };
 
     generateHeaders = () => {
         const response = {};
-        const token = this.state.token /* || getToken() */;
+        const token = this.state.token || getToken();
 
         if (token) {
             response.headers = {
@@ -54,7 +53,7 @@ class AuthProvider extends React.Component {
     }
 
     isAuthFunc = () => {
-        return this.state.auth /* || getToken() != null */;
+        return this.state.auth || getToken() != null;
     };
 
     render() {
@@ -64,7 +63,6 @@ class AuthProvider extends React.Component {
                     isAuth: this.state.auth,
                     isAuthFunc: this.isAuthFunc,
                     token: this.state.token,
-                    user: this.state.user,
                     login: this.login,
                     logout: this.logout,
                     generateHeaders: this.generateHeaders
