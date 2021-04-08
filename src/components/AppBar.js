@@ -62,7 +62,7 @@ export default function MenuAppBar() {
 
 
                     {!auth && (
-                        <Link exact to="/profile"><Button variant='outlined' color='inherit' onClick={function (event) { handleChange(); handleClose(); }}>Log in</Button></Link>
+                        <Link exact to="/user"><Button variant='outlined' color='inherit' onClick={function (event) { handleChange(); handleClose(); }}>Log in</Button></Link>
                     )}
                     {auth && (
                         <div>
@@ -92,8 +92,8 @@ export default function MenuAppBar() {
                                 onClose={handleClose}
                                 className='menu'
                             >
-                                <MenuItem onClick={handleClose}><Link exact to="/profile">Profile</Link></MenuItem>
-                                <MenuItem onClick={handleClose}><Link exact to="/admin">Admin</Link></MenuItem>
+                                <MenuItem onClick={handleClose}><Link exact to="/user">Profile</Link></MenuItem>
+                                <MenuItem onClick={handleClose}><Link exact to="/dashboard">Admin</Link></MenuItem>
                                 <MenuItem onClick={handleChange}><Link exact to="/logout">Log out</Link></MenuItem>
                             </Menu>
                         </div>

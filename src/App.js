@@ -14,10 +14,10 @@ function App() {
             <Route exact path="/overview">
               <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/user">
               <p>Profile</p>
             </Route>
-            <Route exact path="/admin">
+            <Route exact path="/dashboard">
               <p>Admin siden</p>
             </Route>
             <Route exact path="/logout">
