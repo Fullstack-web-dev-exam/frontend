@@ -57,11 +57,10 @@ export default function LogInForm() {
         event.preventDefault();
         if(validation()){
             const res = await authContext.login({email, password});
-
             if(res.error){
                 setError(res.error.message);
             } else {
-                setRedirect("/user");
+                setRedirect("/overview");
             }
         } else {
             setError("Form is not valid!");
@@ -85,7 +84,7 @@ export default function LogInForm() {
                 <Typography component="h1" variant="h5">
                     Log in
                 </Typography>
-                <form ref={form} className={classes.form} noValidate onSubmit={handleLogIn}>
+                <form ref={form} className={classes.form} noValidate onSubmit={handleLogIn} method="POST">
                     <TextField
                         variant="outlined"
                         margin="normal"
