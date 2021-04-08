@@ -26,10 +26,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
     const authContext = useContext(AuthContext);
+    console.log(authContext);
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
+    const logout = () => {
+        console.log(authContext.isAuth);
+        authContext.logout();
+        console.log(authContext.isAuth);
+    }
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -92,7 +99,7 @@ export default function MenuAppBar() {
                             >
                                 <MenuItem onClick={handleClose}><Link to="/user">Profile</Link></MenuItem>
                                 <MenuItem onClick={handleClose}><Link to="/dashboard">Admin</Link></MenuItem>
-                                <MenuItem onClick={handleClose}><Link to="/logout">Log out</Link></MenuItem>
+                                <MenuItem onClick={logout} /* onClick={function (event) { logout(); handleClose(); }} */><Link to="/logout">Log out</Link></MenuItem>
                             </Menu>
                         </div>
                     )}
