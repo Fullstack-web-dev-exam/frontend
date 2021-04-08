@@ -29,10 +29,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
     const authContext = useContext(AuthContext);
+    console.log(authContext);
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
+    const logout = () => {
+        console.log(authContext.isAuth);
+        authContext.logout();
+        console.log(authContext.isAuth);
+    }
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -63,7 +70,6 @@ export default function MenuAppBar() {
                         </li>
                     </ul>
                 </nav>
-
 
                 {!authContext.isAuth && (
                     <Link to="/login"><Button variant='outlined' color='inherit' /* onClick={function (event) { handleChange(); handleClose(); }} */>Log in</Button></Link>
