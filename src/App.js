@@ -3,33 +3,43 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import MenuAppBar from './components/AppBar';
 import { theme } from './colors';
+import PrivateRoute from './routes/PrivateRoute';
+//import { AuthConsumer } from './helpers/Auth';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <MenuAppBar />
-        <main>
-          <Switch>
-            <Route exact path="/overview">
-              <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
-            </Route>
-            <Route exact path="/user">
-              <p>Profile</p>
-            </Route>
-            <Route exact path="/dashboard">
-              <p>Admin siden</p>
-            </Route>
-            <Route exact path="/logout">
-              <p>You are now logged out!</p>
-            </Route>
-            <Route exact path="/">
-              <p>Hjemmesiden</p>
-            </Route>
-          </Switch>
-        </main>
-      </Router>
-    </ThemeProvider>
+    <div>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <MenuAppBar />
+            <main>
+              <Switch>
+                <Route exact path="/overview">
+                  <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
+                </Route>
+                <PrivateRoute exact path="/user">
+                  <p>Profile</p>
+                </PrivateRoute>
+                <PrivateRoute exact path="/dashboard">
+                  <p>Admin siden</p>
+                </PrivateRoute>
+                <Route exact path="/logout">
+                  <p>You are now logged out!</p>
+                </Route>
+                <Route exact path="/login">
+                  <p>Login</p>
+                </Route>
+                <Route exact path="/">
+                  <p>Hjemmesiden</p>
+                </Route>
+                <Route exact path="/401">
+                  <p>You are not authorized!</p>
+                </Route>
+              </Switch>
+            </main>
+          </Router>
+        </ThemeProvider>
+    </div>
   );
 }
 

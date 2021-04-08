@@ -60,7 +60,7 @@ class AuthProvider extends React.Component {
         return (
             <AuthContext.Provider
                 value={{
-                    auth: this.state.auth,
+                    isAuth: this.state.auth,
                     isAuthFunc: this.isAuthFunc,
                     token: this.state.token,
                     user: this.state.user,
@@ -71,9 +71,9 @@ class AuthProvider extends React.Component {
             >
                 {this.props.children}
             </AuthContext.Provider>
-        );
+        )
     }
 }
 
 const AuthConsumer = AuthContext.Consumer;
-export { AuthContext, AuthProvider, AuthConsumer };
+export { AuthProvider, AuthConsumer };
