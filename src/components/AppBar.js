@@ -35,12 +35,6 @@ export default function MenuAppBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const logout = () => {
-        console.log(authContext.isAuth);
-        authContext.logout();
-        console.log(authContext.isAuth);
-    }
-
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
