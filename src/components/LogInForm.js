@@ -77,9 +77,8 @@ export default function LogInForm() {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container maxWidth="xs" className={classes.paper}>
             <CssBaseline />
-            <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -120,14 +119,13 @@ export default function LogInForm() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign In
+                        Log In
                     </Button>
                     <Link href="#" variant="body2">
                         Forgot password?
                     </Link>
                 </form>
                 {error && <div>{error}</div>}
-            </div>
         </Container>
     );
 }

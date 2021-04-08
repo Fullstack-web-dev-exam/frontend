@@ -40,7 +40,6 @@ export default function MenuAppBar() {
     };
 
     return (
-        <div>
             <AppBar position="static" color='primary'  >
                 <Toolbar className="appBar">
                     <Typography variant="h6">
@@ -98,6 +97,5 @@ export default function MenuAppBar() {
                     )}
                 </Toolbar>
             </AppBar>
-        </div>
     );
 }
