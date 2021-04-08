@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MenuAppBar from './components/AppBar';
 import { theme } from './colors';
 import PrivateRoute from './routes/PrivateRoute';
+import { AuthConsumer } from './helpers/Auth';
 //import { AuthConsumer } from './helpers/Auth';
 
 function App() {
   return (
-    <div>
+    <AuthConsumer>
+      {({ isAuth }) => (
         <ThemeProvider theme={theme}>
           <Router>
             <MenuAppBar />
@@ -39,7 +41,8 @@ function App() {
             </main>
           </Router>
         </ThemeProvider>
-    </div>
+      )}
+    </AuthConsumer>
   );
 }
 
