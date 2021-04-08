@@ -57,7 +57,6 @@ export default function LogInForm() {
         event.preventDefault();
         if(validation()){
             const res = await authContext.login({email, password});
-
             if(res.error){
                 setError(res.error.message);
             } else {
