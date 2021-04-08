@@ -64,10 +64,10 @@ export default function MenuAppBar() {
                     </nav>
 
 
-                    {!auth && (
-                        <Link to="/login"><Button variant='outlined' color='inherit' onClick={function (event) { handleChange(); handleClose(); }}>Log in</Button></Link>
+                    {!authContext.isAuth && (
+                        <Link to="/login"><Button variant='outlined' color='inherit' /* onClick={function (event) { handleChange(); handleClose(); }} */>Log in</Button></Link>
                     )}
-                    {auth && (
+                    {authContext.isAuth && (
                         <div>
                             <IconButton
                                 aria-label="account of current user"
