@@ -30,4 +30,4 @@ export {
     updateUser,
     deleteUser,
     fetchAllUsers
-}
+};
