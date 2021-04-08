@@ -35,9 +35,8 @@ class AuthProvider extends React.Component {
     };
 
     logout = () => {
-        this.setState({ ...INITIAL_STATE }, () => {
-            clearLocalStorage();
-        });
+        this.setState({ ...INITIAL_STATE });
+        clearLocalStorage();
     };
 
     generateHeaders = () => {
