@@ -7,6 +7,10 @@ const login = (email, password) => {
 };
 
 // Logged in users can do this
+const createUser = (headers, params) => {
+    return axios.post('/user/', { params }, headers);
+}
+
 const fetchUser = (headers) => {
     return axios.get('/user/', headers);
 }
@@ -26,6 +30,7 @@ const fetchAllUsers = (headers) => {
 
 export {
     login,
+    createUser,
     fetchUser,
     updateUser,
     deleteUser,
