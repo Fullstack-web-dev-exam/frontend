@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
+import { createUser } from '../../api/users';
+import { AuthContext } from '../../helpers/Auth';
 
 class AddUserForm extends Component {
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props);
         this.state = {
             firstname: '',
             surname: '',
             email: '',
-            role: '',
+            role: 'gardener',
             password: '',
             repeatpassword: '',
             passwordError: false
@@ -45,6 +49,18 @@ class AddUserForm extends Component {
         if (this.generalValidation() && this.passwordValidation()) {
             alert('vellykket');
             //Send informasjonen som er i state til backend
+            const headers = this.context.generateHeaders();
+            console.log(headers);
+            const userObject = {
+                name: this.state.firstname,
+                surname: this.state.surname,
+                email: this.state.email,
+                role: this.state.role,
+                password: this.state.password
+            }
+            //Send informasjonen som er i state til backend
+            console.log(userObject);
+            createUser(headers, userObject);
         } else {
             alert('lmaooooo det gikk feil XD')
         }

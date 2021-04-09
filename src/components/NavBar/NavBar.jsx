@@ -26,7 +26,7 @@ function Nav(props) {
     if(open){
         menu = (
             <ul>
-                <li onClick={function (event) {handleClose(); handleLogOut()}}>Logout</li>
+                <Link to="/login"><li onClick={function (event) {handleClose(); handleLogOut()}}>Logout</li></Link>
             </ul>
         );
     }
