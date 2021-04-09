@@ -5,21 +5,21 @@ function getToken() {
     return JSON.parse(localStorage.getItem(`${LOCAL_STORAGE_PREFIX}token`));
 }
 
-function getUser() {
-    return JSON.parse(localStorage.getItem(`${LOCAL_STORAGE_PREFIX}user`));
+function getAuth() {
+    return JSON.parse(localStorage.getItem(`${LOCAL_STORAGE_PREFIX}isAuth`));
 }
 
 function setToken(token) {
     localStorage.setItem(`${LOCAL_STORAGE_PREFIX}token`, JSON.stringify(token));
 }
 
-function setUser(user) {
-    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}user`, JSON.stringify(user));
+function setAuth(isAuth) {
+    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}isAuth`, JSON.stringify(isAuth));
 }
 
 function clearLocalStorage() {
     localStorage.removeItem(`${LOCAL_STORAGE_PREFIX}token`);
-    localStorage.removeItem(`${LOCAL_STORAGE_PREFIX}user`);
+    localStorage.removeItem(`${LOCAL_STORAGE_PREFIX}isAuth`);
 }
 
-export { getToken, setToken, getUser, setUser, clearLocalStorage };
+export { getToken, setToken, getAuth, setAuth, clearLocalStorage };

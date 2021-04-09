@@ -2,11 +2,11 @@ import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import MenuAppBar from './components/AppBar';
-import LogInForm from './components/LogInForm'
+/* import LogInForm from './components/LogInForm' */
+import AddUserForm from './components/AddUserForm'
 import { theme } from './colors';
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthConsumer } from './helpers/Auth';
-//import { AuthConsumer } from './helpers/Auth';
 
 function App() {
   return (
@@ -30,7 +30,8 @@ function App() {
                   <p>You are now logged out!</p>
                 </Route>
                 <Route exact path="/login">
-                  <LogInForm/>
+                  {/* <LogInForm/> */}
+                  <AddUserForm/>
                 </Route>
                 <Route exact path="/">
                   <p>Hjemmesiden</p>
