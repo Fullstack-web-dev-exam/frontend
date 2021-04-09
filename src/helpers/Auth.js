@@ -3,8 +3,9 @@
 import React from 'react';
 import { login } from '../api/users';
 import { getToken, setToken, getAuth, setAuth, clearLocalStorage } from './storage';
+import jwt_decode from 'jwt-decode';
 
-const INITIAL_STATE = { auth: false, token: null, user: null };
+const INITIAL_STATE = { auth: false, token: null, role: null };
 
 const AuthContext = React.createContext();
 
@@ -21,11 +22,13 @@ class AuthProvider extends React.Component {
     }
 
     login = async (userData) => {
+        console.log()
         const { email, password } = userData;
         try {
             const response = await login(email, password);
             const token = response.data;
-            this.setState({ auth: true, token }, () => {
+            const decoded = jwt_decode(token.token);
+            this.setState({ auth: true, token, role: decoded.user.role }, () => {
                 setToken(token)
                 setAuth(true)
             });
@@ -66,6 +69,7 @@ class AuthProvider extends React.Component {
                     isAuth: this.state.auth,
                     isAuthFunc: this.isAuthFunc,
                     token: this.state.token,
+                    role: this.state.role,
                     login: this.login,
                     logout: this.logout,
                     generateHeaders: this.generateHeaders
