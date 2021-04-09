@@ -22,10 +22,22 @@
     list-style-type: none;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin: auto;
+    margin: auto 0;
     padding: auto;
 }
 
 .navbar ul li {
     margin: 0 1em;
+}
+
+.navbar ul li:hover {
+    background-color: var(--pDark);
+}
+
+.navbar div img {
+    width: 3em;
+}
+
+.navbar div img:hover {
+    cursor: pointer;
 }
