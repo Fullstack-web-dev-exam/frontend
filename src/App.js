@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar/NavBar';
-/* import LogInForm from './components/Login/LogInForm' */
-import AddUserForm from './components/AddUser/AddUserForm';
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthConsumer } from './helpers/Auth';
 
@@ -27,8 +25,7 @@ function App() {
                 <p>You are now logged out!</p>
               </Route>
               <Route exact path="/login">
-                {/* <LogInForm/> */}
-                <AddUserForm />
+                <p>Login</p>
               </Route>
               <Route exact path="/">
                 <p>Hjemmesiden</p>
