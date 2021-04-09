@@ -1,126 +1,16 @@
-//From https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in/SignIn.js
-import React, { useContext, useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { AuthContext } from '../helpers/Auth';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.main
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1)
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-        backgroundColor: theme.palette.secondary.main,
-        '&:hover': {
-            backgroundColor: theme.palette.secondary.dark
-        }
-    },
-}));
-
-export default function LogInForm() {
-    const classes = useStyles();
-    const authContext = useContext(AuthContext);
-    const [values, setValues] = useState({email: '', password: ''});
-    const [error, setError] = useState();
-    const [redirect, setRedirect] = useState();
-    const form = React.createRef();
-
-    const handleEvent = (event) => {
-        setValues({...values, [event.target.name]: event.target.value});
-    }
-
-    const handleLogIn = async (event) => {
-        event.preventDefault();
-        if(validation()){
-            const { email, password } = values;
-            console.log(email);
-            console.log(password);
-            const res = await authContext.login({email, password});
-            if(res.error){
-                setError(res.error.message);
-            } else {
-                setRedirect("/overview");
-            }
-        } else {
-            setError("Form is not valid!");
+class LogIn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
         }
     }
-
-    const validation = () => {
-        return form.current.reportValidity();
+    render() { 
+        return (<p>Halla</p>);
     }
-
-    if(redirect){
-        return (<Redirect to={redirect} />) ;
-    }
-
-    return (
-        <Container maxWidth="xs" className={classes.paper}>
-            <CssBaseline />
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Log in
-                </Typography>
-                <form ref={form} className={classes.form} noValidate onSubmit={handleLogIn} method="POST">
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Adress"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        onChange={handleEvent}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        onChange={handleEvent}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Log In
-                    </Button>
-                    <Link href="#" variant="body2">
-                        Forgot password?
-                    </Link>
-                </form>
-                {error && <div>{error}</div>}
-        </Container>
-    );
 }
+
+export default LogIn;
