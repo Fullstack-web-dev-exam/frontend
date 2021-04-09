@@ -25,7 +25,7 @@ function App() {
                 <p>You are now logged out!</p>
               </Route>
               <Route exact path="/login">
-                <LogInForm/>
+                <LogInForm isAuth={false}/>
                 {/* <AddUserForm /> */}
               </Route>
               <Route exact path="/">
