@@ -1,32 +1,43 @@
-.appBar {
+.navbar {
     display: flex;
     justify-content: space-between;
+    background-color: var(--primary);
 }
 
-.appBar nav a {
+.navbar h1 {
+    color: var(--background);
+}
+
+.navbar a {
     color: var(--background);
     text-decoration: none;
 }
 
-.appBar * {
-    color: var(--secondary);
+.navbar * {
     font-size: 0.9em;
 }
 
-.appBar nav ul {
+.navbar ul {
     display: flex;
     list-style-type: none;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
+    margin: auto 0;
+    padding: auto;
 }
 
-.appBar ul li {
+.navbar ul li {
     margin: 0 1em;
 }
 
-.menu a {
-    text-decoration: none;
-    color: inherit;
+.navbar ul li:hover {
+    background-color: var(--pDark);
+}
+
+.navbar div img {
+    width: 3em;
+}
+
+.navbar div img:hover {
+    cursor: pointer;
 }
