@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
 
-
 class AddUserForm extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +9,7 @@ class AddUserForm extends Component {
             firstname: '',
             surname: '',
             email: '',
-            role: 'gardener',
+            role: '',
             password: '',
             repeatpassword: '',
             passwordError: false
@@ -24,10 +23,12 @@ class AddUserForm extends Component {
         this.passwordInput = React.createRef();
     }
 
+    //Set focus to the first input field of the form: first name
     componentDidMount() {
         this.firstnameInput.current.focus();
     }
 
+    //General InputChangeHandler that saves the value of the input field to the state
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -37,6 +38,7 @@ class AddUserForm extends Component {
         });
     }
 
+    //HandleSubmit runs two validators, first checking if the passwords match, thereafter a more general form validator
     handleSubmit(event) {
         event.preventDefault();
 
@@ -66,6 +68,7 @@ class AddUserForm extends Component {
         }
     }
 
+    //Close the red error message that pops up when the two passwords do not match
     handleClose() {
         this.setState({
             passwordError: false
@@ -81,28 +84,42 @@ class AddUserForm extends Component {
                     <form ref={this.form} onSubmit={this.handleSubmit} className="AddUserForm">
                         <fieldset>
                             <legend>Add a new user</legend>
-                            <label htmlFor="firstname">first name</label>
-                            <input type="text" id="firstname" placeholder="Enter Their First Name" name="firstname" required onChange={this.handleInputChange} value={this.state.firstname} ref={this.firstnameInput} />
+                            <div className="gridContainer">
+                                <div className="firstNameGridItem">
+                                    <label htmlFor="firstname">first name</label>
+                                    <input type="text" id="firstname" placeholder="Enter Their First Name" name="firstname" required onChange={this.handleInputChange} value={this.state.firstname} ref={this.firstnameInput} />
+                                </div>
 
-                            <label htmlFor="surname">surname</label>
-                            <input type="text" id="surname" placeholder="Enter Their Surname" name="surname" required onChange={this.handleInputChange} value={this.state.surname} />
+                                <div className="surnameGridItem">
+                                    <label htmlFor="surname">surname</label>
+                                    <input type="text" id="surname" placeholder="Enter Their Surname" name="surname" required onChange={this.handleInputChange} value={this.state.surname} />
+                                </div>
 
-                            <label htmlFor="email">email</label>
-                            <input type="email" id="email" placeholder="Enter Their Email" name="email" required
-                                onChange={this.handleInputChange} value={this.state.email} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                title="Please enter a valid email" />
+                                <div className="emailGridItem">
+                                    <label htmlFor="email">email</label>
+                                    <input type="email" id="email" placeholder="Enter Their Email" name="email" required
+                                        onChange={this.handleInputChange} value={this.state.email} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        title="Please enter a valid email" />
+                                </div>
 
-                            <label htmlFor="role">role</label>
-                            <select value={this.state.role} onChange={this.handleInputChange}>
-                                <option value="gardener">Gardener</option>
-                                <option value="manager">Manager</option>
-                            </select>
+                                <div className="roleGridItem">
+                                    <label htmlFor="role">role</label>
+                                    <select value={this.state.role} onChange={this.handleInputChange} name="role">
+                                        <option value="gardener">Gardener</option>
+                                        <option value="manager">Manager</option>
+                                    </select>
+                                </div>
 
-                            <label htmlFor="password">password</label>
-                            <input type="password" id="password" placeholder="Enter Their Password" name="password" required onChange={this.handleInputChange} value={this.state.password} pattern=".{8,}" title="Eight or more characters" ref={this.passwordInput} />
+                                <div className="passwordGridItem">
+                                    <label htmlFor="password">password</label>
+                                    <input type="password" id="password" placeholder="Enter Their Password" name="password" required onChange={this.handleInputChange} value={this.state.password} pattern=".{8,}" title="Eight or more characters" ref={this.passwordInput} />
+                                </div>
 
-                            <label htmlFor="repeatpassword">repeat password</label>
-                            <input type="password" id="repeatpassword" placeholder="Repeat Their Password" name="repeatpassword" required onChange={this.handleInputChange} value={this.state.repeatpassword} />
+                                <div className="repeatPasswordGridItem">
+                                    <label htmlFor="repeatpassword">repeat password</label>
+                                    <input type="password" id="repeatpassword" placeholder="Repeat Their Password" name="repeatpassword" required onChange={this.handleInputChange} value={this.state.repeatpassword} />
+                                </div>
+                            </div>
 
                             {this.state.passwordError && <p className="errorMessage" onClick={this.handleClose}><strong>Validation Error:</strong> The passwords entered are not the same.</p>}
 
