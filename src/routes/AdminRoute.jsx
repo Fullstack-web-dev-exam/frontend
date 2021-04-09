@@ -3,16 +3,16 @@
 import { Route, Redirect } from "react-router-dom";
 import { AuthConsumer } from '../helpers/Auth';
 
-const PrivateRoute = ({ children, ...rest }) => (
+const AdminRoute = ({ children, ...rest }) => (
     <AuthConsumer>
-        {({ isAuthFunc }) => (
+        {({ isRoleSet }) => (
             <Route {...rest} render={({ location }) =>
-                isAuthFunc() ? (
+                isRoleSet() ? (
                     children
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/login",
+                            pathname: "/overview",
                             state: { from: location }
                         }}
                     />
@@ -22,4 +22,4 @@ const PrivateRoute = ({ children, ...rest }) => (
     </AuthConsumer>
 );
 
-export default PrivateRoute;
+export default AdminRoute;
