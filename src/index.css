@@ -1,6 +1,6 @@
 @import './colors.css';
 
-* > body {
+*>body {
   background-color: var(--background);
   margin: 0;
   padding: 0;
@@ -19,4 +19,28 @@ code {
 
 a {
   color: var(--secondary);
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0 24px;
+  display: inline-block;
+  border: 1px solid var(--gray4);
+  box-sizing: border-box;
+}
+
+.errorMessage {
+  padding: 12px 20px;
+  margin: 8px 0 24px;
+  background-color: var(--red);
+  color: #fff;
+  border-radius: 10px;
+}
+
+label {
+  text-transform: capitalize;
 }

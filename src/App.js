@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LogInForm from './components/Login/LogInForm';
+import AddUserForm from './components/AddUser/AddUserForm'
 import NavBar from './components/NavBar/NavBar';
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthConsumer } from './helpers/Auth';
@@ -26,7 +27,7 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <LogInForm isAuth={false}/>
-                {/* <AddUserForm /> */}
+                <AddUserForm />
               </Route>
               <Route exact path="/">
                 <p>Hjemmesiden</p>
