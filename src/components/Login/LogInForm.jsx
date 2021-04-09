@@ -39,10 +39,10 @@ class LogInForm extends Component {
                             <fieldset>
                                 <legend>Log In</legend>
                                 <label htmlFor="email">Email</label>
-                                <input type="text" placeholder="Enter Your Email" name="email" required onChange={this.handleInputChange} value={this.state.email} />
+                                <input type="text" id="email" placeholder="Enter Your Email" name="email" required onChange={this.handleInputChange} value={this.state.email} />
 
                                 <label htmlFor="password">Password</label>
-                                <input type="password" placeholder="Enter Your Password" name="password" required onChange={this.handleInputChange} value={this.state.password} />
+                                <input type="password" id="password" placeholder="Enter Your Password" name="password" required onChange={this.handleInputChange} value={this.state.password} />
 
                                 <button type="submit">log in</button>
                             </fieldset>
