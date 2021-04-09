@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import MenuAppBar from './components/AppBar';
-/* import LogInForm from './components/LogInForm' */
-import AddUserForm from './components/AddUserForm';
+import NavBar from './components/NavBar/NavBar';
+/* import LogInForm from './components/Login/LogInForm' */
+import AddUserForm from './components/AddUser/AddUserForm';
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthConsumer } from './helpers/Auth';
 
@@ -11,7 +11,7 @@ function App() {
     <AuthConsumer>
       {({ isAuth }) => (
         <Router>
-          <MenuAppBar />
+          <NavBar />
           <main>
             <Switch>
               <Route exact path="/overview">
