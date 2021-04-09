@@ -49,7 +49,7 @@ class AddUserForm extends Component {
         if (this.generalValidation() && this.passwordValidation()) {
             alert('vellykket');
             //Send informasjonen som er i state til backend
-            const headers = await this.context.generateHeaders();
+            const headers = this.context.generateHeaders();
             console.log(headers.headers);
             const userObject = {
                 name: this.state.firstname,

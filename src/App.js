@@ -18,6 +18,7 @@ function App() {
               </Route>
               <PrivateRoute exact path="/user">
                 <p>Profile</p>
+                <AddUserForm />
               </PrivateRoute>
               <PrivateRoute exact path="/dashboard">
                 <p>Admin siden</p>
@@ -27,7 +28,6 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <LogInForm />
-                <AddUserForm />
               </Route>
               <Route exact path="/">
                 <p>Hjemmesiden</p>
