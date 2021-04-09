@@ -9,7 +9,7 @@ function App() {
     <AuthConsumer>
       {({ isAuth }) => (
         <Router>
-           <NavBar />
+            <NavBar />
           <main>
             <Switch>
               <Route exact path="/overview">
