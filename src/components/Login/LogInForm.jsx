@@ -17,6 +17,11 @@ class LogInForm extends Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.form = React.createRef();
+        this.emailInput = React.createRef();
+    }
+
+    componentDidMount() {
+        this.emailInput.current.focus();
     }
 
     handleInputChange(event) {
@@ -32,16 +37,16 @@ class LogInForm extends Component {
         //alert(`you are submitting the email: '${this.state.email}' and the password: '${this.state.password}'`);
         event.preventDefault();
 
-        if(this.validation()) {
-            const {email, password} = this.state;
+        if (this.validation()) {
+            const { email, password } = this.state;
             //console.log(email, password);
-            const res = await this.context.login({email, password});
+            const res = await this.context.login({ email, password });
 
-            if(res.error){
-                this.setState({error: res.error.message});
+            if (res.error) {
+                this.setState({ error: res.error.message });
             }
         } else {
-            this.setState({error: "The form is not valid!"});
+            this.setState({ error: "The form is not valid!" });
         }
     }
 
@@ -54,20 +59,20 @@ class LogInForm extends Component {
             <>
                 {!this.context.isAuth && <>
                     <div className="container">
-                    <img src={lockClosedIcon} alt="" />
+                        <img src={lockClosedIcon} alt="" />
                         <form ref={this.form} onSubmit={this.handleSubmit}>
                             <fieldset>
                                 <legend>Log In</legend>
                                 <label htmlFor="email">Email</label>
-                                <input type="text" id="email" placeholder="Enter Your Email" name="email" required onChange={this.handleInputChange} value={this.state.email} />
+                                <input type="text" id="email" placeholder="Enter Your Email" name="email" required onChange={this.handleInputChange} value={this.state.email} ref={this.emailInput}/>
 
                                 <label htmlFor="password">Password</label>
                                 <input type="password" id="password" placeholder="Enter Your Password" name="password" required onChange={this.handleInputChange} value={this.state.password} />
 
                                 <button type="submit">log in</button>
                             </fieldset>
-                            <Link to="/forgotpassword">Forgot password?</Link>
                         </form>
+                        <Link to="/forgotpassword">Forgot password?</Link>
                     </div>
                 </>}
                 {this.context.isAuth && <div className="container loggedIn">
