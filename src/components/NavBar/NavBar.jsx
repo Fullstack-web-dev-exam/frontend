@@ -19,10 +19,14 @@ function Nav(props) {
         setAnchorEl(null);
     }
 
+    const handleLogOut = () => {
+        authContext.logout();
+    }
+
     if(open){
         menu = (
             <ul>
-                <li>Test</li>
+                <li onClick={function (event) {handleClose(); handleLogOut()}}>Logout</li>
             </ul>
         );
     }
@@ -38,10 +42,10 @@ function Nav(props) {
                     <Link to="/">About</Link>
                 </li>
             </ul>
-            {authContext.isAuth && (
+            {!authContext.isAuth && (
                 <Link to="/login"><button>Log in</button></Link>
             )}
-            {!authContext.isAuth && (
+            {authContext.isAuth && (
                 <div>
                     <img src={accountCircle} alt="Account Circle icon" onClick={handleMenu} />
                 </div>
