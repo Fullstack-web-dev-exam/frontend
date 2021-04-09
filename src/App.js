@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import NavBar from './components/NavBar/NavBar';
-/* import LogInForm from './components/Login/LogInForm' */
-import AddUserForm from './components/AddUser/AddUserForm';
+/* import NavBar from './components/NavBar/NavBar'; */
+import LogInForm from './components/Login/LogInForm';
+/* import AddUserForm from './components/AddUser/AddUserForm'; */
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthConsumer } from './helpers/Auth';
 
@@ -11,7 +10,7 @@ function App() {
     <AuthConsumer>
       {({ isAuth }) => (
         <Router>
-          <NavBar />
+          {/* <NavBar /> */}
           <main>
             <Switch>
               <Route exact path="/overview">
@@ -27,8 +26,8 @@ function App() {
                 <p>You are now logged out!</p>
               </Route>
               <Route exact path="/login">
-                {/* <LogInForm/> */}
-                <AddUserForm />
+                <LogInForm/>
+                {/* <AddUserForm /> */}
               </Route>
               <Route exact path="/">
                 <p>Hjemmesiden</p>
