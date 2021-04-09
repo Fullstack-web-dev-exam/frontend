@@ -46,12 +46,13 @@ class AuthProvider extends React.Component {
 
         if (token) {
             response.headers = {
-                Authorization: `Bearer ${token}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token.token}`
             };
         }
-        console.log(token);
-        console.log(response.headers)
-        return response.headers;
+        //console.log(token.token);
+        //console.log(response)
+        return response;
     }
 
     isAuthFunc = () => {

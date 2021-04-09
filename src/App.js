@@ -16,7 +16,7 @@ function App() {
               <Route exact path="/overview">
                 <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
               </Route>
-              <PrivateRoute exact path="/user">
+              <PrivateRoute exact path="/user/">
                 <p>Profile</p>
                 <AddUserForm />
               </PrivateRoute>

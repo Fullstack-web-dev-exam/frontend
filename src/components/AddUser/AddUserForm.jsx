@@ -50,7 +50,7 @@ class AddUserForm extends Component {
             alert('vellykket');
             //Send informasjonen som er i state til backend
             const headers = this.context.generateHeaders();
-            console.log(headers.headers);
+            console.log(headers);
             const userObject = {
                 name: this.state.firstname,
                 surname: this.state.surname,
@@ -59,7 +59,8 @@ class AddUserForm extends Component {
                 password: this.state.password
             }
             //Send informasjonen som er i state til backend
-            createUser(headers.headers, userObject);
+            console.log(userObject);
+            createUser(headers, userObject);
         } else {
             alert('lmaooooo det gikk feil XD')
         }
