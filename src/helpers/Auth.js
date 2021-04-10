@@ -2,9 +2,11 @@
 // and https://codesandbox.io/s/q9m26noky6?file=/src/helpers/AuthContext.js:0-638
 import React from 'react';
 import { login } from '../api/users';
-import { getToken, setToken, getAuth, setAuth, clearLocalStorage } from './storage';
+//import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './storage';
+import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './cookieStorage';
+import jwt_decode from 'jwt-decode';
 
-const INITIAL_STATE = { auth: false, token: null, user: null };
+const INITIAL_STATE = { auth: false, token: null, role: null };
 
 const AuthContext = React.createContext();
 
@@ -14,9 +16,11 @@ class AuthProvider extends React.Component {
     componentDidMount() {
         const token = getToken();
         const isAuth = getAuth();
+        const role = getRole();
+        console.log(role);
 
         if (token && isAuth) {
-            this.setState({ auth: true, token });
+            this.setState({ auth: true, token, role });
         }
     }
 
@@ -25,9 +29,11 @@ class AuthProvider extends React.Component {
         try {
             const response = await login(email, password);
             const token = response.data;
-            this.setState({ auth: true, token }, () => {
+            const decoded = jwt_decode(token.token);
+            this.setState({ auth: true, token, role: decoded.user.role }, () => {
                 setToken(token)
                 setAuth(true)
+                setRole(decoded.user.role)
             });
             return response.data;
         } catch (error) {
@@ -46,15 +52,26 @@ class AuthProvider extends React.Component {
 
         if (token) {
             response.headers = {
-                Authorization: `Bearer ${token}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token.token}`
             };
         }
+        //console.log(token.token);
+        //console.log(response)
         return response;
     }
 
     isAuthFunc = () => {
         return this.state.auth || getToken() != null;
     };
+
+    isRoleSet = () => {
+        if(this.state.role === "manager" || getRole() === "manager"){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     render() {
         return (
@@ -63,6 +80,8 @@ class AuthProvider extends React.Component {
                     isAuth: this.state.auth,
                     isAuthFunc: this.isAuthFunc,
                     token: this.state.token,
+                    role: this.state.role,
+                    isRoleSet: this.isRoleSet,
                     login: this.login,
                     logout: this.logout,
                     generateHeaders: this.generateHeaders
