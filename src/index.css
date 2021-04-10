@@ -56,7 +56,14 @@ label {
   background-color: var(--red);
 }
 
-.delete-button:hover {
+.delete-button:disabled, .edit-button:disabled{
+  opacity: 50%;
+  background-color: var(--gray4);
+  cursor: not-allowed;
+  color: #333;
+}
+
+.delete-button:hover:enabled {
   box-shadow: 0 0 11px rgba(33, 33, 33, .2);
   background-color: var(--rDark)
 }
@@ -65,7 +72,7 @@ label {
   background-color: var(--secondary);
 }
 
-.edit-button:hover {
+.edit-button:hover:enabled {
   box-shadow: 0 0 11px rgba(33, 33, 33, .2);
   background-color: var(--sDark)
 }

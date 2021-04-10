@@ -53,9 +53,8 @@ button {
 }
 
 /* Add a hover effect for submit button */
-button:hover {
+button:hover:enabled {
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
-    background-color: var(--pDark);
 }
 
 .loggedIn {

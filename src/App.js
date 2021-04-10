@@ -22,7 +22,7 @@ class App extends Component {
             <main>
               <Switch>
                 <Route exact path="/overview">
-                  <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
+                  <p>Dette er overview-siden</p>
                 </Route>
                 <PrivateRoute exact path="/user/">
                   <p>Profile</p>
