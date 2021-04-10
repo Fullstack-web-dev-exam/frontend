@@ -64,10 +64,27 @@ class LogInForm extends Component {
                             <fieldset>
                                 <legend>Log In</legend>
                                 <label htmlFor="email">Email</label>
-                                <input type="text" id="email" placeholder="Enter Your Email" name="email" required onChange={this.handleInputChange} value={this.state.email} ref={this.emailInput}/>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter Your Email"
+                                    ref={this.emailInput}
+                                    required
+                                    type="text"
+                                    value={this.state.email}
+                                />
 
                                 <label htmlFor="password">Password</label>
-                                <input type="password" id="password" placeholder="Enter Your Password" name="password" required onChange={this.handleInputChange} value={this.state.password} />
+                                <input
+                                    id="password"
+                                    name="password"
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter Your Password"
+                                    required
+                                    type="password"
+                                    value={this.state.password}
+                                />
 
                                 <button type="submit">log in</button>
                             </fieldset>

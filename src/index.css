@@ -19,6 +19,13 @@ code {
 
 a {
   color: var(--secondary);
+  transition: .3s;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--sDark);
+  text-decoration: underline;
 }
 
 input[type=text],
@@ -33,7 +40,7 @@ select {
   box-sizing: border-box;
 }
 
-.errorMessage {
+.error-message {
   padding: 12px 20px;
   margin: 8px 0 24px;
   background-color: var(--red);
@@ -43,4 +50,37 @@ select {
 
 label {
   text-transform: capitalize;
+}
+
+.delete-button{
+  background-color: var(--red);
+}
+
+.delete-button:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+  background-color: var(--rDark)
+}
+
+.edit-button {
+  background-color: var(--secondary);
+}
+
+.edit-button:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+  background-color: var(--sDark)
+}
+
+.user-list-item-buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-list-item-buttons button{
+  width: 49%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
