@@ -2,8 +2,8 @@
 // and https://codesandbox.io/s/q9m26noky6?file=/src/helpers/AuthContext.js:0-638
 import React from 'react';
 import { login } from '../api/users';
-//import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './storage';
-import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './cookieStorage';
+import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './storage';
+//import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './cookieStorage';
 import jwt_decode from 'jwt-decode';
 
 const INITIAL_STATE = { auth: false, token: null, role: null };
