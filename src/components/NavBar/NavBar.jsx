@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
-import { AuthContext } from '../../helpers/Auth';
 import './NavBar.css';
 import accountCircle from '../../assets/account_circle.svg';
+import { AuthContext } from '../../helpers/Auth';
+import { Link } from "react-router-dom";
 
 function Nav(props) {
     const authContext = useContext(AuthContext);
