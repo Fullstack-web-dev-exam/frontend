@@ -18,7 +18,8 @@ function getRole() {
 
 function setToken(token) {
     //console.log(token);
-    const cookie = `token=${JSON.stringify(token)};`;
+    const key = "token=";
+    const cookie = (key, JSON.stringify(token));
     document.cookie = cookie;
 }
 
