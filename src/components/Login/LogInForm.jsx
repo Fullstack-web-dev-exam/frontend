@@ -3,7 +3,7 @@ import './LogInForm.css';
 import lockClosedIcon from '../../assets/lock_black_24dp.svg';
 import lockOpenIcon from '../../assets/lock_open_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class LogInForm extends Component {
     static contextType = AuthContext;
@@ -13,7 +13,8 @@ class LogInForm extends Component {
         this.state = {
             email: '',
             password: '',
-            error: ''
+            error: '',
+            redirect: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.form = React.createRef();
@@ -44,6 +45,8 @@ class LogInForm extends Component {
 
             if (res.error) {
                 this.setState({ error: res.error.message });
+            } else {
+                this.setState({ redirect: "/user" });
             }
         } else {
             this.setState({ error: "The form is not valid!" });
@@ -55,6 +58,10 @@ class LogInForm extends Component {
     }
 
     render() {
+        if(this.state.redirect){
+            return (<Redirect to={this.state.redirect} />)
+        }
+
         return (
             <>
                 {!this.context.isAuth && <>
