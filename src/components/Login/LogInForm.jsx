@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import './LogInForm.css';
-import lockOpenIcon from '../../assets/lock_open_black_24dp.svg';
 import lockClosedIcon from '../../assets/lock_black_24dp.svg';
+import lockOpenIcon from '../../assets/lock_open_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
+import { Link } from "react-router-dom";
 
 class LogInForm extends Component {
     static contextType = AuthContext;

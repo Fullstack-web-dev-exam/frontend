@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { fetchAllUsers } from '../../api/users';
 import { AuthContext } from '../../helpers/Auth';
+import { fetchAllUsers } from '../../api/users';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {

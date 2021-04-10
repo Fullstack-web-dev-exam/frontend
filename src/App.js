@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LogInForm from './components/Login/LogInForm';
 import AddUserForm from './components/AddUser/AddUserForm'
-import NavBar from './components/NavBar/NavBar';
-import UserList from './components/UserList/UserList';
-import PrivateRoute from './routes/PrivateRoute';
 import AdminRoute from './routes/AdminRoute'
-import { AuthConsumer } from './helpers/Auth';
+import LogInForm from './components/Login/LogInForm';
+import NavBar from './components/NavBar/NavBar';
+import NotFound from './components/NotFound/NotFound'
+import PrivateRoute from './routes/PrivateRoute';
+import UserList from './components/UserList/UserList';
 import withUsersFetch from './components/hoc/UserListHOC';
+import { AuthConsumer } from './helpers/Auth';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -22,7 +23,7 @@ class App extends Component {
             <main>
               <Switch>
                 <Route exact path="/overview">
-                  <p>Dette er en test for å se om branch AppBar fungerer lmao</p>
+                  <p>Dette er overview-siden</p>
                 </Route>
                 <PrivateRoute exact path="/user/">
                   <p>Profile</p>
@@ -45,6 +46,9 @@ class App extends Component {
                 </Route>
                 <Route exact path="/401">
                   <p>You are not authorized!</p>
+                </Route>
+                <Route>
+                  <NotFound />
                 </Route>
               </Switch>
             </main>

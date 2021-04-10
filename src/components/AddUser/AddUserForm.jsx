@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
-import { createUser } from '../../api/users';
 import { AuthContext } from '../../helpers/Auth';
+import { createUser } from '../../api/users';
 
 class AddUserForm extends Component {
     static contextType = AuthContext;
