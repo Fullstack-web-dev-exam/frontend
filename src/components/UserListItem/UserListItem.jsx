@@ -7,8 +7,8 @@ function UserListItem({ user }) {
             <h3>Role: {user.role}</h3>
             <p><b>Email:</b> {user.email}</p>
             <div className="user-list-item-buttons">
-                {user.role === "gardener" ? <button className="edit-button">edit</button> : <button disabled className="edit-button">edit</button>}
-                {user.role === "gardener" ? <button className="delete-button">delete</button> : <button disabled className="delete-button">delete</button>}
+                {user.role === "gardener" ? <button className="edit-button">edit</button> : <button disabled title="You cannot edit a manager" className="edit-button">edit</button>}
+                {user.role === "gardener" ? <button className="delete-button">delete</button> : <button disabled title="You cannot delete a manager" className="delete-button">delete</button>}
             </div>
         </div>
     </li>)

@@ -43,12 +43,12 @@ class AddUserForm extends Component {
     }
 
     //HandleSubmit runs two validators, first checking if the passwords match, thereafter a more general form validator
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
 
         if (this.generalValidation() && this.passwordValidation()) {
-            alert('vellykket');
-            //Send informasjonen som er i state til backend
+
+            //Send the information stored in the state to the back-end
             const headers = this.context.generateHeaders();
             console.log(headers);
             const userObject = {
@@ -58,11 +58,12 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
-            //Send informasjonen som er i state til backend
-            console.log(userObject);
-            createUser(headers, userObject);
+            const res = await createUser(headers, userObject);
+            if (res.error) {
+                alert(`Something went wrong during creation ${res.error}`);
+            }
         } else {
-            alert('lmaooooo det gikk feil XD')
+            alert('the form did not pass validation');
         }
     }
 
