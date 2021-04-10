@@ -1,0 +1,10 @@
+.not-found-pop-up h1,
+.not-found-pop-up p {
+  text-align: center;
+}
+
+.big-number {
+  font-size: 5em;
+  display: block;
+  color: var(--red)
+}
