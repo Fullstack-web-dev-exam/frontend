@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import './UserList.css';
-/* import { AuthContext } from '../../helpers/Auth'; */
+import { AuthContext } from '../../helpers/Auth';
 import UserListItem from '../UserListItem/UserListItem'
 import { fetchAllUsers } from '../../api/users';
 
-//Get this from backend
-const usersFromBackEnd = [
-    { _id: 1, name: "Cornelius", surname: "Singblær", email: "sug@meg", role: 'Manager' },
-    { _id: 2, name: "Glenn", surname: "Hansen", role: 'Gardener', email: "test@epost1" },
-    { _id: 3, name: "Tom", surname: "Famous", role: 'Gardener', email: "test@epost2" }
-];
-
 class UserList extends Component {
+    static contextType = AuthContext;
     constructor() {
         super();
         this.state = {
             users: [],
+            isLoading: true,
+            error: null
         };
     }
 
@@ -24,24 +20,45 @@ class UserList extends Component {
 
     //Lecture 10-1
 
-    fakeRequest = () =>
-        new Promise(resolve => setTimeout(() => resolve(usersFromBackEnd), 1000));
-
     async componentDidMount() {
-        const res = await fetchAllUsers()
-        console.log(res)
+        const headers = this.context.generateHeaders();
+        const res = await fetchAllUsers(headers)
+        console.log(res.data)
 
-        this.fakeRequest().then(usersFromBackEnd => this.setState({
-            users: usersFromBackEnd
-        }));
+        if (res.error) {
+            this.setState({
+                error: res.error
+            })
+        } else {
+            this.setState({
+                users: res.data,
+                isLoading: false,
+                error: null
+            })
+        }
     }
 
 
     listItems() {
-        return this.state.users.map(user => <UserListItem key={user._id} user={user} />)
+        return this.state.users.map(user => <UserListItem key={user.email} user={user} />)
     }
 
     render() {
+
+
+        if (this.state.error) {
+            //gjør mer ryddig senere
+            return (
+                <p>There is an error: {this.state.error}</p>
+            )
+        }
+
+        if (this.state.isLoading) {
+            return (
+                <p>Loading...</p>
+            )
+        }
+
         return (
             <ul>
                 {this.listItems()}

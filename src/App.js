@@ -12,7 +12,7 @@ function App() {
     <AuthConsumer>
       {({ isAuth }) => (
         <Router>
-            <NavBar />
+          <NavBar />
           <main>
             <Switch>
               <Route exact path="/overview">
@@ -23,8 +23,10 @@ function App() {
                 <AddUserForm />
               </PrivateRoute>
               <PrivateRoute exact path="/dashboard">
-                <AdminRoute />
-                <p>Admin siden</p>
+                <AdminRoute >
+                  <p>Admin siden</p>
+                  <UserList />
+                </AdminRoute>
               </PrivateRoute>
               <Route exact path="/logout">
                 <p>You are now logged out!</p>
@@ -33,7 +35,6 @@ function App() {
                 <LogInForm />
               </Route>
               <Route exact path="/">
-              <UserList/>
                 <p>Hjemmesiden</p>
               </Route>
               <Route exact path="/401">
