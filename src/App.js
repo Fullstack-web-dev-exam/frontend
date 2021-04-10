@@ -4,6 +4,7 @@ import AddUserForm from './components/AddUser/AddUserForm'
 import NavBar from './components/NavBar/NavBar';
 import UserList from './components/UserList/UserList';
 import PrivateRoute from './routes/PrivateRoute';
+import AdminRoute from './routes/AdminRoute'
 import { AuthConsumer } from './helpers/Auth';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <AddUserForm />
               </PrivateRoute>
               <PrivateRoute exact path="/dashboard">
+                <AdminRoute />
                 <p>Admin siden</p>
               </PrivateRoute>
               <Route exact path="/logout">
