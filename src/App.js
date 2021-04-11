@@ -28,7 +28,7 @@ class App extends Component {
             <NavBar />
             <main>
               <Switch>
-              <Route exact path="/forgotpassword">
+              <Route exact path="/reset_password">
                   <ForgotPasswordEmailForm/>
                 </Route>
                 <Route exact path="/overview">
