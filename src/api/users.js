@@ -13,11 +13,11 @@ const createUser = (headers, { name, surname, email, role, password }) => {
 }
 
 const fetchUser = (headers) => {
-    return axios.get('/user/', headers);
+    return axios.get('/user', headers);
 }
 
-const updateUser = (headers, params) => {
-    return axios.patch('/user/:id', { params }, headers);
+const updateUser = (headers, { email, name, surname, oldPassword, password }) => {
+    return axios.patch('/user/:id', { email, name, surname, oldPassword, password }, headers);
 }
 
 const deleteUser = (headers, params) => {
