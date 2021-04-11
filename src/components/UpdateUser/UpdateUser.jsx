@@ -51,6 +51,10 @@ class UpdateUserForm extends Component {
             payloadObj.surname = this.state.surname
         }
 
+        if (this.state.role) {
+            payloadObj.role = this.state.role
+        }
+
         if (this.state.oldPassword) {
             payloadObj.oldPassword = this.state.oldPassword
         }
