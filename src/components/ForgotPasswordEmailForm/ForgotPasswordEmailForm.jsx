@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import passwordIcon from '../../assets/password_black_24dp.svg';
 import './ForgotPasswordEmailForm.css';
+import { forgot } from '../../api/users';
 
 class ForgotPasswordEmailForm extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class ForgotPasswordEmailForm extends Component {
             //console.log(email, password);
 
             //ENDRE DENNE
-             const res = await this.context.login({ email });
+            const res = await forgot(email);
 
             if (res.error) {
                 this.setState({ error: res.error.message });
