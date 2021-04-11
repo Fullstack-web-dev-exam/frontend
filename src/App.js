@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-/* import AddUserForm from './components/AddUser/AddUserForm' */
+//import AddUserForm from './components/AddUser/AddUserForm';
 import AdminRoute from './routes/AdminRoute'
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
@@ -10,6 +10,8 @@ import UserList from './components/UserList/UserList';
 import withUsersFetch from './components/hoc/UserListHOC';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile'
+import updateUserBackend from './components/hoc/UpdateUserHOC';
+import UpdateUser from './components/UpdateUser/UpdateUser';
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -19,6 +21,7 @@ class App extends Component {
 
     const UserListWithHOC = withUsersFetch(UserList);
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
+    const UpdateUserHOC = updateUserBackend(UpdateUser);
 
     return (
       <AuthConsumer>
@@ -30,14 +33,15 @@ class App extends Component {
                 <Route exact path="/overview">
                   <p>Dette er overview-siden</p>
                 </Route>
-                <PrivateRoute exact path="/user/">
+                <PrivateRoute exact path="/user">
                   <h1>Profile</h1>
                   <MyProfileWithHOC/>
-                  {/* <AddUserForm /> */}
+                  <UpdateUserHOC />
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
                     <p>Admin siden</p>
+                    {/* <AddUserForm /> */}
                     <UserListWithHOC />
                   </AdminRoute>
                 </PrivateRoute>

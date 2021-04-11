@@ -4,7 +4,6 @@ import { fetchUser } from '../../api/users';
 
 function withUserBackEnd(WrappedComponent) {
     class MyProfileHOC extends Component {
-        
         static contextType = AuthContext;
         constructor(props) {
             super(props);
@@ -16,7 +15,6 @@ function withUserBackEnd(WrappedComponent) {
         }
 
         async componentDidMount() {
-            /* this.isMounted = true; */
             const headers = this.context.generateHeaders();
             const res = await fetchUser(headers)
 

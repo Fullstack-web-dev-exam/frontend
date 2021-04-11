@@ -9,15 +9,15 @@ const login = (email, password) => {
 // Logged in users can do this
 const createUser = (headers, { name, surname, email, role, password }) => {
     console.log({ name, surname, email, role, password });
-    return axios.post('/user/', { name, surname, email, role, password }, headers);
+    return axios.post('/dashboard', { name, surname, email, role, password }, headers);
 }
 
 const fetchUser = (headers) => {
-    return axios.get('/user/', headers);
+    return axios.get('/user', headers);
 }
 
-const updateUser = (headers, params) => {
-    return axios.patch('/user/:id', { params }, headers);
+const updateUser = (headers, { name, surname}) => {
+    return axios.patch('/user', { name, surname }, headers);
 }
 
 const deleteUser = (headers, params) => {
