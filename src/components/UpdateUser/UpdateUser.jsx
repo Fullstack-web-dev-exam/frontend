@@ -39,18 +39,36 @@ class UpdateUserForm extends Component {
         });
     }
 
+    getPayload() {
+        let payloadObj = {}
+
+        if (this.state.firstname) {
+            payloadObj.name = this.state.firstname
+        }
+
+        if (this.state.surname) {
+            payloadObj.surname = this.state.surname
+        }
+
+        if (this.state.oldPassword) {
+            payloadObj.oldPassword = this.state.oldPassword
+        }
+
+        if (this.state.password) {
+            payloadObj.password = this.state.password
+        }
+
+        return payloadObj;
+    }
+
     //HandleSubmit runs two validators, first checking if the passwords match, thereafter a more general form validator
     async handleSubmit(event) {
         event.preventDefault();
 
         if (this.generalValidation() && this.passwordValidation()) {
-
-            const userObject = {
-                name: this.state.firstname,
-                surname: this.state.surname
-            }
+            const userObject = this.getPayload()
             this.props.onUpdate(userObject)
-            
+
         } else {
             alert('the form did not pass validation');
         }
@@ -128,7 +146,7 @@ class UpdateUserForm extends Component {
                                         value={this.state.oldPassword}
                                     />
                                 </div>
-                                
+
                                 <div>
                                     <label htmlFor="password">new password</label>
                                     <input

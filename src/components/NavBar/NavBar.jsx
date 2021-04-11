@@ -46,15 +46,10 @@ function Nav(props) {
 
     return (
         <nav className="navbar">
-            <h1>Fullstack Project</h1>
-            <ul>
-                <li>
-                    <Link to="/overview">Overview</Link>
-                </li>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-            </ul>
+            <h1>
+                <Link to="/">Fullstack Project</Link>
+            </h1>
+
             {!authContext.isAuth && (
                 <Link to="/login"><button>Log in</button></Link>
             )}

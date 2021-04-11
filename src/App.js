@@ -31,9 +31,6 @@ class App extends Component {
               <Route exact path="/reset_password">
                   <ForgotPasswordEmailForm/>
                 </Route>
-                <Route exact path="/overview">
-                  <p>Dette er overview-siden</p>
-                </Route>
                 <PrivateRoute exact path="/user">
                   <h1>Your Profile</h1>
                   <MyProfileWithHOC/>
