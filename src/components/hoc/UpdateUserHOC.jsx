@@ -16,8 +16,9 @@ function updateUserBackend(WrappedComponent) {
         update = async (userObject) => {
             console.log(userObject);
             const headers = this.context.generateHeaders();
-            
+            console.log("over res");
             const res = await updateUser(headers, userObject);
+            console.log("Under res");
 
             if(res.error){
                 this.setState({ error: res.error });

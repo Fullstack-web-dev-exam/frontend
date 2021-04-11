@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
-import jwt_decode from 'jwt-decode';
+//import jwt_decode from 'jwt-decode';
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -46,17 +46,14 @@ class UpdateUserForm extends Component {
 
         if (this.generalValidation() && this.passwordValidation()) {
             //Send the information stored in the state to the HOC
-            const token = this.context.token.token;
+            /* const token = this.context.token.token;
             const decoded = jwt_decode(token);
             console.log(decoded.user.email);
-            const email = decoded.user.email;
+            const email = decoded.user.email; */
 
             const userObject = {
-                email: email,
                 name: this.state.firstname,
-                surname: this.state.surname,
-                oldPassword: this.state.oldPassword,
-                password: this.state.password
+                surname: this.state.surname
             }
             this.props.onUpdate(userObject)
             

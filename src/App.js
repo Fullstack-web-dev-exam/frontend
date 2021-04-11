@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-/* import AddUserForm from './components/AddUser/AddUserForm' */
+//import AddUserForm from './components/AddUser/AddUserForm';
 import AdminRoute from './routes/AdminRoute'
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
@@ -36,11 +36,11 @@ class App extends Component {
                   <h1>Profile</h1>
                   <MyProfileWithHOC/>
                   <UpdateUserHOC />
-                  {/* <AddUserForm /> */}
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
                     <p>Admin siden</p>
+                    {/* <AddUserForm /> */}
                     <UserListWithHOC />
                   </AdminRoute>
                 </PrivateRoute>
