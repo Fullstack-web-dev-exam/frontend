@@ -4,6 +4,7 @@ import AdminRoute from './routes/AdminRoute'
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
 import NotFound from './components/NotFound/NotFound'
+import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard'
 import PrivateRoute from './routes/PrivateRoute';
 import UserList from './components/UserList/UserList';
 import withUsersFetch from './components/hoc/UserListHOC';
@@ -50,7 +51,7 @@ class App extends Component {
                   <p>Hjemmesiden</p>
                 </Route>
                 <Route exact path="/401">
-                  <p>You are not authorized!</p>
+                  <UnauthorizedCard/>
                 </Route>
                 <Route>
                   <NotFound />

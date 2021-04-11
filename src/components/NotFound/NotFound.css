@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.big-number {
+.big-number.not-found-pop-up {
   font-size: 5em;
   display: block;
   color: var(--red)

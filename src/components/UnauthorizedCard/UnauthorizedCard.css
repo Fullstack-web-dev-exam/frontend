@@ -1,0 +1,10 @@
+.unauthorized-pop-up h1,
+.unauthorized-pop-up p {
+  text-align: center;
+}
+
+.big-number.unauthorized-pop-up {
+  font-size: 5em;
+  display: block;
+  color: var(--orange)
+}
