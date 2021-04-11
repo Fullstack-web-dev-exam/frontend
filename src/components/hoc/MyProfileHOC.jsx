@@ -18,6 +18,10 @@ function withUserBackEnd(WrappedComponent) {
         }
 
         async componentDidMount() {
+            await this.fetchData();
+        }
+
+        fetchData = async () => {
             const headers = this.context.generateHeaders();
             const res = await fetchUser(headers)
 
@@ -50,7 +54,7 @@ function withUserBackEnd(WrappedComponent) {
             return (
                 <>
                     <WrappedComponent myUser={this.state.myUser} {...this.props} handleEditClick={this.toggleWillEdit} />
-                    {this.state.willEdit && <UpdateUserHOC />}
+                    {this.state.willEdit && <UpdateUserHOC onUpdateForm={this.fetchData} />}
                 </>
             );
         }

@@ -40,15 +40,45 @@ select {
   box-sizing: border-box;
 }
 
+button {
+    background-color: var(--primary);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: .3s;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+button:hover:enabled {
+  box-shadow: 0 0 1em rgba(33, 33, 33, .3);
+  background-color: var(--pDark)
+}
+
 .error-message {
   padding: 12px 20px;
   margin: 8px 0 24px;
   background-color: var(--red);
   color: #fff;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-label {
+.success-message {
+  padding: 12px 20px;
+  margin: 8px 0 24px;
+  background-color: var(--secondary);
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+label, strong {
   text-transform: capitalize;
 }
 
@@ -64,7 +94,6 @@ label {
 }
 
 .delete-button:hover:enabled {
-  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
   background-color: var(--rDark)
 }
 
@@ -73,7 +102,6 @@ label {
 }
 
 .edit-button:hover:enabled {
-  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
   background-color: var(--sDark)
 }
 
@@ -90,4 +118,8 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.low-emphasis {
+  color: var(--gray2)
 }

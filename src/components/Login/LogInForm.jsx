@@ -85,7 +85,7 @@ class LogInForm extends Component {
                                     placeholder="Enter Your Email"
                                     ref={this.emailInput}
                                     required
-                                    type="text"
+                                    type="email"
                                     value={this.state.email}
                                 />
 
@@ -104,7 +104,7 @@ class LogInForm extends Component {
                             </fieldset>
                         </form>
                         {this.state.error && <p className="error-message" onClick={this.handleClose}><strong>Error:</strong> Wrong email and/or password. Please try again.</p>}
-                        <Link to="/forgotpassword">Forgot password?</Link>
+                        <Link to="/reset_password">Forgot password?</Link>
                     </div>
                 </>}
                 {this.context.isAuth && <div className="container loggedIn">
