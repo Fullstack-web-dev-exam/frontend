@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
-import { updateUser } from '../../api/users';
+import { updateMyProfile } from '../../api/users';
 
 function updateUserBackend(WrappedComponent) {
     class UpdateUserHOC extends Component {
@@ -17,7 +17,7 @@ function updateUserBackend(WrappedComponent) {
             console.log(userObject);
             const headers = this.context.generateHeaders();
             console.log("over res");
-            const res = await updateUser(headers, userObject);
+            const res = await updateMyProfile(headers, userObject);
             console.log("Under res");
 
             if(res.error){
