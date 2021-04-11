@@ -6,6 +6,10 @@ const login = (email, password) => {
     return axios.post('/login', { email, password });
 };
 
+const forgot = (email) => {
+    return axios.post('/reset_password', email);
+}
+
 // Logged in users can do this
 const createUser = (headers, { name, surname, email, role, password }) => {
     console.log({ name, surname, email, role, password });
@@ -31,6 +35,7 @@ const fetchAllUsers = (headers) => {
 
 export {
     login,
+    forgot,
     createUser,
     fetchUser,
     updateUser,
