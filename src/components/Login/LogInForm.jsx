@@ -17,6 +17,7 @@ class LogInForm extends Component {
             redirect: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         this.form = React.createRef();
         this.emailInput = React.createRef();
     }
@@ -34,8 +35,14 @@ class LogInForm extends Component {
         });
     }
 
+    handleClose() {
+        this.setState({
+            error: ''
+        });
+        this.emailInput.current.focus();
+    }
+
     handleSubmit = async (event) => {
-        //alert(`you are submitting the email: '${this.state.email}' and the password: '${this.state.password}'`);
         event.preventDefault();
 
         if (this.validation()) {
@@ -96,6 +103,7 @@ class LogInForm extends Component {
                                 <button type="submit">log in</button>
                             </fieldset>
                         </form>
+                        {this.state.error && <p className="error-message" onClick={this.handleClose}><strong>Error:</strong> Wrong email and/or password. Please try again.</p>}
                         <Link to="/forgotpassword">Forgot password?</Link>
                     </div>
                 </>}
