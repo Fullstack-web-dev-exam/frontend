@@ -21,7 +21,6 @@ const updateMyProfile = (headers, { name, surname, password, oldPassword}) => {
 
 //Admins
 const createUser = (headers, { name, surname, email, role, password }) => {
-    console.log({ name, surname, email, role, password });
     return axios.post('/dashboard', { name, surname, email, role, password }, headers);
 }
 
@@ -34,7 +33,7 @@ const updateUser = (headers, { email, name, surname, role, newEmail }) => {
 }
 
 const deleteUser = (headers, { email }) => {
-    return axios.delete('/dashboard', { email, headers });
+    return axios.delete('/dashboard', { data: { email }, headers });
 }
 
 export {
