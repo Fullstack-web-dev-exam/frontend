@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-/* import AddUserForm from './components/AddUser/AddUserForm' */
+//import AddUserForm from './components/AddUser/AddUserForm';
 import AdminRoute from './routes/AdminRoute'
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
@@ -34,14 +34,14 @@ class App extends Component {
                 <Route exact path="/overview">
                   <p>Dette er overview-siden</p>
                 </Route>
-                <PrivateRoute exact path="/user/">
+                <PrivateRoute exact path="/user">
                   <h1>Profile</h1>
                   <MyProfileWithHOC/>
-                  {/* <AddUserForm /> */}
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
                     <p>Admin siden</p>
+                    {/* <AddUserForm /> */}
                     <UserListWithHOC />
                   </AdminRoute>
                 </PrivateRoute>

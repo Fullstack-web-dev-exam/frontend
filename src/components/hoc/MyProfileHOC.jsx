@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
 import { fetchUser } from '../../api/users';
+import updateUserBackend from './UpdateUserHOC';
+import UpdateUser from '../UpdateUser/UpdateUser';
 
 function withUserBackEnd(WrappedComponent) {
     class MyProfileHOC extends Component {
-        
         static contextType = AuthContext;
         constructor(props) {
             super(props);
             this.state = {
                 myUser: [],
                 isLoading: true,
-                error: null
+                error: null,
+                willEdit: false
             };
         }
 
         async componentDidMount() {
-            /* this.isMounted = true; */
             const headers = this.context.generateHeaders();
             const res = await fetchUser(headers)
 
@@ -33,7 +34,13 @@ function withUserBackEnd(WrappedComponent) {
             }
         }
 
+        toggleWillEdit = () => {
+            this.setState({willEdit: !this.state.willEdit})
+        }
+
         render() {
+            const UpdateUserHOC = updateUserBackend(UpdateUser);
+
             if (this.state.error) {
                 return (<p>{this.state.error}</p>)
             }
@@ -41,7 +48,10 @@ function withUserBackEnd(WrappedComponent) {
                 return (<p>Loading...</p>)
             }
             return (
-                <WrappedComponent myUser={this.state.myUser} {...this.props} />
+                <>
+                    <WrappedComponent myUser={this.state.myUser} {...this.props} handleEditClick={this.toggleWillEdit} />
+                    {this.state.willEdit && <UpdateUserHOC />}
+                </>
             );
         }
     }
