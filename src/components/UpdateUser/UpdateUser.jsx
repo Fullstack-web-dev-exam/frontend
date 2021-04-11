@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
-//import jwt_decode from 'jwt-decode';
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -45,12 +44,6 @@ class UpdateUserForm extends Component {
         event.preventDefault();
 
         if (this.generalValidation() && this.passwordValidation()) {
-            //Send the information stored in the state to the HOC
-            /* const token = this.context.token.token;
-            const decoded = jwt_decode(token);
-            console.log(decoded.user.email);
-            const email = decoded.user.email; */
-
             const userObject = {
                 name: this.state.firstname,
                 surname: this.state.surname
@@ -105,7 +98,6 @@ class UpdateUserForm extends Component {
                                         onChange={this.handleInputChange}
                                         placeholder="Enter Your New First Name"
                                         ref={this.firstnameInput}
-                                        required
                                         type="text"
                                         value={this.state.firstname}
                                     />
@@ -118,7 +110,6 @@ class UpdateUserForm extends Component {
                                         name="surname"
                                         onChange={this.handleInputChange}
                                         placeholder="Enter Your New Surname"
-                                        required
                                         type="text"
                                         value={this.state.surname}
                                     />
