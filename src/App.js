@@ -35,12 +35,12 @@ class App extends Component {
                   <p>Dette er overview-siden</p>
                 </Route>
                 <PrivateRoute exact path="/user">
-                  <h1>Profile</h1>
+                  <h1>Your Profile</h1>
                   <MyProfileWithHOC/>
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
-                    <p>Admin siden</p>
+                    <h1>Dashboard</h1>
                     {/* <AddUserForm /> */}
                     <UserListWithHOC />
                   </AdminRoute>
