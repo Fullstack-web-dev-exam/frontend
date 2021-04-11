@@ -44,6 +44,7 @@ class UpdateUserForm extends Component {
         event.preventDefault();
 
         if (this.generalValidation() && this.passwordValidation()) {
+
             const userObject = {
                 name: this.state.firstname,
                 surname: this.state.surname
@@ -86,11 +87,11 @@ class UpdateUserForm extends Component {
             <>
                 <div className="container">
                     <img src={editUserForm} alt="" />
-                    <form ref={this.form} onSubmit={this.handleSubmit} className="add-user-form" method="POST">
+                    <form ref={this.form} onSubmit={this.handleSubmit} method="POST">
                         <fieldset>
                             <legend>Update your user information</legend>
-                            <div className="add-user-grid-container">
-                                <div className="first-name-grid-item">
+                            <div>
+                                <div>
                                     <label htmlFor="firstname">first name</label>
                                     <input
                                         id="firstname"
@@ -103,7 +104,7 @@ class UpdateUserForm extends Component {
                                     />
                                 </div>
 
-                                <div className="surname-grid-item">
+                                <div>
                                     <label htmlFor="surname">surname</label>
                                     <input
                                         id="surname"
@@ -115,7 +116,7 @@ class UpdateUserForm extends Component {
                                     />
                                 </div>
 
-                                <div className="password-grid-item">
+                                <div>
                                     <label htmlFor="oldPassword">old password</label>
                                     <input
                                         id="oldPassword"
@@ -128,7 +129,7 @@ class UpdateUserForm extends Component {
                                     />
                                 </div>
                                 
-                                <div className="password-grid-item">
+                                <div>
                                     <label htmlFor="password">new password</label>
                                     <input
                                         id="password"
@@ -143,7 +144,7 @@ class UpdateUserForm extends Component {
                                     />
                                 </div>
 
-                                <div className="repeat-password-grid-item">
+                                <div>
                                     <label htmlFor="repeatpassword">repeat new password</label>
                                     <input
                                         id="repeatpassword"

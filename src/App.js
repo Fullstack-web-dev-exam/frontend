@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import AddUserForm from './components/AddUser/AddUserForm';
+import AddUserForm from './components/AddUser/AddUserForm';
 import AdminRoute from './routes/AdminRoute'
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
@@ -41,7 +41,7 @@ class App extends Component {
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
                     <h1>Dashboard</h1>
-                    {/* <AddUserForm /> */}
+                    <AddUserForm />
                     <UserListWithHOC />
                   </AdminRoute>
                 </PrivateRoute>
