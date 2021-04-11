@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import addUserIcon from '../../assets/person_add_black_24dp.svg';
+import editUserForm from '../../assets/edit_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 
 class UpdateUserForm extends Component {
@@ -85,10 +85,10 @@ class UpdateUserForm extends Component {
         return (
             <>
                 <div className="container">
-                    <img src={addUserIcon} alt="" />
+                    <img src={editUserForm} alt="" />
                     <form ref={this.form} onSubmit={this.handleSubmit} className="add-user-form" method="POST">
                         <fieldset>
-                            <legend>Update information</legend>
+                            <legend>Update your user information</legend>
                             <div className="add-user-grid-container">
                                 <div className="first-name-grid-item">
                                     <label htmlFor="firstname">first name</label>
@@ -121,9 +121,7 @@ class UpdateUserForm extends Component {
                                         id="oldPassword"
                                         name="oldPassword"
                                         onChange={this.handleInputChange}
-                                        pattern=".{8,}"
                                         placeholder="Enter Your Old Password"
-                                        //required
                                         title="Eight or more characters"
                                         type="password"
                                         value={this.state.oldPassword}
@@ -139,7 +137,6 @@ class UpdateUserForm extends Component {
                                         pattern=".{8,}"
                                         placeholder="Enter Your New Password"
                                         ref={this.passwordInput}
-                                        //required
                                         title="Eight or more characters"
                                         type="password"
                                         value={this.state.password}
@@ -152,8 +149,9 @@ class UpdateUserForm extends Component {
                                         id="repeatpassword"
                                         name="repeatpassword"
                                         onChange={this.handleInputChange}
+                                        pattern=".{8,}"
                                         placeholder="Repeat Your New Password"
-                                        //required
+                                        title="Eight or more characters"
                                         type="password"
                                         value={this.state.repeatpassword}
                                     />
@@ -162,7 +160,7 @@ class UpdateUserForm extends Component {
 
                             {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
 
-                            <button type="submit">add new user</button>
+                            <button type="submit">update</button>
                         </fieldset>
                     </form>
                 </div>
