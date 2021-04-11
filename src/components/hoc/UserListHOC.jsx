@@ -11,7 +11,9 @@ function withUsersFetch(WrappedComponent) {
             this.state = {
                 users: [],
                 isLoading: true,
-                error: null
+                error: null,
+                delete: false,
+                selectedUser: {}
             };
         }
 
@@ -20,7 +22,7 @@ function withUsersFetch(WrappedComponent) {
             const headers = this.context.generateHeaders();
             const res = await fetchAllUsers(headers)
             //console.log(res.data)
-    
+
             if (res.error) {
                 this._isMounted && this.setState({
                     error: res.error
@@ -38,9 +40,37 @@ function withUsersFetch(WrappedComponent) {
             this._isMounted = false;
         }
 
+        selectDelete = (user) => {
+            this.setState({ delete: true, selectedUser: user });
+        }
+
+        deleteUser = () => {
+            const deletedEmail = {email: this.state.selectedUser.email};
+            console.log(deletedEmail);
+            this.setState({
+                delete: false,
+                selectedUser: {}
+            })
+        }
+
+        abortDelete = () => {
+            this.setState({
+                delete: false,
+                selectedUser: {}
+            })
+        }
+
         render() {
             return (
-                <WrappedComponent users={this.state.users} {...this.props}/>
+                <>
+                    <WrappedComponent handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
+                    {this.state.delete &&
+                        <div className="popup-delete">
+                            <p>Are you sure you want to delete the user {this.state.selectedUser.name} {this.state.selectedUser.surname}?</p>
+                            <button onClick={this.abortDelete} className="edit-button">Cancel</button>
+                            <button onClick={this.deleteUser} className="delete-button">Confirm Delete</button>
+                        </div>}
+                </>
             );
         }
     }

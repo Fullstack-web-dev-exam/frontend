@@ -1,10 +1,10 @@
 import './UserList.css';
 import UserListItem from '../UserListItem/UserListItem'
 
-function UserList({ users }) {
+function UserList({ users, handleDeleteClick }) {
     return (
         <ul>
-            {users.map((users) => (<UserListItem key={users.email} user={users} />))}
+            {users.map((users) => (<UserListItem handleDeleteClick={handleDeleteClick} key={users.email} user={users} />))}
         </ul>
     );
 }

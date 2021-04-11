@@ -1,6 +1,6 @@
 import './UserListItem.css';
 
-function UserListItem({ user }) {
+function UserListItem({ user, handleDeleteClick }) {
     return (<li>
         <div className="container">
             <h2>{user.name} {user.surname}</h2>
@@ -8,7 +8,7 @@ function UserListItem({ user }) {
             <p><b>Email:</b> {user.email}</p>
             <div className="user-list-item-buttons">
                 {user.role === "gardener" ? <button className="edit-button">edit</button> : <button disabled title="You cannot edit a manager" className="edit-button">edit</button>}
-                {user.role === "gardener" ? <button className="delete-button">delete</button> : <button disabled title="You cannot delete a manager" className="delete-button">delete</button>}
+                {user.role === "gardener" ? <button onClick={() => handleDeleteClick(user)} className="delete-button">delete</button> : <button disabled title="You cannot delete a manager" className="delete-button">delete</button>}
             </div>
         </div>
     </li>)
