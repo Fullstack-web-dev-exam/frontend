@@ -10,6 +10,7 @@ import UserList from './components/UserList/UserList';
 import withUsersFetch from './components/hoc/UserListHOC';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile'
+import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm'
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -27,6 +28,9 @@ class App extends Component {
             <NavBar />
             <main>
               <Switch>
+              <Route exact path="/forgotpassword">
+                  <ForgotPasswordEmailForm/>
+                </Route>
                 <Route exact path="/overview">
                   <p>Dette er overview-siden</p>
                 </Route>

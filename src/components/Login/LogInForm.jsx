@@ -85,7 +85,7 @@ class LogInForm extends Component {
                                     placeholder="Enter Your Email"
                                     ref={this.emailInput}
                                     required
-                                    type="text"
+                                    type="email"
                                     value={this.state.email}
                                 />
 
