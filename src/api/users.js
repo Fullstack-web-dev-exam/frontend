@@ -34,7 +34,7 @@ const updateUser = (headers, { email, name, surname, role, newEmail }) => {
 }
 
 const deleteUser = (headers, { email }) => {
-    return axios.delete('/dashboard', { email }, headers);
+    return axios.delete('/dashboard', { email, headers });
 }
 
 export {

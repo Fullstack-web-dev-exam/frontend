@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
-import { fetchAllUsers } from '../../api/users';
+import { fetchAllUsers, deleteUser } from '../../api/users';
+import PopupDelete from '../UserList/PopupDelete';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -19,9 +20,13 @@ function withUsersFetch(WrappedComponent) {
 
         async componentDidMount() {
             this._isMounted = true;
+            await this.fetchData();
+        }
+
+        fetchData = async () => {
             const headers = this.context.generateHeaders();
+            console.log(headers);
             const res = await fetchAllUsers(headers)
-            //console.log(res.data)
 
             if (res.error) {
                 this._isMounted && this.setState({
@@ -44,13 +49,27 @@ function withUsersFetch(WrappedComponent) {
             this.setState({ delete: true, selectedUser: user });
         }
 
-        deleteUser = () => {
-            const deletedEmail = {email: this.state.selectedUser.email};
+        deleteUser = async () => {
+            const deletedEmail = { email: this.state.selectedUser.email };
             console.log(deletedEmail);
-            this.setState({
-                delete: false,
-                selectedUser: {}
-            })
+
+            const headers = await this.context.generateHeaders();
+            console.log(headers);
+            const res = await deleteUser(headers.headers, deletedEmail);
+
+            await this.fetchData();
+
+            if (res.error) {
+                this.setState({
+                    error: res.error
+                })
+            } else {
+                this.setState({
+                    delete: false,
+                    selectedUser: {},
+                    error: null
+                })
+            }
         }
 
         abortDelete = () => {
@@ -64,12 +83,7 @@ function withUsersFetch(WrappedComponent) {
             return (
                 <>
                     <WrappedComponent handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
-                    {this.state.delete &&
-                        <div className="popup-delete">
-                            <p>Are you sure you want to delete the user {this.state.selectedUser.name} {this.state.selectedUser.surname}?</p>
-                            <button onClick={this.abortDelete} className="edit-button">Cancel</button>
-                            <button onClick={this.deleteUser} className="delete-button">Confirm Delete</button>
-                        </div>}
+                    {this.state.delete && <PopupDelete onAbortClick={this.abortDelete} onDeleteUser={this.deleteUser} user={this.state.selectedUser} />}
                 </>
             );
         }
