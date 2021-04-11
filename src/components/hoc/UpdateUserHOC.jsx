@@ -24,6 +24,7 @@ function updateUserBackend(WrappedComponent) {
                 this.setState({ error: res.error });
             } else {
                 this.setState({ data: userObject });
+                this.props.onUpdateForm();
             }
         }
 
