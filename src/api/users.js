@@ -17,7 +17,7 @@ const fetchUser = (headers) => {
 }
 
 const updateUser = (headers, { name, surname}) => {
-    return axios.patch('/user/:id', { name, surname }, headers);
+    return axios.patch('/user', { name, surname }, headers);
 }
 
 const deleteUser = (headers, params) => {
