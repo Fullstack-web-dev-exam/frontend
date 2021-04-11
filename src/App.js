@@ -10,8 +10,6 @@ import UserList from './components/UserList/UserList';
 import withUsersFetch from './components/hoc/UserListHOC';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile'
-import updateUserBackend from './components/hoc/UpdateUserHOC';
-import UpdateUser from './components/UpdateUser/UpdateUser';
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -21,7 +19,6 @@ class App extends Component {
 
     const UserListWithHOC = withUsersFetch(UserList);
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
-    const UpdateUserHOC = updateUserBackend(UpdateUser);
 
     return (
       <AuthConsumer>
@@ -36,7 +33,6 @@ class App extends Component {
                 <PrivateRoute exact path="/user">
                   <h1>Profile</h1>
                   <MyProfileWithHOC/>
-                  <UpdateUserHOC />
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
