@@ -59,11 +59,11 @@ function Nav(props) {
                 <Link to="/login"><button>Log in</button></Link>
             )}
             {authContext.isAuth && (
-                <div onClick={handleMenu} className="navbar-icon">
+                <div onClick={handleMenu} className="navbar-icon" ref={node}>
                     <img src={accountCircle} alt="Account Circle icon" onClick={handleMenu} />
 
                     {open &&
-                        <div className="navbar dropdown" ref={node}>
+                        <div className="navbar dropdown">
                             <ul className="navbar dropdown-content">
                                 <li onClick={handleMenu} className="dropdown-li">
                                     <Link to="/user">Profile</Link>

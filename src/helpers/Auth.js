@@ -17,7 +17,6 @@ class AuthProvider extends React.Component {
         const token = getToken();
         const isAuth = getAuth();
         const role = getRole();
-        console.log(role);
 
         if (token && isAuth) {
             this.setState({ auth: true, token, role });
