@@ -25,11 +25,11 @@ class ForgotPasswordEmailForm extends Component {
             alert(`submitting: ${this.state.email}`)
             this.setState({ formSubmitted: true });
             
-            const { email } = this.state;
+            const email = this.state.email;
             //console.log(email, password);
 
             //ENDRE DENNE
-            const res = await forgot(email);
+            const res = await forgot({email});
 
             if (res.error) {
                 this.setState({ error: res.error.message });
