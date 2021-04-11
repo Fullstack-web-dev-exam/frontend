@@ -5,6 +5,7 @@ import { fetchAllUsers } from '../../api/users';
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
         static contextType = AuthContext;
+        _isMounted = false;
         constructor(props) {
             super(props);
             this.state = {
@@ -15,21 +16,26 @@ function withUsersFetch(WrappedComponent) {
         }
 
         async componentDidMount() {
+            this._isMounted = true;
             const headers = this.context.generateHeaders();
             const res = await fetchAllUsers(headers)
-            console.log(res.data)
+            //console.log(res.data)
     
             if (res.error) {
-                this.setState({
+                this._isMounted && this.setState({
                     error: res.error
                 })
             } else {
-                this.setState({
+                this._isMounted && this.setState({
                     users: res.data,
                     isLoading: false,
                     error: null
                 })
             }
+        }
+
+        componentWillUnmount() {
+            this._isMounted = false;
         }
 
         render() {

@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import AddUserForm from './components/AddUser/AddUserForm';
 import AdminRoute from './routes/AdminRoute'
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
 import NotFound from './components/NotFound/NotFound'
 import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard'
 import PrivateRoute from './routes/PrivateRoute';
-import UserList from './components/UserList/UserList';
-import withUsersFetch from './components/hoc/UserListHOC';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile'
 import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm'
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Dashboard from './components/dashboard/Dashboard';
 
 class App extends Component {
   render() {
 
-    const UserListWithHOC = withUsersFetch(UserList);
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
 
     return (
@@ -37,9 +34,7 @@ class App extends Component {
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
-                    <h1>Dashboard</h1>
-                    <AddUserForm />
-                    <UserListWithHOC />
+                    <Dashboard />
                   </AdminRoute>
                 </PrivateRoute>
                 <Route exact path="/logout">
