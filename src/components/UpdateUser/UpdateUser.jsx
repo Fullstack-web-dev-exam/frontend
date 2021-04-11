@@ -10,6 +10,7 @@ class UpdateUserForm extends Component {
         this.state = {
             firstname: '',
             surname: '',
+            role: '',
             oldPassword: '',
             password: '',
             repeatpassword: '',
@@ -132,6 +133,18 @@ class UpdateUserForm extends Component {
                                         type="text"
                                         value={this.state.surname}
                                     />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="role">role</label>
+                                    <select
+                                        name="role"
+                                        onChange={this.handleInputChange}
+                                        value={this.state.role}
+                                    >
+                                        <option value="gardener">Gardener</option>
+                                        <option value="manager">Manager</option>
+                                    </select>
                                 </div>
 
                                 <div>

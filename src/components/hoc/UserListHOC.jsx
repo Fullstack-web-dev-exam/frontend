@@ -5,8 +5,8 @@ import { fetchAllUsers } from '../../api/users';
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
         static contextType = AuthContext;
-        constructor() {
-            super();
+        constructor(props) {
+            super(props);
             this.state = {
                 users: [],
                 isLoading: true,
