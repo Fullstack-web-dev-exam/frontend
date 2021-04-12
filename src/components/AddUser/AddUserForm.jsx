@@ -63,6 +63,15 @@ class AddUserForm extends Component {
             const res = await createUser(headers, userObject);
             if (res.error) {
                 alert(`Something went wrong during creation ${res.error}`);
+            } else {
+                this.setState({
+                    firstname: '',
+                    surname: '',
+                    email: '',
+                    role: 'gardener',
+                    password: '',
+                    repeatpassword: ''
+                })
             }
         } else {
             alert('the form did not pass validation');
@@ -189,7 +198,7 @@ class AddUserForm extends Component {
 
                             {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same."/>}
 
-                            <Button label="add new user" size="full" variant="primary" type="submit"/>
+                            <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
                     </form>
                 </div>
