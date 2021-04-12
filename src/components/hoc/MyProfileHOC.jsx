@@ -54,7 +54,7 @@ function withUserBackEnd(WrappedComponent) {
             return (
                 <>
                     <WrappedComponent myUser={this.state.myUser} {...this.props} handleEditClick={this.toggleWillEdit} />
-                    {this.state.willEdit && <UpdateUserHOC place="profile" onUpdateForm={this.fetchData} />}
+                    {this.state.willEdit && <UpdateUserHOC selectedUser={this.state.myUser} place="profile" onUpdateForm={this.fetchData} />}
                 </>
             );
         }

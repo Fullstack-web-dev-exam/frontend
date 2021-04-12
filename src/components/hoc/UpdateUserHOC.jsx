@@ -24,7 +24,7 @@ function updateUserBackend(WrappedComponent) {
                 this.setState({ error: res.error });
             } else {
                 this.setState({ data: userObject });
-                //this.props.onUpdateForm();
+                this.props.onUpdateForm();
             }
         }
 
@@ -47,7 +47,7 @@ function updateUserBackend(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
 
-            return (<WrappedComponent selectedUserEmail={this.props.selectedUserEmail} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} />);
+            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} />);
         }
     }
 
