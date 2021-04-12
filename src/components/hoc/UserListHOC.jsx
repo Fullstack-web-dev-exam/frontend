@@ -3,6 +3,7 @@ import { AuthContext } from '../../helpers/Auth';
 import { fetchAllUsers, deleteUser } from '../../api/users';
 import PopupDelete from '../UserList/PopupDelete';
 import PopupEdit from '../UserList/PopupEdit';
+import { toast } from 'react-toastify'
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -70,12 +71,14 @@ function withUsersFetch(WrappedComponent) {
                 this.setState({
                     error: res.error
                 })
+                this.notifyError();
             } else {
                 this.setState({
                     delete: false,
                     selectedUser: {},
                     error: null
                 })
+                this.notifySuccess();
             }
         }
 
@@ -95,6 +98,18 @@ function withUsersFetch(WrappedComponent) {
                 selectedUser: {}
             })
         }
+
+        notifySuccess = () => {
+            toast.success("The user has been deleted", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
+        };
+    
+        notifyError = () => {
+            toast.error("Something went wrong... please try again.", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
+        };
 
         render() {
             return (

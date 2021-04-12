@@ -8,7 +8,8 @@ import PrivateRoute from './routes/PrivateRoute';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile'
 import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm'
-import UserFeedbackCard from './components/UserFeedbackCard/UserFeedbackCard'
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -22,42 +23,43 @@ class App extends Component {
     return (
       <AuthConsumer>
         {({ isAuth }) => (
-          <Router>
-            <NavBar />
-            <main>
-              <Switch>
-              <Route exact path="/reset_password">
-                  <ForgotPasswordEmailForm/>
-                </Route>
-                <PrivateRoute exact path="/user">
-                  <h1>Your Profile</h1>
-                  <MyProfileWithHOC/>
-                </PrivateRoute>
-                <PrivateRoute exact path="/dashboard">
-                  <AdminRoute >
-                    <Dashboard />
-                  </AdminRoute>
-                </PrivateRoute>
-                <Route exact path="/logout">
-                  <p>You are now logged out!</p>
-                </Route>
-                <Route exact path="/login">
-                  <LogInForm />
-                </Route>
-                <Route exact path="/">
-                  <p>Hjemmesiden</p>
-                  <UserFeedbackCard variant="error" feedbackText="This is your error feedback"/>
-                  <UserFeedbackCard variant="success" feedbackText="This is your success feedback"/>
-                </Route>
-                <Route exact path="/401">
-                  <UnauthorizedCard/>
-                </Route>
-                <Route>
-                  <NotFound />
-                </Route>
-              </Switch>
-            </main>
-          </Router>
+          <>
+            <Router>
+              <NavBar />
+              <main>
+                <Switch>
+                  <Route exact path="/reset_password">
+                    <ForgotPasswordEmailForm />
+                  </Route>
+                  <PrivateRoute exact path="/user">
+                    <h1>Your Profile</h1>
+                    <MyProfileWithHOC />
+                  </PrivateRoute>
+                  <PrivateRoute exact path="/dashboard">
+                    <AdminRoute >
+                      <Dashboard />
+                    </AdminRoute>
+                  </PrivateRoute>
+                  <Route exact path="/logout">
+                    <p>You are now logged out!</p>
+                  </Route>
+                  <Route exact path="/login">
+                    <LogInForm />
+                  </Route>
+                  <Route exact path="/">
+                    <p>Hjemmesiden</p>
+                  </Route>
+                  <Route exact path="/401">
+                    <UnauthorizedCard />
+                  </Route>
+                  <Route>
+                    <NotFound />
+                  </Route>
+                </Switch>
+              </main>
+            </Router>
+            <ToastContainer transition={Slide}/>
+          </>
         )}
       </AuthConsumer>
     );

@@ -59,3 +59,11 @@ ul {
 .low-emphasis {
   color: var(--gray2)
 }
+
+.Toastify__toast--success {
+  background: var(--primary) !important;
+}
+
+.Toastify__toast--error {
+  background: var(--red) !important;
+}
