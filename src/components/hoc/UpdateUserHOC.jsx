@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
-import { updateMyProfile } from '../../api/users';
+import { updateMyProfile, updateUser } from '../../api/users';
 
 function updateUserBackend(WrappedComponent) {
     class UpdateUserHOC extends Component {
@@ -16,11 +16,21 @@ function updateUserBackend(WrappedComponent) {
 
         updateDashboard = async (userObject) => {
             console.log(userObject);
+            const headers = this.context.generateHeaders();
+
+            const res = await updateUser(headers, userObject);
+
+            if(res.error){
+                this.setState({ error: res.error });
+            } else {
+                this.setState({ data: userObject });
+                this.props.onUpdateForm();
+            }
         }
 
         updateProfile = async (userObject) => {
-            console.log(userObject);
-            /* const headers = this.context.generateHeaders();
+            //console.log(userObject);
+            const headers = this.context.generateHeaders();
 
             const res = await updateMyProfile(headers, userObject);
 
@@ -29,7 +39,7 @@ function updateUserBackend(WrappedComponent) {
             } else {
                 this.setState({ data: userObject });
                 this.props.onUpdateForm();
-            } */
+            }
         }
 
         render() {
@@ -37,7 +47,7 @@ function updateUserBackend(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
 
-            return (<WrappedComponent selectedUserEmail={this.props.selectedUserEmail} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} />);
+            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} />);
         }
     }
 

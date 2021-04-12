@@ -9,9 +9,8 @@ function PopupDelete(props) {
     return (
         <div className="popup-userlist">
             <div className="popup-content">
-                <UpdateUserHOC selectedUserEmail={props.user.email} place="dashboard" />
+                <UpdateUserHOC onUpdateForm={props.onUpdateForm} selectedUser={props.user} place="dashboard" />
                 <button onClick={props.onAbortClick} className="edit-button">Cancel</button>
-                <button onClick={props.onEditUser} className="delete-button">Edit</button>
             </div>
         </div>
     );

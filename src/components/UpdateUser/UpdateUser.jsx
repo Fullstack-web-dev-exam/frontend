@@ -12,7 +12,7 @@ class UpdateUserForm extends Component {
             firstname: '',
             surname: '',
             role: '',
-            newEmail: '',
+            email: '',
             oldPassword: '',
             password: '',
             repeatpassword: '',
@@ -30,6 +30,20 @@ class UpdateUserForm extends Component {
     //Set focus to the first input field of the form: first name
     componentDidMount() {
         this.firstnameInput.current.focus();
+        if (this.props.place === "dashboard") {
+            this.setState({
+                firstname: this.props.selectedUser.name,
+                surname: this.props.selectedUser.surname,
+                role: this.props.selectedUser.role,
+                email: this.props.selectedUser.email
+            })
+        } else {
+            this.setState({
+                firstname: this.props.selectedUser.name,
+                surname: this.props.selectedUser.surname
+            })
+        }
+
     }
 
     //General InputChangeHandler that saves the value of the input field to the state
@@ -45,12 +59,16 @@ class UpdateUserForm extends Component {
     getPayload() {
         let payloadObj = {}
 
-        if(this.props.selectedUserEmail) {
-            payloadObj.selectedUser = this.props.selectedUserEmail;
+        if (this.props.place) {
+            payloadObj.place = this.props.place
         }
 
-        if (this.state.newEmail) {
-            payloadObj.newEmail = this.state.newEmail
+        if (this.props.selectedUser.email) {
+            payloadObj.selectedUser = this.props.selectedUser.email;
+        }
+
+        if (this.state.email) {
+            payloadObj.email = this.state.email
         }
 
         if (this.state.firstname) {
@@ -82,14 +100,14 @@ class UpdateUserForm extends Component {
 
         if (this.generalValidation() && this.passwordValidation()) {
             const userObject = this.getPayload()
-            if(this.props.place === "dashboard"){
+            if (this.props.place === "dashboard") {
                 console.log("Dashboard update");
                 this.props.onUpdateDashboard(userObject);
             } else {
                 this.props.onUpdateProfile(userObject)
                 console.log("Else update");
             }
-            
+
 
         } else {
             alert('the form did not pass validation');
@@ -135,8 +153,8 @@ class UpdateUserForm extends Component {
                                     <div>
                                         <label htmlFor="email">email</label>
                                         <input
-                                            id="newEmail"
-                                            name="newEmail"
+                                            id="email"
+                                            name="email"
                                             onChange={this.handleInputChange}
                                             placeholder="Enter Your New Email"
                                             type="text"

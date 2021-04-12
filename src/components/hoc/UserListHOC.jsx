@@ -38,7 +38,8 @@ function withUsersFetch(WrappedComponent) {
                 this._isMounted && this.setState({
                     users: res.data,
                     isLoading: false,
-                    error: null
+                    error: null,
+                    edit: false
                 })
             }
         }
@@ -99,7 +100,7 @@ function withUsersFetch(WrappedComponent) {
             return (
                 <>
                     <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
-                    {this.state.edit && <PopupEdit onAbortClick={this.cancelAction} onEditUser={this.editUser} user={this.state.selectedUser} />}
+                    {this.state.edit && <PopupEdit onUpdateForm={this.fetchData} onAbortClick={this.cancelAction} onEditUser={this.editUser} user={this.state.selectedUser} />}
                     {this.state.delete && <PopupDelete onAbortClick={this.cancelAction} onDeleteUser={this.deleteUser} user={this.state.selectedUser} />}
                 </>
             );
