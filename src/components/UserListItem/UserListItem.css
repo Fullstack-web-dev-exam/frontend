@@ -2,6 +2,6 @@
     text-transform: capitalize;
 }
 
-.container {
+.container.userlist {
     width: 290px;
 }

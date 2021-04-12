@@ -3,7 +3,7 @@ import Button from '../Button/Button'
 
 function UserListItem({ user, handleDeleteClick, handleEditClick }) {
     return (<li>
-        <div className="container">
+        <div className="container userlist">
             <h2>{user.name} {user.surname}</h2>
             <h3>Role: {user.role}</h3>
             <p><b>Email:</b> {user.email}</p>
