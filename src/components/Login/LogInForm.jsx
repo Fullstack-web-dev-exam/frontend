@@ -6,6 +6,7 @@ import { AuthContext } from '../../helpers/Auth';
 import { Link, Redirect } from "react-router-dom";
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import { toast } from 'react-toastify';
 
 class LogInForm extends Component {
     static contextType = AuthContext;
@@ -52,10 +53,12 @@ class LogInForm extends Component {
             const res = await this.context.login({ email, password });
 
             if (res.error) {
-                
+
                 //The user is most probably not found in the database
                 this.setState({ error: true });
+                this.notifyError();
             } else {
+                this.notifySuccess()
                 this.setState({ redirect: "/user" });
             }
         } else {
@@ -68,8 +71,20 @@ class LogInForm extends Component {
         return this.form.current.reportValidity();
     }
 
+    notifySuccess = () => {
+        toast.success("You are now logged in.", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
+    notifyError = () => {
+        toast.error("Wrong email and/or password. Please try again.", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
     render() {
-        if(this.state.redirect){
+        if (this.state.redirect) {
             return (<Redirect to={this.state.redirect} />)
         }
 
@@ -104,11 +119,11 @@ class LogInForm extends Component {
                                     value={this.state.password}
                                 />
 
-                                <Button type="submit" label="log in" variant="primary" size="full"/>
+                                <Button type="submit" label="log in" variant="primary" size="full" />
                             </fieldset>
                         </form>
 
-                        {this.state.error && <UserFeedbackCard onClick={this.handleClose} variant="error" feedbackText="Wrong email and/or password. Please try again."/>}
+                        {this.state.error && <UserFeedbackCard onClick={this.handleClose} variant="error" feedbackText="Wrong email and/or password. Please try again." />}
                         <Link to="/reset_password">Forgot password?</Link>
                     </div>
                 </>}
