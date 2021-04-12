@@ -57,6 +57,18 @@
     background-color: var(--sDark)
 }
 
+.secondary-outlined {
+    background-color: var(--background);
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.secondary-outlined:enabled:hover {
+    background-color: var(--background);
+    border: 2px solid var(--sDark);
+    color: var(--sDark);
+}
+
 /*
 * BUTTONS DANGER
 */
@@ -67,6 +79,18 @@
 
 .danger:enabled:hover {
     background-color: var(--rDark);
+}
+
+.danger-outlined {
+    background-color: var(--background);
+    border: 2px solid var(--red);
+    color: var(--red);
+}
+
+.danger-outlined:enabled:hover {
+    background-color: var(--background);
+    border: 2px solid var(--rDark);
+    color: var(--rDark);
 }
 
 /*

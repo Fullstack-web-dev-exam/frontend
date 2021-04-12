@@ -9,7 +9,7 @@ function PopupDelete(props) {
                 <p>Are you sure you want to delete the user {props.user.name} {props.user.surname}?</p>
 
                 <div className="buttons-side-by-side">
-                    <Button onClick={props.onAbortClick} label="Cancel" size="half" variant="secondary"/>
+                    <Button onClick={props.onAbortClick} label="Cancel" size="half" variant="secondary-outlined"/>
                     <Button onClick={props.onDeleteUser} label="Confirm Delete" size="half" variant="danger"/>
                 </div>
             </div>
