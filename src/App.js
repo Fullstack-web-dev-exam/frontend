@@ -7,7 +7,7 @@ import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import PrivateRoute from './routes/PrivateRoute';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile';
-import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm'
+import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthConsumer } from './helpers/Auth';
