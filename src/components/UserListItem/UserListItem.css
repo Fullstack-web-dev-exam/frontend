@@ -1,3 +1,7 @@
 .container h3 {
     text-transform: capitalize;
 }
+
+.container {
+    width: 290px;
+}

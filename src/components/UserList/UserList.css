@@ -1,0 +1,26 @@
+/*
+.user-list {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.user-list li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 1em;
+}
+
+.user-list {
+    columns: 3;
+    text-align: center;
+} */
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user-list li {
+    margin: 1em;
+}

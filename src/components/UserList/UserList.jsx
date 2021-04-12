@@ -3,7 +3,7 @@ import UserListItem from '../UserListItem/UserListItem'
 
 function UserList({ users, handleDeleteClick, handleEditClick }) {
     return (
-        <ul>
+        <ul className="user-list">
             {users.map((users) => (<UserListItem handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} key={users.email} user={users} />))}
         </ul>
     );
