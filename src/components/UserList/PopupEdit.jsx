@@ -1,6 +1,7 @@
 import './Popup.css';
 import updateUserBackend from '../hoc/UpdateUserHOC';
 import UpdateUser from '../UpdateUser/UpdateUser';
+import Button from '../Button/Button'
 
 function PopupDelete(props) {
     //console.log(props.user.email)
@@ -10,7 +11,7 @@ function PopupDelete(props) {
         <div className="popup-userlist">
             <div className="popup-content">
                 <UpdateUserHOC onUpdateForm={props.onUpdateForm} selectedUser={props.user} place="dashboard" />
-                <button onClick={props.onAbortClick} className="edit-button">Cancel</button>
+                <Button onClick={props.onAbortClick} variant="danger" label="cancel"/>
             </div>
         </div>
     );

@@ -1,0 +1,83 @@
+/*
+* BUTTONS GENERAL
+*/
+
+.button {
+    /* Typography*/
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    /* Box model */
+    box-sizing: border-box;
+    margin: 8px 0;
+    padding: .9em 0;
+
+    /* Visual */
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover:enabled {
+    box-shadow: 0 0 .5em rgba(33, 33, 33, .3);
+}
+
+.button:disabled {
+    /* Visual */
+    opacity: 50%;
+    background-color: var(--gray4);
+    cursor: not-allowed;
+    color: #333;
+}
+
+/*
+* BUTTONS PRIMARY
+*/
+
+.primary {
+    background-color: var(--primary)
+}
+
+.primary:enabled:hover {
+    background-color: var(--pDark)
+}
+
+/*
+* BUTTONS SECONDARY
+*/
+
+.secondary {
+    background-color: var(--secondary)
+}
+
+.secondary:enabled:hover {
+    background-color: var(--sDark)
+}
+
+/*
+* BUTTONS DANGER
+*/
+
+.danger {
+    background-color: var(--red)
+}
+
+.danger:enabled:hover {
+    background-color: var(--rDark);
+}
+
+/*
+* BUTTONS SIZING
+*/
+
+.full-size {
+    width: 100%;
+}
+
+.half-size {
+    width: 49%;
+    /* better for flex */
+}

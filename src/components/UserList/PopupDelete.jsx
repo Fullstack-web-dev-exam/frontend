@@ -1,4 +1,5 @@
 import './Popup.css';
+import Button from '../Button/Button'
 
 function PopupDelete(props) {
     console.log(props.user)
@@ -6,8 +7,11 @@ function PopupDelete(props) {
         <div className="popup-userlist">
             <div className="popup-content">
                 <p>Are you sure you want to delete the user {props.user.name} {props.user.surname}?</p>
-                <button onClick={props.onAbortClick} className="edit-button">Cancel</button>
-                <button onClick={props.onDeleteUser} className="delete-button">Confirm Delete</button>
+
+                <div className="buttons-side-by-side">
+                    <Button onClick={props.onAbortClick} label="Cancel" size="half" variant="secondary"/>
+                    <Button onClick={props.onAbortClick} label="Confirm Delete" size="half" variant="danger"/>
+                </div>
             </div>
         </div>
     );

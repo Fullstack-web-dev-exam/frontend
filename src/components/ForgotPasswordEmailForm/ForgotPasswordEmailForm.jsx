@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import passwordIcon from '../../assets/password_black_24dp.svg';
 import './ForgotPasswordEmailForm.css';
 import { forgot } from '../../api/users';
+import Button from '../Button/Button'
 
 class ForgotPasswordEmailForm extends Component {
     constructor(props) {
@@ -87,7 +88,7 @@ class ForgotPasswordEmailForm extends Component {
                         />
                         <p className="low-emphasis form-explain">The email address you are registered with is required to reset your password.</p>
                         {this.state.formSubmitted && <p className="success-message" onClick={this.handleClose}><strong>success:</strong> an email with further instructions is sent to {this.state.email}.</p>}
-                        <button type="submit">reset password</button>
+                        <Button type="submit" label="reset password" size="full" />
                     </fieldset>
                 </form>
             </div>
