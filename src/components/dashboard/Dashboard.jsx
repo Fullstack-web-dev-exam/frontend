@@ -29,6 +29,7 @@ class Dashboard extends Component {
 
     render() {
         const UserListWithHOC = withUsersFetch(UserList);
+        
         return (
             <>
                 <h1>Dashboard</h1>

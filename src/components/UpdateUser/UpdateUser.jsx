@@ -11,6 +11,7 @@ class UpdateUserForm extends Component {
             firstname: '',
             surname: '',
             role: '',
+            newEmail: '',
             oldPassword: '',
             password: '',
             repeatpassword: '',
@@ -43,6 +44,14 @@ class UpdateUserForm extends Component {
     getPayload() {
         let payloadObj = {}
 
+        if(this.props.selectedUserEmail) {
+            payloadObj.selectedUser = this.props.selectedUserEmail;
+        }
+
+        if (this.state.newEmail) {
+            payloadObj.newEmail = this.state.newEmail
+        }
+
         if (this.state.firstname) {
             payloadObj.name = this.state.firstname
         }
@@ -72,7 +81,14 @@ class UpdateUserForm extends Component {
 
         if (this.generalValidation() && this.passwordValidation()) {
             const userObject = this.getPayload()
-            this.props.onUpdate(userObject)
+            if(this.props.place === "dashboard"){
+                console.log("Dashboard update");
+                this.props.onUpdateDashboard(userObject);
+            } else {
+                this.props.onUpdateProfile(userObject)
+                console.log("Else update");
+            }
+            
 
         } else {
             alert('the form did not pass validation');
@@ -114,6 +130,19 @@ class UpdateUserForm extends Component {
                         <fieldset>
                             <legend>Update your user information</legend>
                             <div>
+                                {this.props.place === "dashboard" &&
+                                    <div>
+                                        <label htmlFor="email">email</label>
+                                        <input
+                                            id="newEmail"
+                                            name="newEmail"
+                                            onChange={this.handleInputChange}
+                                            placeholder="Enter Your New Email"
+                                            type="text"
+                                            value={this.state.newEmail}
+                                        />
+                                    </div>}
+
                                 <div>
                                     <label htmlFor="firstname">first name</label>
                                     <input
@@ -139,59 +168,63 @@ class UpdateUserForm extends Component {
                                     />
                                 </div>
 
-                                <div>
+                                {this.props.place === "dashboard" && <div>
                                     <label htmlFor="role">role</label>
                                     <select
                                         name="role"
                                         onChange={this.handleInputChange}
                                         value={this.state.role}
                                     >
+                                        <option value="" selected>Choose role</option>
                                         <option value="gardener">Gardener</option>
                                         <option value="manager">Manager</option>
                                     </select>
-                                </div>
+                                </div>}
 
-                                <div>
-                                    <label htmlFor="oldPassword">old password</label>
-                                    <input
-                                        id="oldPassword"
-                                        name="oldPassword"
-                                        onChange={this.handleInputChange}
-                                        placeholder="Enter Your Old Password"
-                                        title="Eight or more characters"
-                                        type="password"
-                                        value={this.state.oldPassword}
-                                    />
-                                </div>
+                                {this.props.place === "profile" &&
+                                    <>
+                                        <div>
+                                            <label htmlFor="oldPassword">old password</label>
+                                            <input
+                                                id="oldPassword"
+                                                name="oldPassword"
+                                                onChange={this.handleInputChange}
+                                                placeholder="Enter Your Old Password"
+                                                title="Eight or more characters"
+                                                type="password"
+                                                value={this.state.oldPassword}
+                                            />
+                                        </div>
 
-                                <div>
-                                    <label htmlFor="password">new password</label>
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        onChange={this.handleInputChange}
-                                        pattern=".{8,}"
-                                        placeholder="Enter Your New Password"
-                                        ref={this.passwordInput}
-                                        title="Eight or more characters"
-                                        type="password"
-                                        value={this.state.password}
-                                    />
-                                </div>
+                                        <div>
+                                            <label htmlFor="password">new password</label>
+                                            <input
+                                                id="password"
+                                                name="password"
+                                                onChange={this.handleInputChange}
+                                                pattern=".{8,}"
+                                                placeholder="Enter Your New Password"
+                                                ref={this.passwordInput}
+                                                title="Eight or more characters"
+                                                type="password"
+                                                value={this.state.password}
+                                            />
+                                        </div>
 
-                                <div>
-                                    <label htmlFor="repeatpassword">repeat new password</label>
-                                    <input
-                                        id="repeatpassword"
-                                        name="repeatpassword"
-                                        onChange={this.handleInputChange}
-                                        pattern=".{8,}"
-                                        placeholder="Repeat Your New Password"
-                                        title="Eight or more characters"
-                                        type="password"
-                                        value={this.state.repeatpassword}
-                                    />
-                                </div>
+                                        <div>
+                                            <label htmlFor="repeatpassword">repeat new password</label>
+                                            <input
+                                                id="repeatpassword"
+                                                name="repeatpassword"
+                                                onChange={this.handleInputChange}
+                                                pattern=".{8,}"
+                                                placeholder="Repeat Your New Password"
+                                                title="Eight or more characters"
+                                                type="password"
+                                                value={this.state.repeatpassword}
+                                            />
+                                        </div>
+                                    </>}
                             </div>
 
                             {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}

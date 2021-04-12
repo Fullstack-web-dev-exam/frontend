@@ -50,7 +50,7 @@ class AddUserForm extends Component {
 
             //Send the information stored in the state to the back-end
             const headers = this.context.generateHeaders();
-            console.log(headers);
+            //console.log(headers);
             const userObject = {
                 name: this.state.firstname,
                 surname: this.state.surname,

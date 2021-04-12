@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
 import { fetchAllUsers, deleteUser } from '../../api/users';
 import PopupDelete from '../UserList/PopupDelete';
+import PopupEdit from '../UserList/PopupEdit';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -14,6 +15,7 @@ function withUsersFetch(WrappedComponent) {
                 isLoading: true,
                 error: null,
                 delete: false,
+                edit: false,
                 selectedUser: {}
             };
         }
@@ -25,7 +27,7 @@ function withUsersFetch(WrappedComponent) {
 
         fetchData = async () => {
             const headers = this.context.generateHeaders();
-            console.log(headers);
+            //console.log(headers);
             const res = await fetchAllUsers(headers)
 
             if (res.error) {
@@ -49,12 +51,16 @@ function withUsersFetch(WrappedComponent) {
             this.setState({ delete: true, selectedUser: user });
         }
 
+        selectEdit = (user) => {
+            this.setState({ edit: true, selectedUser: user });
+        }
+
         deleteUser = async () => {
             const deletedEmail = { email: this.state.selectedUser.email };
-            console.log(deletedEmail);
+            //console.log(deletedEmail);
 
             const headers = await this.context.generateHeaders();
-            console.log(headers);
+            //console.log(headers);
             const res = await deleteUser(headers.headers, deletedEmail);
 
             await this.fetchData();
@@ -72,9 +78,19 @@ function withUsersFetch(WrappedComponent) {
             }
         }
 
-        abortDelete = () => {
+        editUser = async () => {
+            await this.fetchData();
+            this.setState({
+                edit: false,
+                selectedUser: {},
+                error: null
+            })
+        }
+
+        cancelAction = () => {
             this.setState({
                 delete: false,
+                edit: false,
                 selectedUser: {}
             })
         }
@@ -82,8 +98,9 @@ function withUsersFetch(WrappedComponent) {
         render() {
             return (
                 <>
-                    <WrappedComponent handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
-                    {this.state.delete && <PopupDelete onAbortClick={this.abortDelete} onDeleteUser={this.deleteUser} user={this.state.selectedUser} />}
+                    <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
+                    {this.state.edit && <PopupEdit onAbortClick={this.cancelAction} onEditUser={this.editUser} user={this.state.selectedUser} />}
+                    {this.state.delete && <PopupDelete onAbortClick={this.cancelAction} onDeleteUser={this.deleteUser} user={this.state.selectedUser} />}
                 </>
             );
         }

@@ -7,25 +7,29 @@ function updateUserBackend(WrappedComponent) {
         static contextType = AuthContext;
         constructor(props) {
             super(props);
+            console.log(props);
             this.state = {
                 data: [],
                 error: null
             }
         }
 
-        update = async (userObject) => {
+        updateDashboard = async (userObject) => {
             console.log(userObject);
-            const headers = this.context.generateHeaders();
-            console.log("over res");
+        }
+
+        updateProfile = async (userObject) => {
+            console.log(userObject);
+            /* const headers = this.context.generateHeaders();
+
             const res = await updateMyProfile(headers, userObject);
-            console.log("Under res");
 
             if(res.error){
                 this.setState({ error: res.error });
             } else {
                 this.setState({ data: userObject });
                 this.props.onUpdateForm();
-            }
+            } */
         }
 
         render() {
@@ -33,7 +37,7 @@ function updateUserBackend(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
 
-            return (<WrappedComponent onUpdate={this.update} />);
+            return (<WrappedComponent selectedUserEmail={this.props.selectedUserEmail} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} />);
         }
     }
 
