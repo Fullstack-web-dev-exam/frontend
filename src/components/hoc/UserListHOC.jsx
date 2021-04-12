@@ -4,6 +4,7 @@ import { fetchAllUsers, deleteUser } from '../../api/users';
 import PopupDelete from '../UserList/PopupDelete';
 import PopupEdit from '../UserList/PopupEdit';
 import { toast } from 'react-toastify'
+import Loading from '../Loading/Loading';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -112,6 +113,10 @@ function withUsersFetch(WrappedComponent) {
         };
 
         render() {
+            if(this.state.isLoading) {
+                return (<Loading />);
+            }
+
             return (
                 <>
                     <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />

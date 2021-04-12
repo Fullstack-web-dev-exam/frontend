@@ -4,6 +4,7 @@ import { fetchUser } from '../../api/users';
 import updateUserBackend from './UpdateUserHOC';
 import UpdateUser from '../UpdateUser/UpdateUser';
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import Loading from '../Loading/Loading';
 
 function withUserBackEnd(WrappedComponent) {
     class MyProfileHOC extends Component {
@@ -26,10 +27,6 @@ function withUserBackEnd(WrappedComponent) {
         fetchData = async () => {
             const headers = this.context.generateHeaders();
             const res = await fetchUser(headers)
-
-            /* this.setState({
-                successfullyUpdated: true
-            }) */
 
             if (res.error) {
                 this.setState({
@@ -69,7 +66,7 @@ function withUserBackEnd(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
             if (this.state.isLoading) {
-                return (<p>Loading...</p>)
+                return (<Loading />);
             }
             return (
                 <>
