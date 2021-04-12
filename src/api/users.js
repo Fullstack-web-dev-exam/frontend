@@ -6,31 +6,40 @@ const login = (email, password) => {
     return axios.post('/login', { email, password });
 };
 
+const forgot = (email) => {
+    return axios.post('/reset_password', email);
+}
+
 // Logged in users can do this
-const createUser = (headers, { name, surname, email, role, password }) => {
-    console.log({ name, surname, email, role, password });
-    return axios.post('/user/', { name, surname, email, role, password }, headers);
-}
-
 const fetchUser = (headers) => {
-    return axios.get('/user/', headers);
+    return axios.get('/user', headers);
 }
 
-const updateUser = (headers, params) => {
-    return axios.patch('/user/:id', { params }, headers);
+const updateMyProfile = (headers, { name, surname, password, oldPassword}) => {
+    return axios.patch('/user', { name, surname, password, oldPassword }, headers);
 }
 
-const deleteUser = (headers, params) => {
-    return axios.delete('/user/:id', { params }, headers);
+//Admins
+const createUser = (headers, { name, surname, email, role, password }) => {
+    return axios.post('/dashboard', { name, surname, email, role, password }, headers);
 }
 
-// Admins
 const fetchAllUsers = (headers) => {
-    return axios.get('/dashboard/', headers);
+    return axios.get('/dashboard', headers);
+}
+
+const updateUser = (headers, { place, selectedUser, name, surname, role, email }) => {
+    return axios.patch('/dashboard', { place, selectedUser, name, surname, role, email }, headers);
+}
+
+const deleteUser = (headers, { email }) => {
+    return axios.delete('/dashboard', { data: { email }, headers });
 }
 
 export {
     login,
+    forgot,
+    updateMyProfile,
     createUser,
     fetchUser,
     updateUser,

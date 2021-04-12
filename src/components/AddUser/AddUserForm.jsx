@@ -3,6 +3,8 @@ import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { createUser } from '../../api/users';
+import Button from '../Button/Button'
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 
 class AddUserForm extends Component {
     static contextType = AuthContext;
@@ -16,7 +18,8 @@ class AddUserForm extends Component {
             role: 'gardener',
             password: '',
             repeatpassword: '',
-            passwordError: false
+            passwordError: false,
+            submitted: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -50,7 +53,7 @@ class AddUserForm extends Component {
 
             //Send the information stored in the state to the back-end
             const headers = this.context.generateHeaders();
-            console.log(headers);
+            //console.log(headers);
             const userObject = {
                 name: this.state.firstname,
                 surname: this.state.surname,
@@ -61,6 +64,16 @@ class AddUserForm extends Component {
             const res = await createUser(headers, userObject);
             if (res.error) {
                 alert(`Something went wrong during creation ${res.error}`);
+            } else {
+                this.setState({
+                    firstname: '',
+                    surname: '',
+                    email: '',
+                    role: 'gardener',
+                    password: '',
+                    repeatpassword: '',
+                    submitted: true
+                })
             }
         } else {
             alert('the form did not pass validation');
@@ -88,7 +101,8 @@ class AddUserForm extends Component {
     //Close the red error message that pops up when the two passwords do not match
     handleClose() {
         this.setState({
-            passwordError: false
+            passwordError: false,
+            submitted: false
         });
         this.passwordInput.current.focus();
     }
@@ -185,9 +199,10 @@ class AddUserForm extends Component {
                                 </div>
                             </div>
 
-                            {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
+                            {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same."/>}
+                            {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added"/>}
 
-                            <button type="submit">add new user</button>
+                            <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
                     </form>
                 </div>

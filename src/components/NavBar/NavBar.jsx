@@ -8,6 +8,7 @@ import './NavBar.css';
 import accountCircle from '../../assets/account_circle.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { Link } from "react-router-dom";
+import Button from '../Button/Button'
 
 function Nav(props) {
     const authContext = useContext(AuthContext);
@@ -46,17 +47,14 @@ function Nav(props) {
 
     return (
         <nav className="navbar">
-            <h1>Fullstack Project</h1>
-            <ul>
-                <li>
-                    <Link to="/overview">Overview</Link>
-                </li>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-            </ul>
+            <h1>
+                <Link to="/">Fullstack Project</Link>
+            </h1>
+
             {!authContext.isAuth && (
-                <Link to="/login"><button>Log in</button></Link>
+                <Link to="/login">
+                    <Button label="log in"/>
+                </Link>
             )}
             {authContext.isAuth && (
                 <div onClick={handleMenu} className="navbar-icon" ref={node}>

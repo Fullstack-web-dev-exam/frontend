@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-/* import AddUserForm from './components/AddUser/AddUserForm' */
-import AdminRoute from './routes/AdminRoute'
+import AdminRoute from './routes/AdminRoute';
 import LogInForm from './components/Login/LogInForm';
 import NavBar from './components/NavBar/NavBar';
-import NotFound from './components/NotFound/NotFound'
+import NotFound from './components/NotFound/NotFound';
+import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import PrivateRoute from './routes/PrivateRoute';
-import UserList from './components/UserList/UserList';
-import withUsersFetch from './components/hoc/UserListHOC';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
-import MyProfile from './components/MyProfile/MyProfile'
+import MyProfile from './components/MyProfile/MyProfile';
+import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
 
 class App extends Component {
   render() {
 
-    const UserListWithHOC = withUsersFetch(UserList);
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
 
     return (
@@ -26,18 +25,16 @@ class App extends Component {
             <NavBar />
             <main>
               <Switch>
-                <Route exact path="/overview">
-                  <p>Dette er overview-siden</p>
+              <Route exact path="/reset_password">
+                  <ForgotPasswordEmailForm/>
                 </Route>
-                <PrivateRoute exact path="/user/">
-                  <h1>Profile</h1>
+                <PrivateRoute exact path="/user">
+                  <h1>Your Profile</h1>
                   <MyProfileWithHOC/>
-                  {/* <AddUserForm /> */}
                 </PrivateRoute>
                 <PrivateRoute exact path="/dashboard">
                   <AdminRoute >
-                    <p>Admin siden</p>
-                    <UserListWithHOC />
+                    <Dashboard />
                   </AdminRoute>
                 </PrivateRoute>
                 <Route exact path="/logout">
@@ -50,7 +47,7 @@ class App extends Component {
                   <p>Hjemmesiden</p>
                 </Route>
                 <Route exact path="/401">
-                  <p>You are not authorized!</p>
+                  <UnauthorizedCard/>
                 </Route>
                 <Route>
                   <NotFound />
