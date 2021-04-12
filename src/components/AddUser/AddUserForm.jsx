@@ -62,6 +62,15 @@ class AddUserForm extends Component {
             const res = await createUser(headers, userObject);
             if (res.error) {
                 alert(`Something went wrong during creation ${res.error}`);
+            } else {
+                this.setState({
+                    firstname: '',
+                    surname: '',
+                    email: '',
+                    role: 'gardener',
+                    password: '',
+                    repeatpassword: ''
+                })
             }
         } else {
             alert('the form did not pass validation');
@@ -188,7 +197,7 @@ class AddUserForm extends Component {
 
                             {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
 
-                            <Button label="add new user" size="full" variant="primary" type="submit"/>
+                            <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
                     </form>
                 </div>
