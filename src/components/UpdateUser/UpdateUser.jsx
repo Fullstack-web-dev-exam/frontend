@@ -11,7 +11,7 @@ class UpdateUserForm extends Component {
             firstname: '',
             surname: '',
             role: '',
-            newEmail: '',
+            email: '',
             oldPassword: '',
             password: '',
             repeatpassword: '',
@@ -44,12 +44,16 @@ class UpdateUserForm extends Component {
     getPayload() {
         let payloadObj = {}
 
+        if(this.props.place){
+            payloadObj.place =  this.props.place
+        }
+
         if(this.props.selectedUserEmail) {
             payloadObj.selectedUser = this.props.selectedUserEmail;
         }
 
-        if (this.state.newEmail) {
-            payloadObj.newEmail = this.state.newEmail
+        if (this.state.email) {
+            payloadObj.email = this.state.email
         }
 
         if (this.state.firstname) {
@@ -134,8 +138,8 @@ class UpdateUserForm extends Component {
                                     <div>
                                         <label htmlFor="email">email</label>
                                         <input
-                                            id="newEmail"
-                                            name="newEmail"
+                                            id="email"
+                                            name="email"
                                             onChange={this.handleInputChange}
                                             placeholder="Enter Your New Email"
                                             type="text"

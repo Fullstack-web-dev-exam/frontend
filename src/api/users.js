@@ -28,8 +28,8 @@ const fetchAllUsers = (headers) => {
     return axios.get('/dashboard', headers);
 }
 
-const updateUser = (headers, { email, name, surname, role, newEmail }) => {
-    return axios.patch('/user', { email, name, surname }, headers);
+const updateUser = (headers, { place, selectedUser, name, surname, role, email }) => {
+    return axios.patch('/dashboard', { place, selectedUser, name, surname, role, email }, headers);
 }
 
 const deleteUser = (headers, { email }) => {
