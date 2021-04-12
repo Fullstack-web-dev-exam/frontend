@@ -157,7 +157,7 @@ class UpdateUserForm extends Component {
                                             onChange={this.handleInputChange}
                                             placeholder="Enter Your New Email"
                                             type="text"
-                                            value={this.state.newEmail}
+                                            value={this.state.email}
                                         />
                                     </div>}
 
