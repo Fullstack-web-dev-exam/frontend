@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import withUsersFetch from '../hoc/UserListHOC';
 import UserList from '../UserList/UserList';
 import AddUserForm from '../AddUser/AddUserForm';
+import Button from '../Button/Button'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -34,8 +35,8 @@ class Dashboard extends Component {
             <>
                 <h1>Dashboard</h1>
                 <div className="user-list-item-buttons">
-                    <button onClick={this.toggleAddUser} className="edit-button">Add a user</button>
-                    <button onClick={this.toggleAllUsers} className="edit-button">See all users</button>
+                    <Button onClick={this.toggleAddUser} variant="secondary" label="Add a user" size="half"/>
+                    <Button onClick={this.toggleAllUsers} variant="secondary" label="See all users" size="half"/>
                 </div>
                 {this.state.addUser && <AddUserForm />}
                 {this.state.seeUsers && <UserListWithHOC />}

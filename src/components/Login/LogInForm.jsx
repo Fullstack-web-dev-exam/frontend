@@ -4,6 +4,7 @@ import lockClosedIcon from '../../assets/lock_black_24dp.svg';
 import lockOpenIcon from '../../assets/lock_open_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { Link, Redirect } from "react-router-dom";
+import Button from '../Button/Button'
 
 class LogInForm extends Component {
     static contextType = AuthContext;
@@ -100,7 +101,7 @@ class LogInForm extends Component {
                                     value={this.state.password}
                                 />
 
-                                <button type="submit">log in</button>
+                                <Button type="submit" label="log in" variant="primary" size="full"/>
                             </fieldset>
                         </form>
                         {this.state.error && <p className="error-message" onClick={this.handleClose}><strong>Error:</strong> Wrong email and/or password. Please try again.</p>}

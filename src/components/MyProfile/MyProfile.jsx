@@ -1,3 +1,5 @@
+import Button from '../Button/Button'
+
 function MyProfile({ myUser, handleEditClick }) {
     console.log(handleEditClick);
 
@@ -6,7 +8,8 @@ function MyProfile({ myUser, handleEditClick }) {
             <h2>{myUser.name} {myUser.surname}</h2>
             <h3>Role: {myUser.role}</h3>
             <p><b>Email:</b> {myUser.email}</p>
-            <button onClick={handleEditClick} className="edit-button">edit</button>
+            <Button onClick={handleEditClick} label="edit"/>
+
         </div>
     );
 }

@@ -3,6 +3,7 @@ import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { createUser } from '../../api/users';
+import Button from '../Button/Button'
 
 class AddUserForm extends Component {
     static contextType = AuthContext;
@@ -187,7 +188,7 @@ class AddUserForm extends Component {
 
                             {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
 
-                            <button type="submit">add new user</button>
+                            <Button label="add new user" size="full" variant="primary" type="submit"/>
                         </fieldset>
                     </form>
                 </div>

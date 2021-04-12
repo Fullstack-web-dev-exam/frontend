@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import editUserForm from '../../assets/edit_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
+import Button from '../Button/Button'
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -229,7 +230,8 @@ class UpdateUserForm extends Component {
 
                             {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
 
-                            <button type="submit">update</button>
+                            <Button type="submit" label="update"/>
+
                         </fieldset>
                     </form>
                 </div>

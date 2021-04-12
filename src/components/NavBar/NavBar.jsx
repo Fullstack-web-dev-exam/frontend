@@ -8,6 +8,7 @@ import './NavBar.css';
 import accountCircle from '../../assets/account_circle.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { Link } from "react-router-dom";
+import Button from '../Button/Button'
 
 function Nav(props) {
     const authContext = useContext(AuthContext);
@@ -51,7 +52,9 @@ function Nav(props) {
             </h1>
 
             {!authContext.isAuth && (
-                <Link to="/login"><button>Log in</button></Link>
+                <Link to="/login">
+                    <Button label="log in"/>
+                </Link>
             )}
             {authContext.isAuth && (
                 <div onClick={handleMenu} className="navbar-icon" ref={node}>

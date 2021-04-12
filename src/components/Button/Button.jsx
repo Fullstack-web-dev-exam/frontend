@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
 import './Button.css';
 
 /* 
-Expects:
+Expects props:
 
--handleOnClick: <any clickHandler>
+-onClick: <any clickHandler>
 -isDisabled: <boolean>
 -label: <text to display on button>
--size: < "full-size" / "half-size" >
+-size: < "full" / "half" >
 -variant: < "primary" / "secondary" / "danger" >
+-buttonType < "button|submit|reset"
 
 */
 
-class Button extends Component {
-    render() {
-        return (
-            <button 
-                className={`button ${this.props.variant} ${this.props.size}`} 
-                disabled={this.props.isDisabled}
-                onClick={this.props.handleOnClick}>
-                {this.props.label}
-            </button>
-        );
-    }
+function Button(props) {
+    const { variant, type, onClick, disabled, label, size } = props;
+
+    return (
+        <button
+            className={`button ${variant || 'primary'} ${size || 'full'}-size`}
+            disabled={disabled}
+            type={type || 'button'}
+            onClick={onClick}>
+            {label || 'button'}
+        </button>
+    )
 }
 
 export default Button;
