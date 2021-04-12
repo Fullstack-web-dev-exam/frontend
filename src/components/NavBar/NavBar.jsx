@@ -9,6 +9,7 @@ import accountCircle from '../../assets/account_circle.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { Link } from "react-router-dom";
 import Button from '../Button/Button'
+import { toast } from 'react-toastify'
 
 function Nav(props) {
     const authContext = useContext(AuthContext);
@@ -21,6 +22,7 @@ function Nav(props) {
 
     const handleLogOut = () => {
         authContext.logout();
+        notifySuccess();
     }
 
     const handleClickOutside = e => {
@@ -44,6 +46,12 @@ function Nav(props) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [open]);
+
+    const notifySuccess = () => {
+        toast.success("You are now logged out. Goodbye :)", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
 
     return (
         <nav className="navbar">

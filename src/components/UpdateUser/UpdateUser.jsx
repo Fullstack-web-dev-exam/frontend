@@ -3,6 +3,7 @@ import editUserForm from '../../assets/edit_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import { toast } from 'react-toastify'
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -102,15 +103,14 @@ class UpdateUserForm extends Component {
             if (this.props.place === "dashboard") {
                 console.log("Dashboard update");
                 this.props.onUpdateDashboard(userObject);
+                this.notifySuccess()
             } else {
                 this.props.onUpdateProfile(userObject)
+                this.notifySuccess()
                 console.log("Else update");
             }
 
 
-        } else {
-            alert('the form did not pass validation');
-            return;
         }
     }
 
@@ -128,6 +128,7 @@ class UpdateUserForm extends Component {
             this.setState({
                 passwordError: true
             });
+            this.passwordError()
             return false;
         }
     }
@@ -139,6 +140,24 @@ class UpdateUserForm extends Component {
         });
         this.passwordInput.current.focus();
     }
+
+    notifySuccess = () => {
+        toast.success("The user has been updated", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
+    notifyError = () => {
+        toast.error("The form did not pass validation", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
+    passwordError = () => {
+        toast.error("The passwords entered do not match.", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
 
     render() {
         return (

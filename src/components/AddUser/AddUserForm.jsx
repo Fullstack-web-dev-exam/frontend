@@ -5,6 +5,7 @@ import { AuthContext } from '../../helpers/Auth';
 import { createUser } from '../../api/users';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import { toast } from 'react-toastify'
 
 class AddUserForm extends Component {
     static contextType = AuthContext;
@@ -74,9 +75,10 @@ class AddUserForm extends Component {
                     repeatpassword: '',
                     submitted: true
                 })
+                this.notifySuccess()
             }
         } else {
-            alert('the form did not pass validation');
+            this.notifyError();
         }
     }
 
@@ -94,6 +96,7 @@ class AddUserForm extends Component {
             this.setState({
                 passwordError: true
             });
+            this.passwordError()
             return false;
         }
     }
@@ -106,6 +109,24 @@ class AddUserForm extends Component {
         });
         this.passwordInput.current.focus();
     }
+
+    notifySuccess = () => {
+        toast.success("The user has been added", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
+    notifyError = () => {
+        toast.error("The form did not pass validation", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
+    passwordError = () => {
+        toast.error("The passwords entered do not match.", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
 
     render() {
         return (

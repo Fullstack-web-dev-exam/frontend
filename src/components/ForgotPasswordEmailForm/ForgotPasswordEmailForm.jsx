@@ -4,6 +4,7 @@ import './ForgotPasswordEmailForm.css';
 import { forgot } from '../../api/users';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
+import { toast } from 'react-toastify'
 
 class ForgotPasswordEmailForm extends Component {
     constructor(props) {
@@ -26,20 +27,17 @@ class ForgotPasswordEmailForm extends Component {
         if (this.validation()) {
             alert(`submitting: ${this.state.email}`)
             this.setState({ formSubmitted: true });
+            this.notifySuccess();
             
             const email = this.state.email;
             //console.log(email, password);
 
             //ENDRE DENNE
-            const res = await forgot({email});
+            await forgot({email});
 
-            if (res.error) {
-                this.setState({ error: res.error.message });
-            } else {
-                this.setState({ formSubmitted: true });
-            } 
         } else {
             this.setState({ error: "The form is not valid!" });
+            this.notifyError()
         }
     }
 
@@ -67,6 +65,18 @@ class ForgotPasswordEmailForm extends Component {
     validation() {
         return this.form.current.reportValidity();
     }
+
+    notifySuccess = () => {
+        toast.success(`An email with further instructions is sent to ${this.state.email}.`, {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+
+    notifyError = () => {
+        toast.error("The form did not pass validation", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
 
     render() {
         return (
