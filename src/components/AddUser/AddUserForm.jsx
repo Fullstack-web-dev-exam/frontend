@@ -18,7 +18,8 @@ class AddUserForm extends Component {
             role: 'gardener',
             password: '',
             repeatpassword: '',
-            passwordError: false
+            passwordError: false,
+            submitted: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -70,7 +71,8 @@ class AddUserForm extends Component {
                     email: '',
                     role: 'gardener',
                     password: '',
-                    repeatpassword: ''
+                    repeatpassword: '',
+                    submitted: true
                 })
             }
         } else {
@@ -99,7 +101,8 @@ class AddUserForm extends Component {
     //Close the red error message that pops up when the two passwords do not match
     handleClose() {
         this.setState({
-            passwordError: false
+            passwordError: false,
+            submitted: false
         });
         this.passwordInput.current.focus();
     }
@@ -197,6 +200,7 @@ class AddUserForm extends Component {
                             </div>
 
                             {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same."/>}
+                            {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added"/>}
 
                             <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
