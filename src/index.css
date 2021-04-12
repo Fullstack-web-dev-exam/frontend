@@ -41,24 +41,6 @@ select {
   box-sizing: border-box;
 }
 
-.error-message {
-  padding: 12px 20px;
-  margin: 8px 0 24px;
-  background-color: var(--red);
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.success-message {
-  padding: 12px 20px;
-  margin: 8px 0 24px;
-  background-color: var(--secondary);
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 label, strong {
   text-transform: capitalize;
 }

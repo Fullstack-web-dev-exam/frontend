@@ -8,6 +8,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import withUsersBackEnd from './components/hoc/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile'
 import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm'
+import UserFeedbackCard from './components/UserFeedbackCard/UserFeedbackCard'
 
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -45,6 +46,8 @@ class App extends Component {
                 </Route>
                 <Route exact path="/">
                   <p>Hjemmesiden</p>
+                  <UserFeedbackCard variant="error" feedbackText="This is your error feedback"/>
+                  <UserFeedbackCard variant="success" feedbackText="This is your success feedback"/>
                 </Route>
                 <Route exact path="/401">
                   <UnauthorizedCard/>

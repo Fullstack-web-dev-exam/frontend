@@ -4,6 +4,7 @@ import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { createUser } from '../../api/users';
 import Button from '../Button/Button'
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 
 class AddUserForm extends Component {
     static contextType = AuthContext;
@@ -186,7 +187,7 @@ class AddUserForm extends Component {
                                 </div>
                             </div>
 
-                            {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
+                            {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same."/>}
 
                             <Button label="add new user" size="full" variant="primary" type="submit"/>
                         </fieldset>

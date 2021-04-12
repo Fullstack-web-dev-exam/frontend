@@ -3,6 +3,7 @@ import { AuthContext } from '../../helpers/Auth';
 import { fetchUser } from '../../api/users';
 import updateUserBackend from './UpdateUserHOC';
 import UpdateUser from '../UpdateUser/UpdateUser';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 
 function withUserBackEnd(WrappedComponent) {
     class MyProfileHOC extends Component {
@@ -13,7 +14,8 @@ function withUserBackEnd(WrappedComponent) {
                 myUser: [],
                 isLoading: true,
                 error: null,
-                willEdit: false
+                willEdit: false,
+                successfullyUpdated: false
             };
         }
 
@@ -24,6 +26,10 @@ function withUserBackEnd(WrappedComponent) {
         fetchData = async () => {
             const headers = this.context.generateHeaders();
             const res = await fetchUser(headers)
+
+            /* this.setState({
+                successfullyUpdated: true
+            }) */
 
             if (res.error) {
                 this.setState({
@@ -39,7 +45,21 @@ function withUserBackEnd(WrappedComponent) {
         }
 
         toggleWillEdit = () => {
-            this.setState({willEdit: !this.state.willEdit})
+            this.setState({
+                willEdit: !this.state.willEdit,
+                successfullyUpdated: false
+            })
+        }
+
+        handleCloseMessage = () => {
+            this.setState({ successfullyUpdated: false })
+        }
+
+        handleSuccess = () => {
+            this.setState({
+                successfullyUpdated: true,
+                willEdit: false
+            })
         }
 
         render() {
@@ -54,7 +74,8 @@ function withUserBackEnd(WrappedComponent) {
             return (
                 <>
                     <WrappedComponent myUser={this.state.myUser} {...this.props} handleEditClick={this.toggleWillEdit} />
-                    {this.state.willEdit && <UpdateUserHOC selectedUser={this.state.myUser} place="profile" onUpdateForm={this.fetchData} />}
+                    {this.state.successfullyUpdated && <UserFeedbackCard onClick={this.handleCloseMessage} variant="success" feedbackText="The user has been updated." />}
+                    {this.state.willEdit && <UpdateUserHOC selectedUser={this.state.myUser} place="profile" onUpdateForm={() => { this.fetchData(); this.handleSuccess(); }} />}
                 </>
             );
         }

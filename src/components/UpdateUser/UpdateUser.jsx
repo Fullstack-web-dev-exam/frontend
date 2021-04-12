@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import editUserForm from '../../assets/edit_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import Button from '../Button/Button'
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -19,10 +20,9 @@ class UpdateUserForm extends Component {
             passwordError: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.handleClosePassword = this.handleClosePassword.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.form = React.createRef();
-        //bedre navn
         this.firstnameInput = React.createRef();
         this.passwordInput = React.createRef();
     }
@@ -43,7 +43,6 @@ class UpdateUserForm extends Component {
                 surname: this.props.selectedUser.surname
             })
         }
-
     }
 
     //General InputChangeHandler that saves the value of the input field to the state
@@ -111,6 +110,7 @@ class UpdateUserForm extends Component {
 
         } else {
             alert('the form did not pass validation');
+            return;
         }
     }
 
@@ -133,7 +133,7 @@ class UpdateUserForm extends Component {
     }
 
     //Close the red error message that pops up when the two passwords do not match
-    handleClose() {
+    handleClosePassword() {
         this.setState({
             passwordError: false
         });
@@ -246,9 +246,8 @@ class UpdateUserForm extends Component {
                                     </>}
                             </div>
 
-                            {this.state.passwordError && <p className="error-message" onClick={this.handleClose}><strong>Validation Error</strong>: The passwords entered are not the same.</p>}
-
-                            <Button type="submit" label="update"/>
+                            {this.state.passwordError && <UserFeedbackCard onClick={this.handleClosePassword} variant="error" feedbackText="The passwords entered are not the same." />}
+                            <Button type="submit" label="update" />
 
                         </fieldset>
                     </form>

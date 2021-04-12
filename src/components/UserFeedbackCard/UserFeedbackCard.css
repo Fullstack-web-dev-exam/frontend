@@ -1,0 +1,16 @@
+.user-feedback {
+    padding: 12px 20px;
+    margin: 8px 0 24px;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.user-feedback.error{
+    background-color: var(--red);
+}
+
+
+.user-feedback.success {
+    background-color: var(--secondary);
+}
