@@ -1,4 +1,5 @@
-import Button from '../Button/Button'
+import Button from '../Button/Button';
+import './my-profile.css';
 
 function MyProfile({ myUser, handleEditClick }) {
     console.log(handleEditClick);
@@ -9,7 +10,6 @@ function MyProfile({ myUser, handleEditClick }) {
             <h3>Role: {myUser.role}</h3>
             <p><b>Email:</b> {myUser.email}</p>
             <Button onClick={handleEditClick} label="edit profile" variant="secondary"/>
-
         </div>
     );
 }
