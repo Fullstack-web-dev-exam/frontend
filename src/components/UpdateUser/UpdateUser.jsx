@@ -175,7 +175,7 @@ class UpdateUserForm extends Component {
                                         onChange={this.handleInputChange}
                                         value={this.state.role}
                                     >
-                                        <option value="" selected>Choose role</option>
+                                        <option value="">Choose role</option>
                                         <option value="gardener">Gardener</option>
                                         <option value="manager">Manager</option>
                                     </select>
