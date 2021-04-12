@@ -8,16 +8,17 @@ Expects props:
 -label: <text to display on button>
 -size: < "full" / "half" >
 -variant: < "primary" / "secondary" / "danger" >
--buttonType < "button|submit|reset"
+-buttonType: < "button|submit|reset"
+-active: < <boolean>
 
 */
 
 function Button(props) {
-    const { variant, type, onClick, disabled, label, size } = props;
+    const { variant, type, onClick, disabled, label, size, active } = props;
 
     return (
         <button
-            className={`button ${variant || 'primary'} ${size || 'full'}-size`}
+            className={`button ${variant || 'primary'} ${size || 'full'}-size ${active === true ? 'active' : ''}`}
             disabled={disabled}
             type={type || 'button'}
             onClick={onClick}>

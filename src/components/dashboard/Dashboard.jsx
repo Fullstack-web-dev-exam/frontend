@@ -3,6 +3,7 @@ import withUsersFetch from '../hoc/UserListHOC';
 import UserList from '../UserList/UserList';
 import AddUserForm from '../AddUser/AddUserForm';
 import Button from '../Button/Button'
+import './dashboard.css';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -35,8 +36,8 @@ class Dashboard extends Component {
             <>
                 <h1>Dashboard</h1>
                 <div className="user-list-item-buttons">
-                    <Button onClick={this.toggleAddUser} variant="secondary" label="Add a user" size="half"/>
-                    <Button onClick={this.toggleAllUsers} variant="secondary" label="See all users" size="half"/>
+                    <Button onClick={this.toggleAddUser} variant="secondary-outlined" label="Add a user" size="half" active={this.state.addUser}  />
+                    <Button onClick={this.toggleAllUsers} variant="secondary-outlined" label="See all users" size="half" active={this.state.seeUsers} />
                 </div>
                 {this.state.addUser && <AddUserForm />}
                 {this.state.seeUsers && <UserListWithHOC />}
