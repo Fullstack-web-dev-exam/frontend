@@ -2,28 +2,21 @@
 import React from 'react';
 import Button from './Button';
 import '../../colors.css'
-import '../../index.css' 
+import '../../index.css'
 
 //The default export metadata controls how Storybook lists your stories and provides information used by addons.
 export default {
     title: 'Components/Button',
     component: Button,
-    args: {
-        disabled: '',
-        isActive: '',
-        label: "Button – click me for TypeError",
-        size: 'full',
-        type: ''
-    },
-    argTypes: {
-        "label": { control: 'text' },
-        onClick: { action: 'clicked' },
-        variant: {
-            control: {
-                type: 'radio',
-                options: ['primary', 'secondary', 'secondary-outlined', 'danger']
-            }
+    parameters: {
+        controls: {
+            sort: 'alpha'
         }
+    },
+
+    //👇 We can specify which controls get used by declaring a custom argType
+    argTypes: {
+        
     }
 }
 
@@ -31,14 +24,30 @@ export default {
 const Template = args => <Button {...args} />
 
 //👇 Each story then reuses that template
-export const PrimaryArgs = Template.bind({})
-PrimaryArgs.args = {
-    variant: 'primary',
-    size: 'full'
+export const Primary = Template.bind({})
+export const Secondary = Template.bind({})
+export const SecondaryOutlined = Template.bind({})
+export const Danger = Template.bind({})
+export const Disabled = Template.bind({})
+
+Primary.args = {}
+
+Secondary.args = {
+    variant: "secondary",
+    label: "secondary button"
 }
 
-export const SecondaryArgs = Template.bind({})
-SecondaryArgs.args = {
-    variant: 'secondary',
-    label: 'This is a secondary button'
+SecondaryOutlined.args = {
+    variant: "secondary-outlined",
+    label: "secondary outlined button"
+}
+
+Danger.args = {
+    variant: "danger",
+    label: "dangerous button"
+}
+
+Disabled.args = {
+    disabled: true,
+    label: 'disabled button'
 }

@@ -57,6 +57,10 @@
     background-color: var(--sDark)
 }
 
+/*
+* BUTTONS SECONDARY OUTLINED
+*/
+
 .secondary-outlined:enabled {
     background-color: var(--background);
     border: 2px solid var(--secondary);

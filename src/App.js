@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import UserFeedbackCard from './components/UserFeedbackCard/UserFeedbackCard'
+import Button from './components/Button/Button'
 
 class App extends Component {
   render() {
@@ -47,6 +49,9 @@ class App extends Component {
                   </Route>
                   <Route exact path="/">
                     <p>Hjemmesiden</p>
+                    <UserFeedbackCard feedbackText="This is your feedback" variant="error"/>
+                    <UserFeedbackCard feedbackText="This is your feedback" variant="success"/>
+                    <Button label="button on home page"/>
                   </Route>
                   <Route exact path="/401">
                     <UnauthorizedCard />
@@ -57,7 +62,7 @@ class App extends Component {
                 </Switch>
               </main>
             </Router>
-            <ToastContainer transition={Slide}/>
+            <ToastContainer transition={Slide} />
           </>
         )}
       </AuthConsumer>

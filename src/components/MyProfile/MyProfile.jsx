@@ -1,6 +1,7 @@
-import Button from '../Button/Button';
-import accountCircle from '../../assets/person_black_24dp.svg';
 import './my-profile.css';
+import Button from '../Button/Button';
+import PropTypes from 'prop-types';
+import accountCircle from '../../assets/person_black_24dp.svg';
 
 function MyProfile({ myUser, handleEditClick }) {
     console.log(handleEditClick);
@@ -14,6 +15,10 @@ function MyProfile({ myUser, handleEditClick }) {
             <Button onClick={handleEditClick} label="edit profile" variant="secondary"/>
         </div>
     );
+}
+
+MyProfile.defaultProps = {
+    myUser: {},
 }
 
 export default MyProfile;

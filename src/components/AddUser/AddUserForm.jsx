@@ -110,18 +110,21 @@ class AddUserForm extends Component {
         this.passwordInput.current.focus();
     }
 
+    //Part of 'react-toastify'
     notifySuccess = () => {
         toast.success("The user has been added", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //Part of 'react-toastify'
     notifyError = () => {
         toast.error("The form did not pass validation", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //Part of 'react-toastify'
     passwordError = () => {
         toast.error("The passwords entered do not match.", {
             position: toast.POSITION.BOTTOM_RIGHT
