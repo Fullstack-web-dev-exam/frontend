@@ -48,7 +48,7 @@ function Nav(props) {
     }, [open]);
 
     const notifySuccess = () => {
-        toast.success("You are now logged out. Goodbye :)", {
+        toast.success("You are now logged out. Goodbye 👋", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };

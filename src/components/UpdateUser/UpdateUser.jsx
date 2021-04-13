@@ -209,6 +209,7 @@ class UpdateUserForm extends Component {
                                 {this.props.place === "dashboard" && <div>
                                     <label htmlFor="role">role</label>
                                     <select
+                                        id="role"
                                         name="role"
                                         onChange={this.handleInputChange}
                                         value={this.state.role}

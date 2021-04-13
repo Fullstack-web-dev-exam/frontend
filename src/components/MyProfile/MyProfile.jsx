@@ -12,13 +12,32 @@ function MyProfile({ myUser, handleEditClick }) {
             <h2>{myUser.name} {myUser.surname}</h2>
             <h3>Role: {myUser.role}</h3>
             <p><b>Email:</b> {myUser.email}</p>
-            <Button onClick={handleEditClick} label="edit profile" variant="secondary"/>
+            <Button onClick={handleEditClick} label="edit profile" variant="secondary" />
         </div>
     );
 }
 
 MyProfile.defaultProps = {
-    myUser: {},
+    myUser: {
+        email: 'N/A',
+        name: 'First name: N/A, ',
+        role: 'gardener',
+        surname: 'Surname: N/A',
+    }
+}
+
+MyProfile.propTypes = {
+    /** The myUser object should include name, surname, role, and email. 
+     * These values should be strings.  */
+    myUser: PropTypes.shape({
+        email: PropTypes.string,
+        name: PropTypes.string,
+        role: PropTypes.oneOf(['gardener', 'manager']),
+        surname: PropTypes.string,
+    }),
+    
+    /** handleEditClick is the handler for when the user presses the edit button.  */
+    handleEditClick: PropTypes.func
 }
 
 export default MyProfile;

@@ -184,6 +184,7 @@ class AddUserForm extends Component {
                                 <div className="role-grid-item">
                                     <label htmlFor="role">role</label>
                                     <select
+                                        id="role"
                                         name="role"
                                         onChange={this.handleInputChange}
                                         value={this.state.role}
@@ -223,8 +224,8 @@ class AddUserForm extends Component {
                                 </div>
                             </div>
 
-                            {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same."/>}
-                            {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added"/>}
+                            {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same." />}
+                            {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added" />}
 
                             <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
