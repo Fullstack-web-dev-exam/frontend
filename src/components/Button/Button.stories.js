@@ -28,6 +28,7 @@ export const Primary = Template.bind({})
 export const Secondary = Template.bind({})
 export const SecondaryOutlined = Template.bind({})
 export const Danger = Template.bind({})
+export const DangerOutlined = Template.bind({})
 export const Disabled = Template.bind({})
 
 Primary.args = {}
@@ -45,6 +46,11 @@ SecondaryOutlined.args = {
 Danger.args = {
     variant: "danger",
     label: "dangerous button"
+}
+
+DangerOutlined.args = {
+    variant: "danger-outlined",
+    label: "dangerous outlined button"
 }
 
 Disabled.args = {

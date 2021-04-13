@@ -33,6 +33,17 @@ main {
   width: 2em;
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  text-align: center;
+  font-size: 2em;
+  margin: .5em auto;
+}
+
 a {
   color: var(--secondary);
   transition: .3s;
@@ -72,10 +83,19 @@ ul {
   padding: 0;
 }
 
+li {
+  list-style-type: none;
+}
+
 .low-emphasis {
   color: var(--gray2)
 }
 
+.bold {
+  font-weight: bold;
+}
+
+/* part of react tostify */
 .Toastify__toast--success {
   background: var(--primary) !important;
 }

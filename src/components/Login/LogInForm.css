@@ -1,14 +1,3 @@
-fieldset {
-    border: none;
-    padding: 0;
-}
-
-legend {
-    text-align: center;
-    font-size: 2em;
-    margin: .5em auto;
-}
-
 /* Add a hover effect for submit button */
 button:hover:enabled {
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);

@@ -37,7 +37,7 @@ MyProfile.propTypes = {
     }),
     
     /** handleEditClick is the handler for when the user presses the edit button.  */
-    handleEditClick: PropTypes.func
+    handleEditClick: PropTypes.func.isRequired
 }
 
 export default MyProfile;

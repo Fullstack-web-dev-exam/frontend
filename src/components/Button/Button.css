@@ -97,6 +97,10 @@
     background-color: var(--rDark);
 }
 
+/*
+* BUTTONS DANGER OUTLINED
+*/
+
 .danger-outlined {
     background-color: var(--background);
     border: 2px solid var(--red);

@@ -32,6 +32,11 @@ class UpdateUserForm extends Component {
     componentDidMount() {
         this.firstnameInput.current.focus();
         if (this.props.place === "dashboard") {
+            
+            this.pronoun = 'their';
+            console.log('Props ligger under denne')
+            console.log(this.props)
+
             this.setState({
                 firstname: this.props.selectedUser.name,
                 surname: this.props.selectedUser.surname,
@@ -39,6 +44,8 @@ class UpdateUserForm extends Component {
                 email: this.props.selectedUser.email
             })
         } else {
+            this.pronoun = 'your'
+            
             this.setState({
                 firstname: this.props.selectedUser.name,
                 surname: this.props.selectedUser.surname
@@ -166,7 +173,7 @@ class UpdateUserForm extends Component {
                     <img src={editUserForm} alt="" />
                     <form ref={this.form} onSubmit={this.handleSubmit} method="POST">
                         <fieldset>
-                            <legend>Update your user information</legend>
+                            <legend>Update {this.pronoun} user information</legend>
                             <div>
                                 {this.props.place === "dashboard" &&
                                     <div>
@@ -268,6 +275,7 @@ class UpdateUserForm extends Component {
 
                             {this.state.passwordError && <UserFeedbackCard onClick={this.handleClosePassword} variant="error" feedbackText="The passwords entered are not the same." />}
                             <Button type="submit" label="update" />
+                            {this.props.place === 'dashboard' && <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick}/>}
 
                         </fieldset>
                     </form>
