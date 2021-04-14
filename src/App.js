@@ -13,8 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
-import UserFeedbackCard from './components/UserFeedbackCard/UserFeedbackCard'
-import Button from './components/Button/Button'
 
 class App extends Component {
   render() {
@@ -42,16 +40,13 @@ class App extends Component {
                     </AdminRoute>
                   </PrivateRoute>
                   <Route exact path="/logout">
-                    <p>You are now logged out!</p>
+                    <h1>You are now logged out!</h1>
                   </Route>
                   <Route exact path="/login">
                     <LogInForm />
                   </Route>
                   <Route exact path="/">
-                    <p>Hjemmesiden</p>
-                    <UserFeedbackCard feedbackText="This is your feedback" variant="error"/>
-                    <UserFeedbackCard feedbackText="This is your feedback" variant="success"/>
-                    <Button label="button on home page"/>
+                    <h1>Home page</h1>
                   </Route>
                   <Route exact path="/401">
                     <UnauthorizedCard />

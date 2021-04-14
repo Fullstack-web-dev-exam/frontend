@@ -30,7 +30,7 @@ export const Populated = Template.bind({})
 Default.args = {}
 
 Populated.args = {
-    myUser:{
+    selectedUser:{
         email: 'johnsmith@example.com',
         name: 'John',
         role: 'manager',
