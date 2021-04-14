@@ -37,7 +37,7 @@ Popup.propTypes = {
     user: PropTypes.shape({
         email: PropTypes.string,
         name: PropTypes.string,
-        role: PropTypes.oneOf(['gardener', 'manager']),
+        role: PropTypes.oneOf(['gardener', 'manager', '']),
         surname: PropTypes.string,
     }).isRequired,
 

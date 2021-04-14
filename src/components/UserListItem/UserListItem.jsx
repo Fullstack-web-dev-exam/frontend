@@ -16,6 +16,12 @@ function UserListItem({ user, handleDeleteClick, handleEditClick }) {
     </li>)
 }
 
+UserListItem.defaultProps = {
+    user: {
+        role: 'gardener'
+    }
+}
+
 UserListItem.propTypes = {
     /** The user object should include name, surname, role, and email. 
      * These values should be strings.  */

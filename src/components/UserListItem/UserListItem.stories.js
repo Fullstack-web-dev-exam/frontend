@@ -26,24 +26,34 @@ export default {
 const Template = args => <UserListItem {...args} />
 
 //👇 Each story then reuses that template
-export const Unpopulated = Template.bind({})
-export const Populated = Template.bind({})
+export const Default = Template.bind({})
+export const PopulatedGardener = Template.bind({})
+export const PopulatedManager = Template.bind({})
 
 
-Unpopulated.args = {
+Default.args = {
     user: {
-        email: '',
-        name: '',
-        role: '',
+        email: 'N/A',
+        name: 'N/A',
+        role: 'gardener',
         surname: ''
     },
 }
 
-Populated.args = {
+PopulatedGardener.args = {
     user: {
         email: 'johnsmith@example.com',
         name: 'John',
         role: 'gardener',
+        surname: 'Smith'
+    },
+}
+
+PopulatedManager.args = {
+    user: {
+        email: 'jimmysmith@example.com',
+        name: 'Jimmy',
+        role: 'manager',
         surname: 'Smith'
     },
 }

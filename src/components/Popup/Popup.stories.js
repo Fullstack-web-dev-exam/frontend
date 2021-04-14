@@ -16,7 +16,8 @@ export default {
 
     //👇 We can specify which controls get used by declaring a custom argType
     argTypes: {
-
+        onUpdateForm: { action: 'clicked' },
+        onAbortClick: { action: 'clicked' }
     }
 }
 

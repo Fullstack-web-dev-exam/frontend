@@ -3,6 +3,7 @@ import React from 'react';
 import UserList from './UserList';
 import '../../colors.css'
 import '../../index.css'
+import * as UserListItemStories from '../UserListItem/UserListItem.stories';
 
 //The default export metadata controls how Storybook lists your stories and provides information used by addons.
 export default {
@@ -16,7 +17,8 @@ export default {
 
     //👇 We can specify which controls get used by declaring a custom argType
     argTypes: {
-        
+        handleEditClick: { action: 'clicked' },
+        handleDeleteClick: { action: 'clicked' }
     }
 }
 
@@ -28,17 +30,10 @@ export const Primary = Template.bind({})
 
 
 Primary.args = {
-    users:[{
-        email: 'johnsmith@example.com',
-        name: 'John',
-        role: 'manager',
-        surname: 'Smith'
-    },
-    {
-        email: 'Janesmith@example.com',
-        name: 'Jane',
-        role: 'gardener',
-        surname: 'Smith'
-    }]
+    users: [
+        { ...UserListItemStories.PopulatedGardener.args.user },
+        { ...UserListItemStories.PopulatedManager.args.user  },
+        { ...UserListItemStories.Default.args.user }],
+
 }
 

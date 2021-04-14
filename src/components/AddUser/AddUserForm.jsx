@@ -26,7 +26,6 @@ class AddUserForm extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.form = React.createRef();
-        //bedre navn
         this.firstnameInput = React.createRef();
         this.passwordInput = React.createRef();
     }
@@ -64,7 +63,8 @@ class AddUserForm extends Component {
             }
             const res = await createUser(headers, userObject);
             if (res.error) {
-                alert(`Something went wrong during creation ${res.error}`);
+                this.notifyError()
+                return
             } else {
                 this.setState({
                     firstname: '',
@@ -119,7 +119,7 @@ class AddUserForm extends Component {
 
     //Part of 'react-toastify'
     notifyError = () => {
-        toast.error("The form did not pass validation", {
+        toast.error("There was an error", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
