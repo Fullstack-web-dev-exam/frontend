@@ -4,6 +4,8 @@ import Popup from './Popup';
 import '../../colors.css'
 import '../../index.css'
 
+import { AuthProvider } from '../../helpers/Auth'
+
 //The default export metadata controls how Storybook lists your stories and provides information used by addons.
 export default {
     title: 'Components/Popup',
@@ -13,6 +15,10 @@ export default {
             sort: 'alpha'
         }
     },
+    decorators: [story =>
+        <AuthProvider>
+                {story()}
+        </AuthProvider>],
 
     //👇 We can specify which controls get used by declaring a custom argType
     argTypes: {

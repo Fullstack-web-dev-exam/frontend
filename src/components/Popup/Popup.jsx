@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button'
 
 function Popup(props) {
-    const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser } = props
+    const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser, place} = props
 
     const UpdateUserHOC = updateUserBackend(UpdateUser);
     return (
         <div className="popup-userlist">
             <div className="popup-content container">
                 {popupVariant === 'edit' &&
-                    <UpdateUserHOC onUpdateForm={onUpdateForm} selectedUser={user} place="dashboard" onAbortClick={onAbortClick} />
+                    <UpdateUserHOC onUpdateForm={onUpdateForm} selectedUser={user} place={place} onAbortClick={onAbortClick} />
                 }
 
                 {popupVariant === 'delete' &&
@@ -29,6 +29,10 @@ function Popup(props) {
             </div>
         </div>
     );
+}
+
+Popup.defaultProps = {
+    place: 'dashboard'
 }
 
 Popup.propTypes = {
@@ -52,6 +56,8 @@ Popup.propTypes = {
 
     /** onUpdateForm is sent from the UserListHOC. It fetches the users data from the back-end. */
     onUpdateForm: PropTypes.func,
+
+    place: PropTypes.oneOf(['dashboard']).isRequired,
 }
 
 export default Popup;

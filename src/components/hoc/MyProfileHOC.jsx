@@ -70,7 +70,7 @@ function withUserBackEnd(WrappedComponent) {
             }
             return (
                 <>
-                    <WrappedComponent myUser={this.state.myUser} {...this.props} handleEditClick={this.toggleWillEdit} />
+                    <WrappedComponent selectedUser={this.state.myUser} {...this.props} handleEditClick={this.toggleWillEdit} />
                     {this.state.successfullyUpdated && <UserFeedbackCard onClick={this.handleCloseMessage} variant="success" feedbackText="The user has been updated." />}
                     {this.state.willEdit && <UpdateUserHOC selectedUser={this.state.myUser} place="profile" onUpdateForm={() => { this.fetchData(); this.handleSuccess(); }} />}
                 </>

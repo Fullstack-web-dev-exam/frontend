@@ -4,6 +4,7 @@ import { AuthContext } from '../../helpers/Auth';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import { toast } from 'react-toastify'
+import PropTypes from 'prop-types';
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -32,10 +33,8 @@ class UpdateUserForm extends Component {
     componentDidMount() {
         this.firstnameInput.current.focus();
         if (this.props.place === "dashboard") {
-            
+
             this.pronoun = 'their';
-            console.log('Props ligger under denne')
-            console.log(this.props)
 
             this.setState({
                 firstname: this.props.selectedUser.name,
@@ -45,7 +44,7 @@ class UpdateUserForm extends Component {
             })
         } else {
             this.pronoun = 'your'
-            
+
             this.setState({
                 firstname: this.props.selectedUser.name,
                 surname: this.props.selectedUser.surname
@@ -174,9 +173,8 @@ class UpdateUserForm extends Component {
                     <form ref={this.form} onSubmit={this.handleSubmit} method="POST">
                         <fieldset>
                             <legend>Update {this.pronoun} user information</legend>
-                            <div>
                                 {this.props.place === "dashboard" &&
-                                    <div>
+                                    <>
                                         <label htmlFor="email">email</label>
                                         <input
                                             id="email"
@@ -186,96 +184,86 @@ class UpdateUserForm extends Component {
                                             type="text"
                                             value={this.state.email}
                                         />
-                                    </div>}
+                                    </>}
 
-                                <div>
-                                    <label htmlFor="firstname">first name</label>
-                                    <input
-                                        id="firstname"
-                                        name="firstname"
-                                        onChange={this.handleInputChange}
-                                        placeholder="Enter Your New First Name"
-                                        ref={this.firstnameInput}
-                                        type="text"
-                                        value={this.state.firstname}
-                                    />
-                                </div>
+                                <label htmlFor="firstname">first name</label>
+                                <input
+                                    id="firstname"
+                                    name="firstname"
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter Your New First Name"
+                                    ref={this.firstnameInput}
+                                    type="text"
+                                    value={this.state.firstname}
+                                />
 
-                                <div>
-                                    <label htmlFor="surname">surname</label>
-                                    <input
-                                        id="surname"
-                                        name="surname"
-                                        onChange={this.handleInputChange}
-                                        placeholder="Enter Your New Surname"
-                                        type="text"
-                                        value={this.state.surname}
-                                    />
-                                </div>
+                                <label htmlFor="surname">surname</label>
+                                <input
+                                    id="surname"
+                                    name="surname"
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter Your New Surname"
+                                    type="text"
+                                    value={this.state.surname}
+                                />
 
-                                {this.props.place === "dashboard" && <div>
-                                    <label htmlFor="role">role</label>
-                                    <select
-                                        id="role"
-                                        name="role"
-                                        onChange={this.handleInputChange}
-                                        value={this.state.role}
-                                    >
-                                        <option value="">Choose role</option>
-                                        <option value="gardener">Gardener</option>
-                                        <option value="manager">Manager</option>
-                                    </select>
-                                </div>}
+                                {this.props.place === "dashboard" &&
+                                    <>
+                                        <label htmlFor="role">role</label>
+                                        <select
+                                            id="role"
+                                            name="role"
+                                            onChange={this.handleInputChange}
+                                            value={this.state.role}
+                                        >
+                                            <option value="">Choose role</option>
+                                            <option value="gardener">Gardener</option>
+                                            <option value="manager">Manager</option>
+                                        </select>
+                                    </>}
 
                                 {this.props.place === "profile" &&
                                     <>
-                                        <div>
-                                            <label htmlFor="oldPassword">old password</label>
-                                            <input
-                                                id="oldPassword"
-                                                name="oldPassword"
-                                                onChange={this.handleInputChange}
-                                                placeholder="Enter Your Old Password"
-                                                title="Eight or more characters"
-                                                type="password"
-                                                value={this.state.oldPassword}
-                                            />
-                                        </div>
 
-                                        <div>
-                                            <label htmlFor="password">new password</label>
-                                            <input
-                                                id="password"
-                                                name="password"
-                                                onChange={this.handleInputChange}
-                                                pattern=".{8,}"
-                                                placeholder="Enter Your New Password"
-                                                ref={this.passwordInput}
-                                                title="Eight or more characters"
-                                                type="password"
-                                                value={this.state.password}
-                                            />
-                                        </div>
+                                        <label htmlFor="oldPassword">old password</label>
+                                        <input
+                                            id="oldPassword"
+                                            name="oldPassword"
+                                            onChange={this.handleInputChange}
+                                            placeholder="Enter Your Old Password"
+                                            title="Eight or more characters"
+                                            type="password"
+                                            value={this.state.oldPassword}
+                                        />
 
-                                        <div>
-                                            <label htmlFor="repeatpassword">repeat new password</label>
-                                            <input
-                                                id="repeatpassword"
-                                                name="repeatpassword"
-                                                onChange={this.handleInputChange}
-                                                pattern=".{8,}"
-                                                placeholder="Repeat Your New Password"
-                                                title="Eight or more characters"
-                                                type="password"
-                                                value={this.state.repeatpassword}
-                                            />
-                                        </div>
+                                        <label htmlFor="password">new password</label>
+                                        <input
+                                            id="password"
+                                            name="password"
+                                            onChange={this.handleInputChange}
+                                            pattern=".{8,}"
+                                            placeholder="Enter Your New Password"
+                                            ref={this.passwordInput}
+                                            title="Eight or more characters"
+                                            type="password"
+                                            value={this.state.password}
+                                        />
+
+                                        <label htmlFor="repeatpassword">repeat new password</label>
+                                        <input
+                                            id="repeatpassword"
+                                            name="repeatpassword"
+                                            onChange={this.handleInputChange}
+                                            pattern=".{8,}"
+                                            placeholder="Repeat Your New Password"
+                                            title="Eight or more characters"
+                                            type="password"
+                                            value={this.state.repeatpassword}
+                                        />
                                     </>}
-                            </div>
-
                             {this.state.passwordError && <UserFeedbackCard onClick={this.handleClosePassword} variant="error" feedbackText="The passwords entered are not the same." />}
                             <Button type="submit" label="update" />
-                            {this.props.place === 'dashboard' && <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick}/>}
+                            {this.props.place === 'dashboard' && <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick} />}
 
                         </fieldset>
                     </form>
@@ -283,6 +271,30 @@ class UpdateUserForm extends Component {
             </>
         );
     }
+}
+
+UpdateUserForm.propTypes = {
+    /** Checks if the button should be active (visually only).
+     * Currently, only the 'secondary-outlined" receives styles when active is set.
+    */
+    place: PropTypes.oneOf(['profile', 'dashboard']).isRequired,
+
+    /** Checks if the button should be disabled (HTML disabled attribute). */
+    selectedUser: PropTypes.shape({
+        email: PropTypes.string,
+        name: PropTypes.string,
+        role: PropTypes.oneOf(['gardener', 'manager']),
+        surname: PropTypes.string,
+    }).isRequired,
+
+    /** The text to display on the button. */
+    onUpdateDashboard: PropTypes.func,
+
+    /** The OnClick eventHandler. */
+    onUpdateProfile: PropTypes.func,
+
+    /** The width of the button. */
+    onAbortClick: PropTypes.func
 }
 
 export default UpdateUserForm;

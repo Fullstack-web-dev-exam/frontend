@@ -26,7 +26,7 @@ class App extends Component {
         {({ isAuth }) => (
           <>
             <Router>
-              <NavBar />
+              <NavBar/>
               <main>
                 <Switch>
                   <Route exact path="/reset_password">

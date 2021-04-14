@@ -3,33 +3,33 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import accountCircle from '../../assets/person_black_24dp.svg';
 
-function MyProfile({ myUser, handleEditClick }) {
+function MyProfile({ selectedUser, handleEditClick }) {
     console.log(handleEditClick);
 
     return (
         <div className="container">
             <img src={accountCircle} alt="Account Circle icon" />
-            <h2>{myUser.name} {myUser.surname}</h2>
-            <h3>Role: {myUser.role}</h3>
-            <p><b>Email:</b> {myUser.email}</p>
+            <h2>{selectedUser.name} {selectedUser.surname}</h2>
+            <h3>Role: {selectedUser.role}</h3>
+            <p><b>Email:</b> {selectedUser.email}</p>
             <Button onClick={handleEditClick} label="edit profile" variant="secondary" />
         </div>
     );
 }
 
 MyProfile.defaultProps = {
-    myUser: {
+    selectedUser: {
         email: 'N/A',
-        name: 'First name: N/A, ',
+        name: 'N/A, ',
         role: 'gardener',
-        surname: 'Surname: N/A',
+        surname: 'N/A',
     }
 }
 
 MyProfile.propTypes = {
-    /** The myUser object should include name, surname, role, and email. 
+    /** The selectedUser object should include name, surname, role, and email. 
      * These values should be strings.  */
-    myUser: PropTypes.shape({
+    selectedUser: PropTypes.shape({
         email: PropTypes.string,
         name: PropTypes.string,
         role: PropTypes.oneOf(['gardener', 'manager']),

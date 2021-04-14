@@ -104,7 +104,7 @@ function withUsersFetch(WrappedComponent) {
                 position: toast.POSITION.BOTTOM_RIGHT
             });
         };
-    
+
         notifyError = () => {
             toast.error("Something went wrong... please try again.", {
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -112,15 +112,30 @@ function withUsersFetch(WrappedComponent) {
         };
 
         render() {
-            if(this.state.isLoading) {
+            if (this.state.isLoading) {
                 return (<Loading />);
             }
 
             return (
                 <>
                     <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
-                    {this.state.edit && <Popup popupVariant="edit" onUpdateForm={this.fetchData} onAbortClick={this.cancelAction} onEditUser={this.editUser} user={this.state.selectedUser} place="dashboard"/>}
-                    {this.state.delete && <Popup popupVariant="delete" onAbortClick={this.cancelAction} onDeleteUser={this.deleteUser} user={this.state.selectedUser} />}
+                    {this.state.edit &&
+                        <Popup
+                            onAbortClick={this.cancelAction}
+                            onEditUser={this.editUser}
+                            onUpdateForm={this.fetchData}
+                            place="dashboard"
+                            popupVariant="edit"
+                            user={this.state.selectedUser}
+                        />}
+
+                    {this.state.delete &&
+                        <Popup
+                            onAbortClick={this.cancelAction}
+                            onDeleteUser={this.deleteUser}
+                            popupVariant="delete"
+                            user={this.state.selectedUser}
+                        />}
                 </>
             );
         }

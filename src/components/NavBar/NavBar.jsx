@@ -1,8 +1,6 @@
 //https://medium.com/@pitipatdop/little-neat-trick-to-capture-click-outside-with-react-hook-ba77c37c7e82 
 //Updated version 17 April 2019 (by Олег Чулановский)
 
-//accessibility burde bli forbedret
-
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import './NavBar.css';
 import accountCircle from '../../assets/account_circle.svg';
