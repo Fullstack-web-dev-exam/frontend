@@ -55,7 +55,7 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
-            await this.props.onSubmit(userObject);
+            await this.props.onSubmitHandler(userObject);
 
             this.setState({
                 firstname: '',

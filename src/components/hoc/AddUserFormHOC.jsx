@@ -5,10 +5,6 @@ import { createUser } from '../../api/users';
 function addUserBackend(WrappedComponent) {
     class AddUserHOC extends Component {
         static contextType = AuthContext;
-        constructor(props) {
-            super(props);
-            this.state = {  }
-        }
 
         onSubmit = async (userObject) => {
             //Send the information stored in the state to the back-end
@@ -19,7 +15,7 @@ function addUserBackend(WrappedComponent) {
 
         render() { 
             return (
-                <WrappedComponent onSubmit={this.onSubmit} />
+                <WrappedComponent onSubmitHandler={this.onSubmit} />
             );
         }
     }
