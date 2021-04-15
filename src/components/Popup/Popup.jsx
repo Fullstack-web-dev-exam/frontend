@@ -1,5 +1,5 @@
 import './Popup.css';
-import updateUserBackend from '../hoc/UpdateUserHOC';
+import updateUserBackend from '../HOC/UpdateUserHOC';
 import UpdateUser from '../UpdateUser/UpdateUser';
 import PropTypes from 'prop-types';
 import Button from '../Button/Button'
