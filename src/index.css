@@ -64,6 +64,7 @@ select {
   display: inline-block;
   border: 1px solid var(--gray4);
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 label,

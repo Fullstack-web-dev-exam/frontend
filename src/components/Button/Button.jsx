@@ -12,6 +12,7 @@ import './Button.css';
  *  2. Write `<Button />` where you want the button to appear on the page when rendered.
  *  3. Provide the `<Button />` component with relevant props. Such a 'label' and 'variant'. (See `Button.propTypes` for more details)
  */
+
 function Button(props) {
     const { variant, type, onClick, disabled, label, size, active } = props;
 

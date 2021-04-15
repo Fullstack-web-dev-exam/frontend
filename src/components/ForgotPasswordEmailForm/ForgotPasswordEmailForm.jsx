@@ -6,6 +6,27 @@ import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
 import { toast } from 'react-toastify'
 
+/**
+ * ### How it works
+ * The ForgotPasswordEmailForm is a controlled class component where the user 
+ * can enter their email if they have forgotten their password. The component returns 
+ * an HTML `<form>` with an email input. At the bottom, there is an `<Button />` component 
+ * that the user can press when the form has been filled out.
+ * 
+ * The asynchronous `handleSubmit()` method reads the email entered from the state and sends 
+ * it to the back end. Then it sets the `isSubmitted` state to `true`.
+ * 
+ * The `handleInputChange()` method saves the form values in the state.
+ * 
+ * If the form is successfully submitted a `<UserFeedbackCard />` component will appear notifying 
+ * that the email has been sent. This pop-up can be closed with the `handleClose()` method.
+ * 
+ * ### Usage
+ * The ForgotPasswordEmailForm is not expected to be used a lot. 
+ * 1. Import `ForgotPasswordEmailForm` from `src/components/ForgotPasswordEmailForm/ForgotPasswordEmailForm` 
+ * 2. Write `<ForgotPasswordEmailForm />` where you want the form to appear on the page when rendered.
+ */
+
 class ForgotPasswordEmailForm extends Component {
     constructor(props) {
         super(props);
@@ -26,12 +47,12 @@ class ForgotPasswordEmailForm extends Component {
 
         if (this.validation()) {
             this.setState({ formSubmitted: true });
-            
+
             this.notifySuccess();
-            
+
             const email = this.state.email;
 
-            await forgot({email});
+            await forgot({ email });
 
         } else {
             this.setState({ error: "The form is not valid!" });
@@ -96,9 +117,9 @@ class ForgotPasswordEmailForm extends Component {
                             value={this.state.email}
                         />
                         <p className="low-emphasis-text form-explain">The email address you are registered with is required to reset your password.</p>
-                        {this.state.formSubmitted && <UserFeedbackCard variant="success" feedbackText= {`an email with further instructions is sent to ${this.state.email}.`} onClick={this.handleClose}/>}
-                        
-                        <Button type="submit" label="reset password" size="full" /> 
+                        {this.state.formSubmitted && <UserFeedbackCard variant="success" feedbackText={`an email with further instructions is sent to ${this.state.email}.`} onClick={this.handleClose} />}
+
+                        <Button type="submit" label="reset password" size="full" />
                     </fieldset>
                 </form>
             </div>
