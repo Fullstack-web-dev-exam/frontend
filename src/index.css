@@ -45,13 +45,12 @@ legend {
 }
 
 a {
-  color: var(--secondary);
+  color: var(--sDark);
   transition: .3s;
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--sDark);
   text-decoration: underline;
 }
 
@@ -87,7 +86,7 @@ li {
   list-style-type: none;
 }
 
-.low-emphasis {
+.low-emphasis-text {
   color: var(--gray2)
 }
 

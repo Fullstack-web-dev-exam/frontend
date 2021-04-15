@@ -95,7 +95,7 @@ class ForgotPasswordEmailForm extends Component {
                             type="email"
                             value={this.state.email}
                         />
-                        <p className="low-emphasis form-explain">The email address you are registered with is required to reset your password.</p>
+                        <p className="low-emphasis-text form-explain">The email address you are registered with is required to reset your password.</p>
                         {this.state.formSubmitted && <UserFeedbackCard variant="success" feedbackText= {`an email with further instructions is sent to ${this.state.email}.`} onClick={this.handleClose}/>}
                         
                         <Button type="submit" label="reset password" size="full" /> 
