@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import withUsersFetch from '../hoc/UserListHOC';
+import withUsersFetch from '../HOC/UserListHOC';
 import UserList from '../UserList/UserList';
 import AddUserForm from '../AddUser/AddUserForm';
 import Button from '../Button/Button'
 import './Dashboard.css';
+import addUserBackend from '../HOC/AddUserFormHOC';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class Dashboard extends Component {
 
     render() {
         const UserListWithHOC = withUsersFetch(UserList);
+        const AddUserWithHOC = addUserBackend(AddUserForm);
         
         return (
             <>
@@ -39,7 +41,7 @@ class Dashboard extends Component {
                     <Button onClick={this.toggleAddUser} variant="secondary-outlined" label="Add a user" size="half" active={this.state.addUser}  />
                     <Button onClick={this.toggleAllUsers} variant="secondary-outlined" label="See all users" size="half" active={this.state.seeUsers} />
                 </div>
-                {this.state.addUser && <AddUserForm />}
+                {this.state.addUser && <AddUserWithHOC />}
                 {this.state.seeUsers && <UserListWithHOC />}
             </>
         );

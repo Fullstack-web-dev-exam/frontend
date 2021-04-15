@@ -5,9 +5,10 @@ import NavBar from './components/NavBar/NavBar';
 import NotFound from './components/NotFound/NotFound';
 import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import PrivateRoute from './routes/PrivateRoute';
-import withUsersBackEnd from './components/hoc/MyProfileHOC';
+import withUsersBackEnd from './components/HOC/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile';
 import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
+import forgotBackend from './components/HOC/ForgotPassHOC';
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthConsumer } from './helpers/Auth';
@@ -18,6 +19,7 @@ class App extends Component {
   render() {
 
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
+    const ForgotPassHOC = forgotBackend(ForgotPasswordEmailForm);
 
     return (
       <AuthConsumer>
@@ -28,7 +30,7 @@ class App extends Component {
               <main>
                 <Switch>
                   <Route exact path="/reset_password">
-                    <ForgotPasswordEmailForm />
+                    <ForgotPassHOC />
                   </Route>
                   <PrivateRoute exact path="/user">
                     <h1>Your Profile</h1>

@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
-import { AuthContext } from '../../helpers/Auth';
-import { createUser } from '../../api/users';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import { toast } from 'react-toastify'
 
 class AddUserForm extends Component {
-    static contextType = AuthContext;
 
     constructor(props) {
         super(props);
@@ -50,9 +47,6 @@ class AddUserForm extends Component {
         event.preventDefault();
 
         if (this.generalValidation() && this.passwordValidation()) {
-
-            //Send the information stored in the state to the back-end
-            const headers = this.context.generateHeaders();
             //console.log(headers);
             const userObject = {
                 name: this.state.firstname,
@@ -61,22 +55,18 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
-            const res = await createUser(headers, userObject);
-            if (res.error) {
-                this.notifyError()
-                return
-            } else {
-                this.setState({
-                    firstname: '',
-                    surname: '',
-                    email: '',
-                    role: 'gardener',
-                    password: '',
-                    repeatpassword: '',
-                    submitted: true
-                })
-                this.notifySuccess()
-            }
+            await this.props.onSubmitHandler(userObject);
+
+            this.setState({
+                firstname: '',
+                surname: '',
+                email: '',
+                role: 'gardener',
+                password: '',
+                repeatpassword: '',
+                submitted: true
+            })
+            this.notifySuccess();
         } else {
             this.notifyError();
         }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import passwordIcon from '../../assets/password_black_24dp.svg';
 import './ForgotPasswordEmailForm.css';
-import { forgot } from '../../api/users';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
 import { toast } from 'react-toastify'
@@ -52,7 +51,7 @@ class ForgotPasswordEmailForm extends Component {
 
             const email = this.state.email;
 
-            await forgot({ email });
+            await this.props.onSubmitHandler(email);
 
         } else {
             this.setState({ error: "The form is not valid!" });
