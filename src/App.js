@@ -5,7 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import NotFound from './components/NotFound/NotFound';
 import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import PrivateRoute from './routes/PrivateRoute';
-import withUsersBackEnd from './components/hoc/MyProfileHOC';
+import withUsersBackEnd from './components/HOC/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile';
 import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
 import { ToastContainer, Slide } from 'react-toastify';
