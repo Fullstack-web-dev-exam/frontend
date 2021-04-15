@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import accountCircle from '../../assets/person_black_24dp.svg';
 
 function MyProfile({ selectedUser, handleEditClick }) {
-    console.log(handleEditClick);
-
     return (
         <div className="container">
             <img src={accountCircle} alt="Account Circle icon" />

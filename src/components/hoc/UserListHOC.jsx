@@ -28,7 +28,6 @@ function withUsersFetch(WrappedComponent) {
 
         fetchData = async () => {
             const headers = this.context.generateHeaders();
-            //console.log(headers);
             const res = await fetchAllUsers(headers)
 
             if (res.error) {
@@ -59,10 +58,7 @@ function withUsersFetch(WrappedComponent) {
 
         deleteUser = async () => {
             const deletedEmail = { email: this.state.selectedUser.email };
-            //console.log(deletedEmail);
-
             const headers = await this.context.generateHeaders();
-            //console.log(headers);
             const res = await deleteUser(headers.headers, deletedEmail);
 
             await this.fetchData();
