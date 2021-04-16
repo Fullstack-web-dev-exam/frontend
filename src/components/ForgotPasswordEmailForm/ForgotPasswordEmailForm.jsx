@@ -4,26 +4,30 @@ import './ForgotPasswordEmailForm.css';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
 import { toast } from 'react-toastify'
+import PropTypes from 'prop-types';
 
 /**
  * ### How it works
- * The ForgotPasswordEmailForm is a controlled class component where the user 
- * can enter their email if they have forgotten their password. The component returns 
- * an HTML `<form>` with an email input. At the bottom, there is an `<Button />` component 
- * that the user can press when the form has been filled out.
+ * `ForgotPasswordEmailForm` is a controlled class component where users can enter their email if they have forgotten their password. 
+ * `ForgotPasswordEmailForm` returns an HTML `<form>` with an email input. At the bottom, there is an `<Button />` component that the 
+ * user can press when the form is filled out.
  * 
- * The asynchronous `handleSubmit()` method reads the email entered from the state and sends 
- * it to the back end. Then it sets the `isSubmitted` state to `true`.
+ * Its `handleSubmit()` method uses `onSubmitHandler`from its HOC via props. 
+ * The `handleSubmit()` method reads the email entered from the state and sends it 
+ * to the back-end via `this.props.onSubmitHandler(email)`. 
+ * Lastly, it sets the `isSubmitted` state to `true`.
  * 
- * The `handleInputChange()` method saves the form values in the state.
- * 
- * If the form is successfully submitted a `<UserFeedbackCard />` component will appear notifying 
- * that the email has been sent. This pop-up can be closed with the `handleClose()` method.
+ * If the form is successfully submitted a `<UserFeedbackCard />` component will appear 
+ * notifying that the email is sent. This pop-up can be closed with the `handleClose()` method.
  * 
  * ### Usage
- * The ForgotPasswordEmailForm is not expected to be used a lot. 
- * 1. Import `ForgotPasswordEmailForm` from `src/components/ForgotPasswordEmailForm/ForgotPasswordEmailForm` 
- * 2. Write `<ForgotPasswordEmailForm />` where you want the form to appear on the page when rendered.
+ * The `ForgotPasswordEmailForm` is expected to be used once.
+ * 
+ * 1. Import `ForgotPasswordEmailForm` from `src/components/ForgotPasswordEmailForm/ForgotPasswordEmailForm`
+ * 2. Import forgotBackend from `src/components/HOC/ForgotPassHOC`
+ * 3. Create a constant that is equal to `forgotBackend(ForgotPasswordEmailForm)` 
+ *    (The constant is now equal to a component) For example: '`const ForgotPassHOC = forgotBackend(ForgotPasswordEmailForm);`'
+ * 4. Lastly, write `<ForgotPassHOC />` where you want the form to appear on the page when rendered.
  */
 
 class ForgotPasswordEmailForm extends Component {
@@ -59,6 +63,7 @@ class ForgotPasswordEmailForm extends Component {
         }
     }
 
+    //The handleInputChange method saves the form values in the state.
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -124,6 +129,10 @@ class ForgotPasswordEmailForm extends Component {
             </div>
         );
     }
+}
+
+ForgotPasswordEmailForm.propTypes = {
+    onSubmitHandler: PropTypes.func
 }
 
 export default ForgotPasswordEmailForm;

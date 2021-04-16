@@ -25,6 +25,16 @@ const Dot = styled.div`
     animation-delay: ${props => props.delay};
 `;
 
+/**
+ * ## How it works
+ * The loading component is a styled component that shows three dots moving up and down, 
+ * symbolizing a loading state. The loading component is shown when the front-end waits 
+ * on data provided by the back-end.
+ * 
+ * ## Usage
+ * Import Loading from `src/components/Loading/Loading` place the `<Loading />` component 
+ * where you want the loading animation to show up.
+ */
 class Loading extends Component {
     render() {
         return (

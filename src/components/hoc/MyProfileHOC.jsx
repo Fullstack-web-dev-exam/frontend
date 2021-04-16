@@ -24,6 +24,7 @@ function withUserBackEnd(WrappedComponent) {
             await this.fetchData();
         }
 
+        //The fetchData method gets the data from the back-end and saves the current user in the sate
         fetchData = async () => {
             const headers = this.context.generateHeaders();
             const res = await fetchUser(headers)
@@ -41,6 +42,7 @@ function withUserBackEnd(WrappedComponent) {
             }
         }
 
+        //The toggleWillEdit method toggles a form where the user can update their information
         toggleWillEdit = () => {
             this.setState({
                 willEdit: !this.state.willEdit,
@@ -48,10 +50,12 @@ function withUserBackEnd(WrappedComponent) {
             })
         }
 
+        //The handleCloseMessage method closes the UserFeedbackcard component after the for has been submitted
         handleCloseMessage = () => {
             this.setState({ successfullyUpdated: false })
         }
 
+        //The handleSuccess method opens the UserFeedbackcard component and closes the edit form
         handleSuccess = () => {
             this.setState({
                 successfullyUpdated: true,

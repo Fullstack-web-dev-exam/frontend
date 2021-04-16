@@ -18,13 +18,15 @@ export default {
     decorators: [story =>
         <AuthProvider>
             <Router>
-                {story()}
+                <div style={{ height: '130px' }}>
+                    {story()}
+                </div>
             </Router>
         </AuthProvider>],
 
     //👇 We can specify which controls get used by declaring a custom argType
     argTypes: {
-       /*  onClick: { action: 'clicked' } */
+        /* onClick: { action: 'clicked' } */
     }
 }
 
@@ -32,7 +34,22 @@ export default {
 const Template = args => <NavBar {...args} />
 
 //👇 Each story then reuses that template
-export const Primary = Template.bind({})
+export const LoggedOut = Template.bind({})
+export const LoggedInAsManager = Template.bind({})
+export const LoggedInAsGardener = Template.bind({})
 
 
-Primary.args = {}
+LoggedOut.args = {
+    auth: false,
+    role: null
+}
+
+LoggedInAsManager.args = {
+    auth: true,
+    role: 'manager'
+}
+
+LoggedInAsGardener.args = {
+    auth: true,
+    role: 'gardener'
+}

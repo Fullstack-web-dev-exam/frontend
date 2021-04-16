@@ -4,7 +4,22 @@ import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import { toast } from 'react-toastify'
+import PropTypes from 'prop-types';
 
+
+/**
+ * ### How it works
+ * The AddUserForm component returns a form where the user can add a new user to the database/system. 
+ * Because it communicates with the backend, it gets its `onSubmitHandler()` from `AddUserFormHOC`.
+ * 
+ * ### Usage
+ * 1. Import AddUserFormHOC from `src/components/HOC/AddUsserFormHOC`
+ * 2. Import AddUserForm from `src/components/AddUser/AddUserForm`
+ * 3. Define a constant that is equal to `addUserBackend(AddUserForm)`. 
+ *    Because `addUserBackend(AddUserForm)` returns a component, we can return the constant (that now is equal to a component) in the render method. 
+ *    The result is a form that can communicate with the backend.
+ * 4. Place the returned component where you want the `AddUserForm` to render on the page.
+ */
 class AddUserForm extends Component {
 
     constructor(props) {
@@ -19,6 +34,7 @@ class AddUserForm extends Component {
             passwordError: false,
             submitted: false
         }
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,6 +59,7 @@ class AddUserForm extends Component {
     }
 
     //HandleSubmit runs two validators, first checking if the passwords match, thereafter a more general form validator
+    //Then call the onSubmitHandler prop and send the state to the database.
     async handleSubmit(event) {
         event.preventDefault();
 
@@ -54,6 +71,8 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
+
+            //add the information from the state to database
             await this.props.onSubmitHandler(userObject);
 
             this.setState({
@@ -71,10 +90,18 @@ class AddUserForm extends Component {
         }
     }
 
+    /**
+     * Validates the form
+     * @returns boolean
+     */
     generalValidation() {
         return this.form.current.reportValidity();
     }
 
+    /**
+     * Checks if the password entered is the same as the repeated password entered.
+     * @returns boolean
+     */
     passwordValidation() {
         if (this.state.password === this.state.repeatpassword) {
             this.setState({
@@ -223,6 +250,10 @@ class AddUserForm extends Component {
             </>
         );
     }
+}
+
+AddUserForm.propTypes = {
+    onSubmitHandler: PropTypes.func,
 }
 
 export default AddUserForm;

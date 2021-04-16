@@ -3,6 +3,26 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import accountCircle from '../../assets/person_black_24dp.svg';
 
+
+/**
+ * ## How it works
+ * The `MyProfile` component displays the information of the user currently logged in. 
+ * It gets the information about the user from its HOC (`src/HOC/MyProfileHOC`) 
+ * The component also allows the user to change the user's information by pressing 
+ * the Edit button. The edit button is linked to a `handleEditClick` that is also 
+ * stored in the HOC file (the `toggleWillEdit` method). When the button is 
+ * pressed a `<UpdateUser />` component will be rendered under the `MyProfile` component 
+ * where the user can both see and change their information. When the form is filled 
+ * out and submitted the data is sent to the back-end and the new information fetched and displayed.
+ * 
+ * ## Usage
+ * 1. To use the `MyProfile` component import the `MyProfileHOC`from `src/components/HOC/MyProfileHOC`
+ * 2. Then, import the `MyProfile` component from `src/component/MyProfile/MyProfile`
+ * 3. In the file where you want to use the `MyProfile`component, create a constant that is equal 
+ *    to `withUserBackEnd(MyProfile)` (The HOC wrapping the `MyProfile` component). 
+ *    The constant is now equal to a component.
+ * 4. Because the content is a component, we can render it in the `render()` method.
+ */
 function MyProfile({ selectedUser, handleEditClick }) {
     return (
         <div className="container">
@@ -30,7 +50,7 @@ MyProfile.propTypes = {
     selectedUser: PropTypes.shape({
         email: PropTypes.string,
         name: PropTypes.string,
-        role: PropTypes.oneOf(['gardener', 'manager']),
+        role: PropTypes.oneOf(['gardener', 'manager', 'N/A']),
         surname: PropTypes.string,
     }),
     

@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
 import './LogInForm.css';
+import Button from '../Button/Button'
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import lockClosedIcon from '../../assets/lock_black_24dp.svg';
 import lockOpenIcon from '../../assets/lock_open_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { Link, Redirect } from "react-router-dom";
-import Button from '../Button/Button'
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import { toast } from 'react-toastify';
+
+/**
+ * ## How it works
+ * The LogInForm component is a controlled form with inputs for the 
+ * user's email and their password. At the bottom, a link to `/reset_password` is provided. 
+ * When a user successfully logs in they are redirected to `/user`. When the 
+ * user submits the form the information saved in the state is sent to the 
+ * back and via the `login` method provided by `static contextType = AuthContext;` 
+ * If the user already is logged in and tries to visit the login form it 
+ * informs the user that they are already logged in.
+ * 
+ * ## Usage
+ * 1. Import the LogInForm component from `src/component/Login/LogInForm`
+ * 2. Place `<LogInForm />` where you want the form to appear on the page.
+ * 3. Note: the context must be set before utilizing the LogInForm component.
+ */
 
 class LogInForm extends Component {
     static contextType = AuthContext;
@@ -19,14 +35,15 @@ class LogInForm extends Component {
             error: false,
             redirect: false
         }
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.form = React.createRef();
         this.emailInput = React.createRef();
+        this.form = React.createRef();
+        this.handleClose = this.handleClose.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     componentDidMount() {
         this.emailInput.current.focus();
+        console.log(this.context.isAuth)
     }
 
     handleInputChange(event) {
@@ -38,6 +55,8 @@ class LogInForm extends Component {
         });
     }
 
+    //close the UserFeedbackCard when it is pressed, 
+    //then set the focus back to the email input
     handleClose() {
         this.setState({
             error: false
@@ -45,6 +64,8 @@ class LogInForm extends Component {
         this.emailInput.current.focus();
     }
 
+    //extract the email and password from the state, then use the login method from the context
+    //and send it to the back end
     handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -71,12 +92,14 @@ class LogInForm extends Component {
         return this.form.current.reportValidity();
     }
 
+    //part of react-toastify
     notifySuccess = () => {
         toast.success("You are now logged in.", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //part of react-toastify
     notifyError = () => {
         toast.error("Wrong email and/or password. Please try again.", {
             position: toast.POSITION.BOTTOM_RIGHT

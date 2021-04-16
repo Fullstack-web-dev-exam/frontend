@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { forgot } from '../../api/users';
 
 function forgotBackend(WrappedComponent) {
-    class ForgotPassHOC extends Component {
+    class ForgotPasswordHOC extends Component {
         
         onSubmit = async (userEmail) => {
             await forgot({userEmail});
@@ -15,7 +15,7 @@ function forgotBackend(WrappedComponent) {
         }
     }
     
-    return ForgotPassHOC;
+    return ForgotPasswordHOC;
 }
 
 export default forgotBackend;

@@ -2,6 +2,16 @@ import pageNotFoundIcon from '../../assets/page_not_found_black_24dp.svg';
 import { Link } from "react-router-dom";
 import './NotFound.css';
 
+/**
+ * ## How it works
+ * The `NotFound` component is an extremely simple component that renders a card letting 
+ * the user know a page wasn't found (404 error). It displays a link letting the user 
+ * go back the to home page
+ * 
+ * ## Usage
+ * 1. Import the NotFound component from '`src/components/Notfound/NotFound`' 
+ * 2. To render the component write `<NotFound />` where you want the card to render on the page.
+ */
 function NotFound(props) {
     return (
         <div className="container not-found-pop-up">

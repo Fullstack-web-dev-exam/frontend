@@ -4,6 +4,11 @@ import UpdateUser from '../UpdateUser/UpdateUser';
 import PropTypes from 'prop-types';
 import Button from '../Button/Button'
 
+/** 
+ * ## How it works
+ * text
+*/
+
 function Popup(props) {
     const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser, place} = props
 

@@ -7,6 +7,7 @@ import accountCircle from '../../assets/account_circle.svg';
 import { Link } from "react-router-dom";
 import Button from '../Button/Button'
 import { toast } from 'react-toastify'
+import PropTypes from 'prop-types';
 
 function Nav(props) {
     const [open, setOpen] = useState(false);
@@ -56,7 +57,7 @@ function Nav(props) {
 
             {!props.auth && (
                 <Link to="/login">
-                    <Button label="log in"/>
+                    <Button label="log in" />
                 </Link>
             )}
             {props.auth && (
@@ -85,6 +86,28 @@ function Nav(props) {
             )}
         </nav>
     );
+}
+
+Nav.defaultProps = {
+    auth: false,
+    role: null,
+}
+
+Nav.propTypes = {
+    /** 
+     * The auth prop indicate if a user is logged in or not
+    */
+    auth: PropTypes.bool,
+
+    /** 
+     * The handleLogOut method is ran when a logged in user presses 'Log out'
+    */
+    handleLogOut: PropTypes.func,
+
+    /**
+     * The role is the current role of the logged in user. It decides if the user can accsess the dashboard or not.
+     */
+    role: PropTypes.oneOf(['gardener', 'manager', null]),
 }
 
 export default Nav;

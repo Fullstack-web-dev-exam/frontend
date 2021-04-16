@@ -17,7 +17,7 @@ export default {
     },
     decorators: [story =>
         <AuthProvider>
-            <div style={{ height: '700px' }}>
+            <div style={{ height: '650px' }}>
                 {story()}
             </div>
         </AuthProvider>],
