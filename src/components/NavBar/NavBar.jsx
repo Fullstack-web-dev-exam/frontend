@@ -1,16 +1,14 @@
 //https://medium.com/@pitipatdop/little-neat-trick-to-capture-click-outside-with-react-hook-ba77c37c7e82 
 //Updated version 17 April 2019 (by Олег Чулановский)
 
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './NavBar.css';
 import accountCircle from '../../assets/account_circle.svg';
-import { AuthContext } from '../../helpers/Auth';
 import { Link } from "react-router-dom";
 import Button from '../Button/Button'
 import { toast } from 'react-toastify'
 
 function Nav(props) {
-    const authContext = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const node = useRef();
 
@@ -19,12 +17,11 @@ function Nav(props) {
     }
 
     const handleLogOut = () => {
-        authContext.logout();
+        props.handleLogOut();
         notifySuccess();
     }
 
     const handleClickOutside = e => {
-        console.log("clicking anywhere");
         if (node.current.contains(e.target)) {
             // inside click
             return;
@@ -57,12 +54,12 @@ function Nav(props) {
                 <Link to="/">Fullstack Project</Link>
             </h1>
 
-            {!authContext.isAuth && (
+            {!props.auth && (
                 <Link to="/login">
                     <Button label="log in"/>
                 </Link>
             )}
-            {authContext.isAuth && (
+            {props.auth && (
                 <div onClick={handleMenu} className="navbar-icon" ref={node}>
                     <img src={accountCircle} alt="Account Circle icon" onClick={handleMenu} />
 
@@ -73,7 +70,7 @@ function Nav(props) {
                                     <Link to="/user">Profile</Link>
                                 </li>
 
-                                {authContext.role === "manager" &&
+                                {props.role === "manager" &&
                                     <li onClick={handleMenu}>
                                         <Link to="/dashboard">Dashboard</Link>
                                     </li>}

@@ -3,7 +3,6 @@ import UserListItem from '../UserListItem/UserListItem';
 import PropTypes from 'prop-types';
 
 function UserList({ users, handleDeleteClick, handleEditClick }) {
-    console.log(users)
     return (
         <ul className="user-list">
             {users.map((users) => (<UserListItem handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} key={users.email} user={users} />))}

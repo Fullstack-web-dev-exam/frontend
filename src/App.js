@@ -14,19 +14,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import navBarBackend from './components/HOC/NavBarHOC';
 
 class App extends Component {
   render() {
 
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
     const ForgotPassHOC = forgotBackend(ForgotPasswordEmailForm);
+    const NavBarHOC = navBarBackend(NavBar);
+
 
     return (
       <AuthConsumer>
         {({ isAuth }) => (
           <>
             <Router>
-              <NavBar/>
+              <NavBarHOC />
               <main>
                 <Switch>
                   <Route exact path="/reset_password">
