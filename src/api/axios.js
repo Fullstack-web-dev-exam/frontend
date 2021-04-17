@@ -6,11 +6,13 @@ console.log("This is the API ", process.env);
 console.log("REACT_APP_BACKEND: ", process.env.REACT_APP_BACKEND)
 
 let axiosInstance = axios;
-if(process.env && process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
+if(process.env && process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
     axiosInstance = axios.create({
         withCredentials: true,
         baseURL: process.env.REACT_APP_BACKEND
     });
+} else {
+    axiosInstance = axios.create();
 }
 
 export default axiosInstance;

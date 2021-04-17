@@ -1,6 +1,6 @@
 // Some code has been taken from https://github.com/carlosvicient/on-campus-tracker/blob/feature/fullstackv1/src/api/users.js
-import axios from 'axios';
-//import axios from './axios';
+//import axios from 'axios';
+import axios from './axios';
 
 // Anonymous users can do this
 const login = (email, password) => {
