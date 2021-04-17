@@ -24,8 +24,19 @@ export default {
 const Template = args => <UpdateUser {...args} />
 
 //👇 Each story then reuses that template
+export const Default = Template.bind({})
 export const OnProfile = Template.bind({})
 export const OnDashboard = Template.bind({})
+
+Default.args = {
+    selectedUser: {
+        email: 'johnsmith@example.com',
+        name: 'John',
+        role: 'gardener',
+        surname: 'Smith'
+    },
+    place: 'none'
+}
 
 OnProfile.args = {
     selectedUser: {

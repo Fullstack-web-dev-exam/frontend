@@ -57,9 +57,9 @@ function withUsersFetch(WrappedComponent) {
         }
 
         deleteUser = async () => {
-            const deletedEmail = { email: this.state.selectedUser.email };
+            const emailToDelete = { email: this.state.selectedUser.email };
             const headers = await this.context.generateHeaders();
-            const res = await deleteUser(headers.headers, deletedEmail);
+            const res = await deleteUser(headers.headers, emailToDelete);
 
             await this.fetchData();
 
@@ -95,12 +95,14 @@ function withUsersFetch(WrappedComponent) {
             })
         }
 
+        //Part of 'react-toastify'
         notifySuccess = () => {
             toast.success("The user has been deleted. 🗑️", {
                 position: toast.POSITION.BOTTOM_RIGHT
             });
         };
 
+        //Part of 'react-toastify'
         notifyError = () => {
             toast.error("Something went wrong... please try again.", {
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -116,6 +118,8 @@ function withUsersFetch(WrappedComponent) {
                 <>
                     <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
                     {this.state.edit &&
+                        
+                        //Update user form
                         <Popup
                             onAbortClick={this.cancelAction}
                             onEditUser={this.editUser}
