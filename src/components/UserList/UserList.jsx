@@ -2,6 +2,27 @@ import './UserList.css';
 import UserListItem from '../UserListItem/UserListItem';
 import PropTypes from 'prop-types';
 
+/**
+ * ## How it works
+ * The UserList component is responsible for receiving all the users from the back-end via props. 
+ * (These users are provided by `UserListHOC` (`src/components/HOC/UserListHOC`)).
+ * It then generates a list of `<UserListItems />` components for each user from the back-end. 
+ * It also passes on some event handlers to each` <UserListItems />` component.
+ * 
+ * ## Usage
+ * To use the UserList component.
+ * 
+ * 1. Import the `UserListHOC` file from 'src/components/HOC/UserListHoc' 
+ *
+ * 2. Import the `UserList` component from 'src/components/UserList/UserList' 
+ * 
+ * 3. Create a constant that is eqaul to `UserList` wraped by `UserListHOC`, 
+ *    for example: `const UserListWithHOC = withUsersFetch(UserList);` 
+ *    Because the constant decalred aboce is eqaul to an componant, we can use it 
+ *    inside the return statment of a render method. The result is a component 
+ *    that creates a `<UserListItem />` for each user it gets from the HOC file
+ */
+
 function UserList({ users, handleDeleteClick, handleEditClick }) {
     return (
         <ul className="user-list">

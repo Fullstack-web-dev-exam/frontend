@@ -41,6 +41,7 @@ class App extends Component {
                   </PrivateRoute>
                   <PrivateRoute exact path="/dashboard">
                     <AdminRoute >
+                      <h1>Dashboard</h1>
                       <Dashboard />
                     </AdminRoute>
                   </PrivateRoute>

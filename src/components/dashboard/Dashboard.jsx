@@ -54,7 +54,6 @@ class Dashboard extends Component {
 
         return (
             <>
-                <h1>Dashboard</h1>
                 <div className="user-list-item-buttons">
                     <Button onClick={this.toggleAddUser} variant="secondary-outlined" label="Add a user" size="half" active={this.state.addUser} />
                     <Button onClick={this.toggleAllUsers} variant="secondary-outlined" label="See all users" size="half" active={this.state.seeUsers} />
