@@ -12,7 +12,7 @@ import Button from '../Button/Button'
  * 
  * When the user decided to delete or edit a user, the `popup` component retrieves a user prop 
  * from `UserListHOC` (`src/components/HOC/UserLIstHOC`) for the user that is being deleted or edited. 
- * It also receives the `popupVariannt` prop that decides if the pop-up should display "editing mode" or "deleting mode".
+ * It also receives the `popupVariant` prop that decides if the pop-up should display "editing mode" or "deleting mode".
  * 
  * Multiple clickHandler is also sent to the component. these click handlers are activated 
  * when the user send in the form or clicks "confirm delete".
@@ -24,7 +24,7 @@ import Button from '../Button/Button'
  * 
  * 
  * 2. The `Popup` component is dependent on some props to function properly, 
- *    therefore, provide it with at least the '`popupVariant`', '`onAbortClick`', '`user`' porps. 
+ *    therefore, provide it with at least the '`popupVariant`', '`onAbortClick`', '`user`' props. 
  * 
  * 
  * 3. It is recommended to render the popup component conditionally. For example, we are rendering it based on the state of the `UserListHOC`
