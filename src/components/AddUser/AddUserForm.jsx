@@ -8,11 +8,11 @@ import PropTypes from 'prop-types';
 
 
 /**
- * ### How it works
+ * ## How it works
  * The AddUserForm component returns a form where the user can add a new user to the database/system. 
  * Because it communicates with the backend, it gets its `onSubmitHandler()` from `AddUserFormHOC`.
  * 
- * ### Usage
+ * ## Usage
  * 1. Import AddUserFormHOC from `src/components/HOC/AddUsserFormHOC`
  * 2. Import AddUserForm from `src/components/AddUser/AddUserForm`
  * 3. Define a constant that is equal to `addUserBackend(AddUserForm)`. 

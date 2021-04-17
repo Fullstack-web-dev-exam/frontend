@@ -23,7 +23,6 @@ class App extends Component {
     const ForgotPassHOC = forgotBackend(ForgotPasswordEmailForm);
     const NavBarHOC = navBarBackend(NavBar);
 
-
     return (
       <AuthConsumer>
         {({ isAuth }) => (

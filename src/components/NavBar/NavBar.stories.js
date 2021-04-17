@@ -4,7 +4,6 @@ import NavBar from './NavBar';
 import '../../colors.css'
 import '../../index.css'
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from '../../helpers/Auth'
 
 //The default export metadata controls how Storybook lists your stories and provides information used by addons.
 export default {
@@ -16,17 +15,17 @@ export default {
         }
     },
     decorators: [story =>
-        <AuthProvider>
+        
             <Router>
                 <div style={{ height: '130px' }}>
                     {story()}
                 </div>
             </Router>
-        </AuthProvider>],
+        ],
 
     //👇 We can specify which controls get used by declaring a custom argType
     argTypes: {
-        /* onClick: { action: 'clicked' } */
+        handleLogOut: { action: 'clicked' }
     }
 }
 
@@ -40,8 +39,7 @@ export const LoggedInAsGardener = Template.bind({})
 
 
 LoggedOut.args = {
-    auth: false,
-    role: null
+    auth: false
 }
 
 LoggedInAsManager.args = {

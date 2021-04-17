@@ -7,7 +7,7 @@ import './Dashboard.css';
 import addUserBackend from '../HOC/AddUserFormHOC';
 
 /**
- * ### How it works
+ * ## How it works
  * The Dashboard component initially renders two `<Button />` components. 
  * When the user presses one of the buttons the dashboard's state changes and either a 
  * form for adding a new user (`<AddUserWithHOC />`) or a list of users (`<UserListWithHOC />`) renders.
@@ -16,7 +16,7 @@ import addUserBackend from '../HOC/AddUserFormHOC';
  * 
  * - The dashboard is protected and can only be accessed by logged-in managers.
  * 
- * ### Usage
+ * ## Usage
  * 1. Import the Dashboard component from `src/components/Dashboard/Dashboard`.
  * 2. Place the `<Dashboard />` component where you want the dashboard to render. 
  * (Note: ensure to protect `<Dashboard />` with authentication. Protecting with authentication 

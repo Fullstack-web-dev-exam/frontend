@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import './Button.css';
 
 /**
- * ### How it works
+ * ## How it works
  * The button component is independent. 
  * It returns an `<button>` HTML tag with different attributes provided via props when calling the component. 
  * Classes are applied via props to generate different visual styles.
  * 
- * ### Usage
+ * ## Usage
  *  1. The Button component can be used by first importing it from `src/components/Button/Button`.
  *  2. Write `<Button />` where you want the button to appear on the page when rendered.
  *  3. Provide the `<Button />` component with relevant props. Such a 'label' and 'variant'. (See `Button.propTypes` for more details)

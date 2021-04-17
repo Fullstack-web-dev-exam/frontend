@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
 
 /**
- * ### How it works
+ * ## How it works
  * `ForgotPasswordEmailForm` is a controlled class component where users can enter their email if they have forgotten their password. 
  * `ForgotPasswordEmailForm` returns an HTML `<form>` with an email input. At the bottom, there is an `<Button />` component that the 
  * user can press when the form is filled out.
@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
  * If the form is successfully submitted a `<UserFeedbackCard />` component will appear 
  * notifying that the email is sent. This pop-up can be closed with the `handleClose()` method.
  * 
- * ### Usage
+ * ## Usage
  * The `ForgotPasswordEmailForm` is expected to be used once.
  * 
  * 1. Import `ForgotPasswordEmailForm` from `src/components/ForgotPasswordEmailForm/ForgotPasswordEmailForm`
