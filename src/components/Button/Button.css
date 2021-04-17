@@ -49,12 +49,40 @@
 * BUTTONS SECONDARY
 */
 
-.secondary {
+.secondary:enabled {
     background-color: var(--secondary)
 }
 
 .secondary:enabled:hover {
     background-color: var(--sDark)
+}
+
+/*
+* BUTTONS SECONDARY OUTLINED
+*/
+
+.secondary-outlined:enabled {
+    background-color: var(--background);
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.secondary-outlined:enabled:hover {
+    background-color: var(--background);
+    border: 2px solid var(--sDark);
+    color: var(--sDark);
+}
+
+.secondary-outlined.active:enabled {
+    text-decoration: underline;
+    background-color: var(--secondary);
+    color: var(--background);
+}
+
+.secondary-outlined.active:enabled:hover {
+    text-decoration: underline;
+    background-color: var(--secondary);
+    color: var(--background);
 }
 
 /*
@@ -67,6 +95,22 @@
 
 .danger:enabled:hover {
     background-color: var(--rDark);
+}
+
+/*
+* BUTTONS DANGER OUTLINED
+*/
+
+.danger-outlined {
+    background-color: var(--background);
+    border: 2px solid var(--red);
+    color: var(--red);
+}
+
+.danger-outlined:enabled:hover {
+    background-color: var(--background);
+    border: 2px solid var(--rDark);
+    color: var(--rDark);
 }
 
 /*

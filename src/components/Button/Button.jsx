@@ -1,29 +1,52 @@
+import PropTypes from 'prop-types';
 import './Button.css';
 
-/* 
-Expects props:
-
--onClick: <any clickHandler>
--isDisabled: <boolean>
--label: <text to display on button>
--size: < "full" / "half" >
--variant: < "primary" / "secondary" / "danger" >
--buttonType < "button|submit|reset"
-
-*/
-
 function Button(props) {
-    const { variant, type, onClick, disabled, label, size } = props;
+    const { variant, type, onClick, disabled, label, size, active } = props;
 
     return (
         <button
-            className={`button ${variant || 'primary'} ${size || 'full'}-size`}
+            className={`button ${variant} ${size}-size ${active === true ? 'active' : ''}`}
             disabled={disabled}
-            type={type || 'button'}
+            type={type}
             onClick={onClick}>
-            {label || 'button'}
+            {label.trim()}
         </button>
     )
+}
+
+Button.defaultProps = {
+    active: false,
+    disabled: false,
+    size: 'full',
+    type: 'button',
+    label: 'default button',
+    variant: 'primary'
+}
+
+Button.propTypes = {
+    /** Checks if the button should be active (visually only).
+     * Currently, only the 'secondary-outlined" receives styles when active is set.
+    */
+    active: PropTypes.bool,
+
+    /** Checks if the button should be disabled (HTML disabled attribute). */
+    disabled: PropTypes.bool,
+
+    /** The text to display on the button. */
+    label: PropTypes.string.isRequired,
+
+    /** The OnClick eventHandler. */
+    onClick: PropTypes.func,
+
+    /** The width of the button. */
+    size: PropTypes.oneOf(['full', 'half']),
+
+    /** The type of the button (HTML type attribute). */
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
+
+    /** The variant of the button changes the color. */
+    variant: PropTypes.oneOf(['primary', 'secondary', 'secondary-outlined', 'danger', 'danger-outlined']).isRequired,
 }
 
 export default Button;

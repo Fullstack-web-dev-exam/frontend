@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
-import { AuthContext } from '../../helpers/Auth';
-import { createUser } from '../../api/users';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import { toast } from 'react-toastify'
 
 class AddUserForm extends Component {
-    static contextType = AuthContext;
 
     constructor(props) {
         super(props);
@@ -26,7 +23,6 @@ class AddUserForm extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.form = React.createRef();
-        //bedre navn
         this.firstnameInput = React.createRef();
         this.passwordInput = React.createRef();
     }
@@ -51,10 +47,6 @@ class AddUserForm extends Component {
         event.preventDefault();
 
         if (this.generalValidation() && this.passwordValidation()) {
-
-            //Send the information stored in the state to the back-end
-            const headers = this.context.generateHeaders();
-            //console.log(headers);
             const userObject = {
                 name: this.state.firstname,
                 surname: this.state.surname,
@@ -62,21 +54,18 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
-            const res = await createUser(headers, userObject);
-            if (res.error) {
-                alert(`Something went wrong during creation ${res.error}`);
-            } else {
-                this.setState({
-                    firstname: '',
-                    surname: '',
-                    email: '',
-                    role: 'gardener',
-                    password: '',
-                    repeatpassword: '',
-                    submitted: true
-                })
-                this.notifySuccess()
-            }
+            await this.props.onSubmitHandler(userObject);
+
+            this.setState({
+                firstname: '',
+                surname: '',
+                email: '',
+                role: 'gardener',
+                password: '',
+                repeatpassword: '',
+                submitted: true
+            })
+            this.notifySuccess();
         } else {
             this.notifyError();
         }
@@ -110,18 +99,21 @@ class AddUserForm extends Component {
         this.passwordInput.current.focus();
     }
 
+    //Part of 'react-toastify'
     notifySuccess = () => {
         toast.success("The user has been added", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //Part of 'react-toastify'
     notifyError = () => {
-        toast.error("The form did not pass validation", {
+        toast.error("There was an error", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //Part of 'react-toastify'
     passwordError = () => {
         toast.error("The passwords entered do not match.", {
             position: toast.POSITION.BOTTOM_RIGHT
@@ -181,6 +173,7 @@ class AddUserForm extends Component {
                                 <div className="role-grid-item">
                                     <label htmlFor="role">role</label>
                                     <select
+                                        id="role"
                                         name="role"
                                         onChange={this.handleInputChange}
                                         value={this.state.role}
@@ -220,8 +213,8 @@ class AddUserForm extends Component {
                                 </div>
                             </div>
 
-                            {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same."/>}
-                            {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added"/>}
+                            {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same." />}
+                            {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added" />}
 
                             <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>

@@ -1,9 +1,10 @@
 import './UserListItem.css';
 import Button from '../Button/Button'
+import PropTypes from 'prop-types';
 
 function UserListItem({ user, handleDeleteClick, handleEditClick }) {
     return (<li>
-        <div className="container">
+        <div className="container userlist">
             <h2>{user.name} {user.surname}</h2>
             <h3>Role: {user.role}</h3>
             <p><b>Email:</b> {user.email}</p>
@@ -13,6 +14,29 @@ function UserListItem({ user, handleDeleteClick, handleEditClick }) {
             </div>
         </div>
     </li>)
+}
+
+UserListItem.defaultProps = {
+    user: {
+        role: 'gardener'
+    }
+}
+
+UserListItem.propTypes = {
+    /** The user object should include name, surname, role, and email. 
+     * These values should be strings.  */
+     user: PropTypes.shape({
+        email: PropTypes.string,
+        name: PropTypes.string,
+        role: PropTypes.oneOf(['gardener', 'manager']),
+        surname: PropTypes.string,
+    }).isRequired,
+    
+    /** handleEditClick is the handler for when the user presses the edit button.  */
+    handleEditClick: PropTypes.func,
+
+    /** handleDeleteClick is the handler for when the user presses the delete button.  */
+    handleDeleteClick: PropTypes.func
 }
 
 export default UserListItem;

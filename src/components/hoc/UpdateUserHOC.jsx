@@ -7,7 +7,6 @@ function updateUserBackend(WrappedComponent) {
         static contextType = AuthContext;
         constructor(props) {
             super(props);
-            console.log(props);
             this.state = {
                 data: [],
                 error: null
@@ -15,7 +14,6 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateDashboard = async (userObject) => {
-            console.log(userObject);
             const headers = this.context.generateHeaders();
 
             const res = await updateUser(headers, userObject);
@@ -29,7 +27,6 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateProfile = async (userObject) => {
-            //console.log(userObject);
             const headers = this.context.generateHeaders();
 
             const res = await updateMyProfile(headers, userObject);
@@ -47,7 +44,7 @@ function updateUserBackend(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
 
-            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} />);
+            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} onAbortClick={this.props.onAbortClick}/>);
         }
     }
 

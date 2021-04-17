@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
 import { fetchAllUsers, deleteUser } from '../../api/users';
-import PopupDelete from '../UserList/PopupDelete';
-import PopupEdit from '../UserList/PopupEdit';
+import Popup from '../Popup/Popup'
 import { toast } from 'react-toastify'
+import Loading from '../Loading/Loading';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -28,7 +28,6 @@ function withUsersFetch(WrappedComponent) {
 
         fetchData = async () => {
             const headers = this.context.generateHeaders();
-            //console.log(headers);
             const res = await fetchAllUsers(headers)
 
             if (res.error) {
@@ -59,10 +58,7 @@ function withUsersFetch(WrappedComponent) {
 
         deleteUser = async () => {
             const deletedEmail = { email: this.state.selectedUser.email };
-            //console.log(deletedEmail);
-
             const headers = await this.context.generateHeaders();
-            //console.log(headers);
             const res = await deleteUser(headers.headers, deletedEmail);
 
             await this.fetchData();
@@ -100,11 +96,11 @@ function withUsersFetch(WrappedComponent) {
         }
 
         notifySuccess = () => {
-            toast.success("The user has been deleted", {
+            toast.success("The user has been deleted. 🗑️", {
                 position: toast.POSITION.BOTTOM_RIGHT
             });
         };
-    
+
         notifyError = () => {
             toast.error("Something went wrong... please try again.", {
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -112,11 +108,30 @@ function withUsersFetch(WrappedComponent) {
         };
 
         render() {
+            if (this.state.isLoading) {
+                return (<Loading />);
+            }
+
             return (
                 <>
                     <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
-                    {this.state.edit && <PopupEdit onUpdateForm={this.fetchData} onAbortClick={this.cancelAction} onEditUser={this.editUser} user={this.state.selectedUser} />}
-                    {this.state.delete && <PopupDelete onAbortClick={this.cancelAction} onDeleteUser={this.deleteUser} user={this.state.selectedUser} />}
+                    {this.state.edit &&
+                        <Popup
+                            onAbortClick={this.cancelAction}
+                            onEditUser={this.editUser}
+                            onUpdateForm={this.fetchData}
+                            place="dashboard"
+                            popupVariant="edit"
+                            user={this.state.selectedUser}
+                        />}
+
+                    {this.state.delete &&
+                        <Popup
+                            onAbortClick={this.cancelAction}
+                            onDeleteUser={this.deleteUser}
+                            popupVariant="delete"
+                            user={this.state.selectedUser}
+                        />}
                 </>
             );
         }

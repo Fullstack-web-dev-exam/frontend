@@ -55,8 +55,6 @@ class AuthProvider extends React.Component {
                 'Authorization': `Bearer ${token.token}`
             };
         }
-        //console.log(token.token);
-        //console.log(response)
         return response;
     }
 

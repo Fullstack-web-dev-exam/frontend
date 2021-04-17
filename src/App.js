@@ -5,31 +5,35 @@ import NavBar from './components/NavBar/NavBar';
 import NotFound from './components/NotFound/NotFound';
 import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import PrivateRoute from './routes/PrivateRoute';
-import withUsersBackEnd from './components/hoc/MyProfileHOC';
+import withUsersBackEnd from './components/HOC/MyProfileHOC';
 import MyProfile from './components/MyProfile/MyProfile';
-import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm'
+import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
+import forgotBackend from './components/HOC/ForgotPassHOC';
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import navBarBackend from './components/HOC/NavBarHOC';
 
 class App extends Component {
   render() {
 
     const MyProfileWithHOC = withUsersBackEnd(MyProfile);
+    const ForgotPassHOC = forgotBackend(ForgotPasswordEmailForm);
+    const NavBarHOC = navBarBackend(NavBar);
+
 
     return (
       <AuthConsumer>
         {({ isAuth }) => (
           <>
             <Router>
-              <NavBar />
+              <NavBarHOC />
               <main>
                 <Switch>
                   <Route exact path="/reset_password">
-                    <ForgotPasswordEmailForm />
+                    <ForgotPassHOC />
                   </Route>
                   <PrivateRoute exact path="/user">
                     <h1>Your Profile</h1>
@@ -41,13 +45,13 @@ class App extends Component {
                     </AdminRoute>
                   </PrivateRoute>
                   <Route exact path="/logout">
-                    <p>You are now logged out!</p>
+                    <h1>You are now logged out!</h1>
                   </Route>
                   <Route exact path="/login">
                     <LogInForm />
                   </Route>
                   <Route exact path="/">
-                    <p>Hjemmesiden</p>
+                    <h1>Home page</h1>
                   </Route>
                   <Route exact path="/401">
                     <UnauthorizedCard />
@@ -58,7 +62,7 @@ class App extends Component {
                 </Switch>
               </main>
             </Router>
-            <ToastContainer transition={Slide}/>
+            <ToastContainer transition={Slide} />
           </>
         )}
       </AuthConsumer>
