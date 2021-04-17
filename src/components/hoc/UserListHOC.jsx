@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
-import { fetchAllUsers, deleteUser } from '../../api/users';
+import { fetchAllUsers, deleteUser, forgot } from '../../api/users';
 import Popup from '../Popup/Popup'
 import { toast } from 'react-toastify'
 import Loading from '../Loading/Loading';
@@ -24,6 +24,24 @@ function withUsersFetch(WrappedComponent) {
         async componentDidMount() {
             this._isMounted = true;
             await this.fetchData();
+        }
+
+        resetPassword = async () => {
+            const email = this.state.selectedUser.email;
+            const res = await forgot(email);
+            console.log(res);
+
+            if(res.error){
+                this.setState({ error: res.error });
+                this.notifyError();
+            } else {
+                this.notifySuccessReset();
+                this.setState({
+                    edit: false,
+                    selectedUser: {},
+                    error: null
+                })
+            }
         }
 
         fetchData = async () => {
@@ -61,8 +79,6 @@ function withUsersFetch(WrappedComponent) {
             const headers = await this.context.generateHeaders();
             const res = await deleteUser(headers.headers, emailToDelete);
 
-            await this.fetchData();
-
             if (res.error) {
                 this.setState({
                     error: res.error
@@ -73,7 +89,8 @@ function withUsersFetch(WrappedComponent) {
                     delete: false,
                     selectedUser: {},
                     error: null
-                })
+                });
+                await this.fetchData();
                 this.notifySuccess();
             }
         }
@@ -102,6 +119,10 @@ function withUsersFetch(WrappedComponent) {
             });
         };
 
+        notifySuccessReset = () => {
+            toast.success("An email with instructions have been sent to users email!");
+        }
+
         //Part of 'react-toastify'
         notifyError = () => {
             toast.error("Something went wrong... please try again.", {
@@ -124,6 +145,7 @@ function withUsersFetch(WrappedComponent) {
                             onAbortClick={this.cancelAction}
                             onEditUser={this.editUser}
                             onUpdateForm={this.fetchData}
+                            onResetClick={this.resetPassword}
                             place="dashboard"
                             popupVariant="edit"
                             user={this.state.selectedUser}

@@ -12,14 +12,14 @@ import PropTypes from 'prop-types';
  * The form allows the user to either update their own information, including first name, surname, and password. 
  * If the logged-in user is a manager, they can update the information of gardeners, including email, first name, surname, and role. 
  * When the form is rendered it already includes some of the information of the user. 
- * It gets this data from the '`UpdateUserHOC`' located in '`src/components/HOC/UseristHOC`'. 
+ * It gets this data from the '`UpdateUserHOC`' located in '`src/components/HOC/UserListHOC`'. 
  * This HOC file also contains the functionality for sending the data from the front-end to the back-end, 
  * for example, the '`updateProfile`' and '`updateDashboard`' methods that are passed down to the component.
  * A default state is also available (where there is no place specified). 
  * This unused state only renders input fields for first name and surname.
  * 
  * ## Usage
- * @summary `UpdateUserHOC` contains the functionallity and Updateuser only displays data and calls mehods from inside `UpdateUserHOC`.
+ * @summary `UpdateUserHOC` contains the functionality and UpdateUser only displays data and calls methods from inside `UpdateUserHOC`.
  * 
  * The component can be used in two ways. Either on the logged-in user's profile or the dashboard view.
  * 
@@ -29,7 +29,7 @@ import PropTypes from 'prop-types';
  * 
  * 1. Import `UpdateUser` from '`src/components/UpdateUser/UpdateUser`' in `MyProfileHOC`.
  * 
- * 2. Because we are using the `Updateuser` form, we also need to import the `UpdateUserHOC` from '`src/components/HOC/UpdateUserHOC`'
+ * 2. Because we are using the `UpdateUser` form, we also need to import the `UpdateUserHOC` from '`src/components/HOC/UpdateUserHOC`'
  * 
  * 3. Define a constant inside `MyProfileHOC` that is equal to `UpdateUser` wrapped by `UpdateUserHOC`. For example: `const UpdateUserHOC = updateUserBackend(UpdateUser);`
  * 
@@ -40,8 +40,8 @@ import PropTypes from 'prop-types';
  * lastly the `Popup` components working, otherwise, it will not work. This is because the `UpdateUser` form is rendered inside 
  * a `Popup` component located in the `UserListHOC` file.
  * 
- * 1. In the `Poup` component file (`src/components/Popup/Popup`) import the `UpdateUserHOC` file (`src/components/HOC/UpdateUserHOC`) 
- *    and the `UpdateUser` component from (`src/componets/UpdateUser/UpdateUser`)
+ * 1. In the `Popup` component file (`src/components/Popup/Popup`) import the `UpdateUserHOC` file (`src/components/HOC/UpdateUserHOC`) 
+ *    and the `UpdateUser` component from (`src/components/UpdateUser/UpdateUser`)
  * 
  * 2. Import the `Popup` component (`src/components/Popup/Popup`) in the `UserListHOC` file
  * 
@@ -308,7 +308,12 @@ class UpdateUserForm extends Component {
                                 </>}
                             {this.state.passwordError && <UserFeedbackCard onClick={this.handleClosePassword} variant="error" feedbackText="The passwords entered are not the same." />}
                             <Button type="submit" label="update" />
-                            {this.props.place === 'dashboard' && <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick} />}
+                            {this.props.place === 'dashboard' &&
+                                <>
+                                    <Button type="button" label="reset password" variant="danger" onClick={this.props.onResetClick} />
+                                    <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick} />
+                                </>
+                            }
 
                         </fieldset>
                     </form>
@@ -324,8 +329,8 @@ UpdateUserForm.defaultProps = {
 
 UpdateUserForm.propTypes = {
     /** 
-     * The place props decides what input filds to show. On the users profile password fields are 
-     * rendered, but not an email input. If the place is dashboard a email input is rendered, but no passwordfields.
+     * The place props decides what input fields to show. On the users profile password fields are 
+     * rendered, but not an email input. If the place is dashboard a email input is rendered, but no password fields.
     */
     place: PropTypes.oneOf(['profile', 'dashboard', 'none']).isRequired,
 
@@ -340,10 +345,10 @@ UpdateUserForm.propTypes = {
     /** eventHandler to update a user that is not the currently logged in user. */
     onUpdateDashboard: PropTypes.func,
 
-    /** eventHandler to update the currenlty logged in user. */
+    /** eventHandler to update the currently logged in user. */
     onUpdateProfile: PropTypes.func,
 
-    /** eventHandler to exit the editing process (pressing cancel putton -> clears the selected user and closes the form) */
+    /** eventHandler to exit the editing process (pressing cancel button -> clears the selected user and closes the form) */
     onAbortClick: PropTypes.func
 }
 

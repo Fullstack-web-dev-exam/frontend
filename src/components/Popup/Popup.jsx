@@ -31,14 +31,14 @@ import Button from '../Button/Button'
 */
 
 function Popup(props) {
-    const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser, place} = props
+    const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser, onResetClick, place} = props
 
     const UpdateUserHOC = updateUserBackend(UpdateUser);
     return (
         <div className="popup-userlist">
             <div className="popup-content">
                 {popupVariant === 'edit' &&
-                    <UpdateUserHOC onUpdateForm={onUpdateForm} selectedUser={user} place={place} onAbortClick={onAbortClick} />
+                    <UpdateUserHOC onUpdateForm={onUpdateForm} selectedUser={user} place={place} onAbortClick={onAbortClick} onResetClick={onResetClick} />
                 }
 
                 {popupVariant === 'delete' &&

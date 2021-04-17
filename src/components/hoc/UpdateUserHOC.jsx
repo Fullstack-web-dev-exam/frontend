@@ -44,7 +44,7 @@ function updateUserBackend(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
 
-            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} onAbortClick={this.props.onAbortClick}/>);
+            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onResetClick={this.props.onResetClick} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} onAbortClick={this.props.onAbortClick}/>);
         }
     }
 
