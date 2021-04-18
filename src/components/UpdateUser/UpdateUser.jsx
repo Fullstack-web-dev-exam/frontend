@@ -5,6 +5,7 @@ import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**
  * ## How it works
@@ -154,10 +155,10 @@ class UpdateUserForm extends Component {
             const userObject = this.getPayload()
             if (this.props.place === "dashboard") {
                 this.props.onUpdateDashboard(userObject);
-                this.notifySuccess();
+                notifySuccess('The user has been updated')
             } else {
                 this.props.onUpdateProfile(userObject);
-                this.notifySuccess();
+                notifySuccess('The user has been updated')
             }
         }
     }
@@ -176,7 +177,7 @@ class UpdateUserForm extends Component {
             this.setState({
                 passwordError: true
             });
-            this.passwordError()
+            notifyError('The passwords entered do not match.')
             return false;
         }
     }

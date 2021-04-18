@@ -3,9 +3,8 @@ import './AddUserForm.css';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import Button from '../Button/Button'
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
-import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
-
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**
  * ## How it works
@@ -75,10 +74,10 @@ class AddUserForm extends Component {
             await this.props.onSubmitHandler(userObject);
 
             if (this.props.error) {
-                this.notifyError(this.props.error);
+                notifyError(this.props.error);
                 return
             } else {
-                this.notifySuccess(`The user ${this.state.firstname} has been added.`);
+                notifySuccess(`The user ${this.state.firstname} ${this.state.surname} has been added.`);
                 this.setState({
                     firstname: '',
                     surname: '',
@@ -90,7 +89,7 @@ class AddUserForm extends Component {
                 })
             }
         } else {
-            this.notifyError('There was an error.');
+            notifyError('There was an error.');
         }
     }
 
@@ -108,7 +107,7 @@ class AddUserForm extends Component {
             this.setState({
                 passwordError: true
             });
-            this.notifyError('The passwords entered do not match.')
+            notifyError('The passwords entered do not match.')
             return false;
         }
     }
@@ -121,20 +120,6 @@ class AddUserForm extends Component {
         });
         this.passwordInput.current.focus();
     }
-
-    //Part of 'react-toastify'
-    notifySuccess = (message) => {
-        toast.success(message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-
-    //Part of 'react-toastify'
-    notifyError = (message) => {
-        toast.error(message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
 
     render() {
         return (

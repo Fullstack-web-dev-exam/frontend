@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import passwordIcon from '../../assets/password_black_24dp.svg';
 import './ForgotPasswordEmailForm.css';
 import Button from '../Button/Button'
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
-import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
+import passwordIcon from '../../assets/password_black_24dp.svg';
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**
  * ## How it works
@@ -50,16 +50,17 @@ class ForgotPasswordEmailForm extends Component {
 
         if (this.validation()) {
             this.setState({ formSubmitted: true });
-
-            this.notifySuccess();
-
+            
             const email = this.state.email;
+
+            notifySuccess(`An email with further instructions is sent to '${email}'.`)
 
             await this.props.onSubmitHandler(email);
 
+
         } else {
             this.setState({ error: "The form is not valid!" });
-            this.notifyError()
+            notifyError("The form did not pass validation.")
         }
     }
 
@@ -88,18 +89,6 @@ class ForgotPasswordEmailForm extends Component {
     validation() {
         return this.form.current.reportValidity();
     }
-
-    notifySuccess = () => {
-        toast.success(`An email with further instructions is sent to ${this.state.email}.`, {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-
-    notifyError = () => {
-        toast.error("The form did not pass validation", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
 
     render() {
         return (

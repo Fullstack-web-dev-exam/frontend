@@ -3,11 +3,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import './NavBar.css';
+import Button from '../Button/Button'
+import PropTypes from 'prop-types';
 import accountCircle from '../../assets/account_circle.svg';
 import { Link } from "react-router-dom";
-import Button from '../Button/Button'
-import { toast } from 'react-toastify'
-import PropTypes from 'prop-types';
+import { notifySuccess } from '../../helpers/notification';
 
 /**
  * ## How it works
@@ -34,7 +34,8 @@ function Nav(props) {
 
     const handleLogOut = () => {
         props.handleLogOut();
-        notifySuccess();
+        notifySuccess("You are now logged out. Goodbye 👋");
+        
     }
 
     const handleClickOutside = e => {
@@ -57,12 +58,6 @@ function Nav(props) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [open]);
-
-    const notifySuccess = () => {
-        toast.success("You are now logged out. Goodbye 👋", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
 
     return (
         <nav className="navbar">
