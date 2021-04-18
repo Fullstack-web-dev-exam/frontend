@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
 import { createUser } from '../../api/users';
 
-/**
- * @param WrappedComponent 
- * @returns AddUserHOC
- */
 function addUserBackend(WrappedComponent) {
     class AddUserHOC extends Component {
         static contextType = AuthContext;

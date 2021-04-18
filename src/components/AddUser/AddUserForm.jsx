@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
  * Because it communicates with the backend, it gets its `onSubmitHandler()` from `AddUserFormHOC`.
  * 
  * ## Usage
- * 1. Import AddUserFormHOC from `src/components/HOC/AddUsserFormHOC`
+ * 1. Import AddUserFormHOC from `src/components/HOC/AddUserFormHOC`
  * 2. Import AddUserForm from `src/components/AddUser/AddUserForm`
  * 3. Define a constant that is equal to `addUserBackend(AddUserForm)`. 
  *    Because `addUserBackend(AddUserForm)` returns a component, we can return the constant (that now is equal to a component) in the render method. 
@@ -90,18 +90,10 @@ class AddUserForm extends Component {
         }
     }
 
-    /**
-     * Validates the form
-     * @returns boolean
-     */
     generalValidation() {
         return this.form.current.reportValidity();
     }
 
-    /**
-     * Checks if the password entered is the same as the repeated password entered.
-     * @returns boolean
-     */
     passwordValidation() {
         if (this.state.password === this.state.repeatpassword) {
             this.setState({
@@ -189,10 +181,8 @@ class AddUserForm extends Component {
                                         id="email"
                                         name="email"
                                         onChange={this.handleInputChange} value={this.state.email}
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         placeholder="Enter Their Email"
                                         required
-                                        title="Please enter a valid email"
                                         type="email"
                                     />
                                 </div>

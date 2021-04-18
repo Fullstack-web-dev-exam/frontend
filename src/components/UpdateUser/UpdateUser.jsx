@@ -46,10 +46,10 @@ import PropTypes from 'prop-types';
  * 2. Import the `Popup` component (`src/components/Popup/Popup`) in the `UserListHOC` file
  * 
  * 3. Define a constant inside `Popup` that is equal to `UpdateUser` wrapped by `UpdateUserHOC`. For example: 
- * `const UpdateUserHOC = updateUserBackend(UpdateUser);`
+ *    `const UpdateUserHOC = updateUserBackend(UpdateUser);`
  * 
  * 4. Because the constant created is equal to a component, we can render it inside the return statement inside 
- * the render method of `Popup`. The form will now be rendered as a popup 'above' the other content.
+ *    the render method of `Popup`. The form will now be rendered as a popup 'above' the other content.
  */
 
 class UpdateUserForm extends Component {
@@ -226,7 +226,7 @@ class UpdateUserForm extends Component {
                                         name="email"
                                         onChange={this.handleInputChange}
                                         placeholder="Enter Your New Email"
-                                        type="text"
+                                        type="email"
                                         value={this.state.email}
                                     />
                                 </>}
