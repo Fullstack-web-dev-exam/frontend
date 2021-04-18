@@ -71,22 +71,26 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
-
             //add the information from the state to database
             await this.props.onSubmitHandler(userObject);
 
-            this.setState({
-                firstname: '',
-                surname: '',
-                email: '',
-                role: 'gardener',
-                password: '',
-                repeatpassword: '',
-                submitted: true
-            })
-            this.notifySuccess();
+            if (this.props.error) {
+                this.notifyError(this.props.error);
+                return
+            } else {
+                this.notifySuccess(`The user ${this.state.firstname} has been added.`);
+                this.setState({
+                    firstname: '',
+                    surname: '',
+                    email: '',
+                    role: 'gardener',
+                    password: '',
+                    repeatpassword: '',
+                    submitted: true
+                })
+            }
         } else {
-            this.notifyError();
+            this.notifyError('There was an error.');
         }
     }
 
@@ -104,7 +108,7 @@ class AddUserForm extends Component {
             this.setState({
                 passwordError: true
             });
-            this.passwordError()
+            this.notifyError('The passwords entered do not match.')
             return false;
         }
     }
@@ -119,22 +123,15 @@ class AddUserForm extends Component {
     }
 
     //Part of 'react-toastify'
-    notifySuccess = () => {
-        toast.success("The user has been added", {
+    notifySuccess = (message) => {
+        toast.success(message, {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
     //Part of 'react-toastify'
-    notifyError = () => {
-        toast.error("There was an error", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-
-    //Part of 'react-toastify'
-    passwordError = () => {
-        toast.error("The passwords entered do not match.", {
+    notifyError = (message) => {
+        toast.error(message, {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
@@ -232,6 +229,7 @@ class AddUserForm extends Component {
 
                             {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same." />}
                             {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added" />}
+                            {this.props.error && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The email is already in use" />}
 
                             <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
