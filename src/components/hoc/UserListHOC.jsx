@@ -3,7 +3,7 @@ import Loading from '../Loading/Loading';
 import Popup from '../Popup/Popup'
 import { AuthContext } from '../../helpers/Auth';
 import { fetchAllUsers, deleteUser, forgot } from '../../api/users';
-import { toast } from 'react-toastify'
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -33,9 +33,9 @@ function withUsersFetch(WrappedComponent) {
 
             if(res.error){
                 this.setState({ error: res.error });
-                this.notifyError();
+                notifyError("Something went wrong... please try again.")
             } else {
-                this.notifySuccessReset();
+                notifySuccess(`An email with instructions have been sent to ${email}.`)
                 this.setState({
                     edit: false,
                     selectedUser: {},
@@ -83,7 +83,7 @@ function withUsersFetch(WrappedComponent) {
                 this.setState({
                     error: res.error
                 })
-                this.notifyError();
+                notifyError("Something went wrong... please try again.")
             } else {
                 this.setState({
                     delete: false,
@@ -91,7 +91,7 @@ function withUsersFetch(WrappedComponent) {
                     error: null
                 });
                 await this.fetchData();
-                this.notifySuccess();
+                notifySuccess("The user has been deleted. 🗑️");
             }
         }
 
@@ -111,24 +111,6 @@ function withUsersFetch(WrappedComponent) {
                 selectedUser: {}
             })
         }
-
-        //Part of 'react-toastify'
-        notifySuccess = () => {
-            toast.success("The user has been deleted. 🗑️", {
-                position: toast.POSITION.BOTTOM_RIGHT
-            });
-        };
-
-        notifySuccessReset = () => {
-            toast.success("An email with instructions have been sent to users email!");
-        }
-
-        //Part of 'react-toastify'
-        notifyError = () => {
-            toast.error("Something went wrong... please try again.", {
-                position: toast.POSITION.BOTTOM_RIGHT
-            });
-        };
 
         render() {
             if (this.state.isLoading) {

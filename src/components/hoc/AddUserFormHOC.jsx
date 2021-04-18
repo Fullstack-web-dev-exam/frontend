@@ -2,24 +2,34 @@ import React, { Component } from 'react';
 import { AuthContext } from '../../helpers/Auth';
 import { createUser } from '../../api/users';
 
-/**
- * @param WrappedComponent 
- * @returns AddUserHOC
- */
 function addUserBackend(WrappedComponent) {
     class AddUserHOC extends Component {
         static contextType = AuthContext;
+        constructor(props) {
+            super(props);
+            this.state = { 
+                error: null
+            };
+        }
 
         onSubmit = async (userObject) => {
-            //Send the information stored in the state to the back-end
             const headers = this.context.generateHeaders();
 
-            await createUser(headers, userObject);
+            //Send the information stored in the state to the back-end
+            try {
+                const res = await createUser(headers, userObject);
+                console.log(res)
+            } catch (error) {
+                console.log(error.response.data.message)
+                this.setState({
+                    error: error.response.data.message
+                })
+            }
         }
 
         render() { 
             return (
-                <WrappedComponent onSubmitHandler={this.onSubmit} />
+                <WrappedComponent onSubmitHandler={this.onSubmit} error={this.state.error}/>
             );
         }
     }

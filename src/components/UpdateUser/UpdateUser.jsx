@@ -5,12 +5,14 @@ import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import editUserFormIcon from '../../assets/edit_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { toast } from 'react-toastify'
+import PropTypes from 'prop-types';
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**
  * ## How it works
  * The `UpdateUserForm` component is a controlled form that has inputs depending on where it is rendered. 
  * The form allows the user to either update their own information, including first name, surname, and password. 
- * If the logged-in user is a manager, they can update the information of gardeners, including email, first name, surname, and role. 
+ * If the logged-in user is a manager, they can update the information of gardeners, including email, first name, surname, role and password. 
  * When the form is rendered it already includes some of the information of the user. 
  * It gets this data from the '`UpdateUserHOC`' located in '`src/components/HOC/UserListHOC`'. 
  * This HOC file also contains the functionality for sending the data from the front-end to the back-end, 
@@ -46,10 +48,10 @@ import { toast } from 'react-toastify'
  * 2. Import the `Popup` component (`src/components/Popup/Popup`) in the `UserListHOC` file
  * 
  * 3. Define a constant inside `Popup` that is equal to `UpdateUser` wrapped by `UpdateUserHOC`. For example: 
- * `const UpdateUserHOC = updateUserBackend(UpdateUser);`
+ *    `const UpdateUserHOC = updateUserBackend(UpdateUser);`
  * 
  * 4. Because the constant created is equal to a component, we can render it inside the return statement inside 
- * the render method of `Popup`. The form will now be rendered as a popup 'above' the other content.
+ *    the render method of `Popup`. The form will now be rendered as a popup 'above' the other content.
  */
 
 class UpdateUserForm extends Component {
@@ -152,12 +154,23 @@ class UpdateUserForm extends Component {
 
         if (this.generalValidation() && this.passwordValidation()) {
             const userObject = this.getPayload()
+
             if (this.props.place === "dashboard") {
-                this.props.onUpdateDashboard(userObject);
-                this.notifySuccess();
+                await this.props.onUpdateDashboard(userObject);
+                
+                if (this.props.error) {
+                    notifyError(`There was an error: ${this.props.error}`)
+                } else {
+                    notifySuccess('The user has been updated')
+                }
             } else {
-                this.props.onUpdateProfile(userObject);
-                this.notifySuccess();
+                await this.props.onUpdateProfile(userObject);
+                
+                if (this.props.error) {
+                    notifyError(`There was an error: ${this.props.error}`)
+                } else {
+                    notifySuccess('The user has been updated')
+                }
             }
         }
     }
@@ -176,7 +189,7 @@ class UpdateUserForm extends Component {
             this.setState({
                 passwordError: true
             });
-            this.passwordError()
+            notifyError('The passwords entered do not match.')
             return false;
         }
     }
@@ -226,7 +239,7 @@ class UpdateUserForm extends Component {
                                         name="email"
                                         onChange={this.handleInputChange}
                                         placeholder="Enter Your New Email"
-                                        type="text"
+                                        type="email"
                                         value={this.state.email}
                                     />
                                 </>}
@@ -349,7 +362,10 @@ UpdateUserForm.propTypes = {
     onUpdateProfile: PropTypes.func,
 
     /** eventHandler to exit the editing process (pressing cancel button -> clears the selected user and closes the form) */
-    onAbortClick: PropTypes.func
+    onAbortClick: PropTypes.func,
+
+    /** eventHandler to reset the users password */
+    onResetClick: PropTypes.func
 }
 
 export default UpdateUserForm;

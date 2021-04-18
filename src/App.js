@@ -6,9 +6,8 @@ import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/Forgot
 import LogInForm from './components/Login/LogInForm';
 import MyProfile from './components/MyProfile/MyProfile';
 import NavBar from './components/NavBar/NavBar';
-import NotFound from './components/NotFound/NotFound';
 import PrivateRoute from './routes/PrivateRoute';
-import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
+import StatusCard from './components/StatusCard/StatusCard';
 import forgotBackend from './components/HOC/ForgotPassHOC';
 import navBarBackend from './components/HOC/NavBarHOC';
 import withUserBackEnd from './components/HOC/MyProfileHOC';
@@ -53,11 +52,11 @@ class App extends Component {
                   <Route exact path="/">
                     <h1>Home page</h1>
                   </Route>
-                  <Route exact path="/401">
-                    <UnauthorizedCard />
+                  <Route exact path="/403">
+                    <StatusCard statusCode={403} statusText="Forbidden" />
                   </Route>
                   <Route>
-                    <NotFound />
+                    <StatusCard statusCode={404} statusText="Page Not Found" />
                   </Route>
                 </Switch>
               </main>

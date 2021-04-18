@@ -6,7 +6,7 @@ import lockClosedIcon from '../../assets/lock_black_24dp.svg';
 import lockOpenIcon from '../../assets/lock_open_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
 import { Link, Redirect } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**
  * ## How it works
@@ -43,7 +43,6 @@ class LogInForm extends Component {
 
     componentDidMount() {
         this.emailInput.current.focus();
-        console.log(this.context.isAuth)
     }
 
     handleInputChange(event) {
@@ -77,9 +76,9 @@ class LogInForm extends Component {
 
                 //The user is most probably not found in the database
                 this.setState({ error: true });
-                this.notifyError();
+                notifyError("Wrong email and/or password. Please try again.")
             } else {
-                this.notifySuccess()
+                notifySuccess("You are now logged in.")
                 this.setState({ redirect: "/user" });
             }
         } else {
@@ -91,20 +90,6 @@ class LogInForm extends Component {
     validation() {
         return this.form.current.reportValidity();
     }
-
-    //part of react-toastify
-    notifySuccess = () => {
-        toast.success("You are now logged in.", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-
-    //part of react-toastify
-    notifyError = () => {
-        toast.error("Wrong email and/or password. Please try again.", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
 
     render() {
         if (this.state.redirect) {

@@ -16,11 +16,11 @@ import UserListItem from '../UserListItem/UserListItem';
  *
  * 2. Import the `UserList` component from 'src/components/UserList/UserList' 
  * 
- * 3. Create a constant that is eqaul to `UserList` wraped by `UserListHOC`, 
- *    for example: `const UserListWithHOC = withUsersFetch(UserList);` 
- *    Because the constant decalred aboce is eqaul to an componant, we can use it 
- *    inside the return statment of a render method. The result is a component 
- *    that creates a `<UserListItem />` for each user it gets from the HOC file
+ * 3. Create a constant that is equal to `UserList` wrapped by `UserListHOC`, 
+ *    for example: `const UserListWithHOC = withUsersFetch(UserList);` Because the 
+ *    constant declared above is equal to a component, we can use it inside the return 
+ *    statement of a render method. The result is a component that creates a `UserListItem` 
+ *    for each user it gets from the HOC file
  */
 
 function UserList({ users, handleDeleteClick, handleEditClick }) {
