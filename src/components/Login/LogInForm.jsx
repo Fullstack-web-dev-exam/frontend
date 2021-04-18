@@ -43,7 +43,6 @@ class LogInForm extends Component {
 
     componentDidMount() {
         this.emailInput.current.focus();
-        console.log(this.context.isAuth)
     }
 
     handleInputChange(event) {

@@ -153,12 +153,23 @@ class UpdateUserForm extends Component {
 
         if (this.generalValidation() && this.passwordValidation()) {
             const userObject = this.getPayload()
+
             if (this.props.place === "dashboard") {
-                this.props.onUpdateDashboard(userObject);
-                notifySuccess('The user has been updated')
+                await this.props.onUpdateDashboard(userObject);
+                
+                if (this.props.error) {
+                    notifyError(`There was an error: ${this.props.error}`)
+                } else {
+                    notifySuccess('The user has been updated')
+                }
             } else {
-                this.props.onUpdateProfile(userObject);
-                notifySuccess('The user has been updated')
+                await this.props.onUpdateProfile(userObject);
+                
+                if (this.props.error) {
+                    notifyError(`There was an error: ${this.props.error}`)
+                } else {
+                    notifySuccess('The user has been updated')
+                }
             }
         }
     }
