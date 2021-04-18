@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
 import editUserFormIcon from '../../assets/edit_black_24dp.svg';
 import { AuthContext } from '../../helpers/Auth';
-import { toast } from 'react-toastify'
-import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**

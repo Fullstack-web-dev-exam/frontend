@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
-import Button from '../Button/Button'
+import Button from '../Button/Button';
 import PropTypes from 'prop-types';
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
-import PropTypes from 'prop-types';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
+import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import { notifySuccess, notifyError } from '../../helpers/notification';
 
 /**
