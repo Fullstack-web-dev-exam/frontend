@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import editUserForm from '../../assets/edit_black_24dp.svg';
-import { AuthContext } from '../../helpers/Auth';
 import Button from '../Button/Button'
+import PropTypes from 'prop-types';
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import editUserFormIcon from '../../assets/edit_black_24dp.svg';
+import { AuthContext } from '../../helpers/Auth';
 import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
 import { notifySuccess, notifyError } from '../../helpers/notification';
@@ -226,7 +227,7 @@ class UpdateUserForm extends Component {
         return (
             <>
                 <div className="container">
-                    <img src={editUserForm} alt="" />
+                    <img src={editUserFormIcon} alt="" />
                     <form ref={this.form} onSubmit={this.handleSubmit} method="POST">
                         <fieldset>
                             <legend>Update {this.pronoun} user information</legend>

@@ -1,6 +1,6 @@
 import './UserList.css';
-import UserListItem from '../UserListItem/UserListItem';
 import PropTypes from 'prop-types';
+import UserListItem from '../UserListItem/UserListItem';
 
 /**
  * ## How it works

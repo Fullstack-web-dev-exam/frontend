@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { AuthContext } from '../../helpers/Auth';
-import { fetchUser } from '../../api/users';
-import updateUserBackend from './UpdateUserHOC';
+import Loading from '../Loading/Loading';
 import UpdateUser from '../UpdateUser/UpdateUser';
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
-import Loading from '../Loading/Loading';
+import updateUserBackend from './UpdateUserHOC';
+import { AuthContext } from '../../helpers/Auth';
+import { fetchUser } from '../../api/users';
 
 function withUserBackEnd(WrappedComponent) {
     class MyProfileHOC extends Component {
