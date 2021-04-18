@@ -29,7 +29,6 @@ function withUsersFetch(WrappedComponent) {
         resetPassword = async () => {
             const email = this.state.selectedUser.email;
             const res = await forgot({userEmail: email});
-            console.log(res);
 
             if(res.error){
                 this.setState({ error: res.error });

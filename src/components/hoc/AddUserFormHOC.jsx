@@ -17,10 +17,8 @@ function addUserBackend(WrappedComponent) {
 
             //Send the information stored in the state to the back-end
             try {
-                const res = await createUser(headers, userObject);
-                console.log(res)
+                await createUser(headers, userObject);
             } catch (error) {
-                console.log(error.response.data.message)
                 this.setState({
                     error: error.response.data.message
                 })
