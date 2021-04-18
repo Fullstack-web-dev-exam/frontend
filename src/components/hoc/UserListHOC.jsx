@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import Loading from '../Loading/Loading';
+import Popup from '../Popup/Popup'
 import { AuthContext } from '../../helpers/Auth';
 import { fetchAllUsers, deleteUser, forgot } from '../../api/users';
-import Popup from '../Popup/Popup'
 import { toast } from 'react-toastify'
-import Loading from '../Loading/Loading';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {

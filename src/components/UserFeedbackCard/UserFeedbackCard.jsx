@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import './UserFeedbackCard.css';
+import PropTypes from 'prop-types';
 
 /**
  * ## How it works

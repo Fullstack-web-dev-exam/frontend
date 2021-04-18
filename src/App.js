@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 import AdminRoute from './routes/AdminRoute';
+import Dashboard from './components/Dashboard/Dashboard';
+import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
 import LogInForm from './components/Login/LogInForm';
+import MyProfile from './components/MyProfile/MyProfile';
 import NavBar from './components/NavBar/NavBar';
 import NotFound from './components/NotFound/NotFound';
-import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import PrivateRoute from './routes/PrivateRoute';
-import withUserBackEnd from './components/HOC/MyProfileHOC';
-import MyProfile from './components/MyProfile/MyProfile';
-import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
+import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
 import forgotBackend from './components/HOC/ForgotPassHOC';
-import { ToastContainer, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import navBarBackend from './components/HOC/NavBarHOC';
+import withUserBackEnd from './components/HOC/MyProfileHOC';
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard';
-import navBarBackend from './components/HOC/NavBarHOC';
+import { ToastContainer, Slide } from 'react-toastify';
 
 class App extends Component {
   render() {

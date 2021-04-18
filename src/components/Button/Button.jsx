@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import './Button.css';
+import PropTypes from 'prop-types';
 
 /**
  * ## How it works

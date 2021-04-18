@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import withUsersFetch from '../HOC/UserListHOC';
-import UserList from '../UserList/UserList';
+import './Dashboard.css';
 import AddUserForm from '../AddUser/AddUserForm';
 import Button from '../Button/Button'
-import './Dashboard.css';
+import UserList from '../UserList/UserList';
 import addUserBackend from '../HOC/AddUserFormHOC';
+import withUsersFetch from '../HOC/UserListHOC';
 
 /**
  * ## How it works

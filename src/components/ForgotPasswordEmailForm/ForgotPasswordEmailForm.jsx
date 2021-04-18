@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import passwordIcon from '../../assets/password_black_24dp.svg';
 import './ForgotPasswordEmailForm.css';
 import Button from '../Button/Button'
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
-import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
+import passwordIcon from '../../assets/password_black_24dp.svg';
+import { toast } from 'react-toastify'
 
 /**
  * ## How it works

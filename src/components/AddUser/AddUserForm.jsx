@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
-import addUserIcon from '../../assets/person_add_black_24dp.svg';
 import Button from '../Button/Button'
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
-import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import addUserIcon from '../../assets/person_add_black_24dp.svg';
+import { toast } from 'react-toastify'
 
 
 /**

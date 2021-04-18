@@ -1,6 +1,6 @@
+import './UnauthorizedCard.css';
 import errorIcon from '../../assets/error_black_24dp.svg';
 import { Link } from "react-router-dom";
-import './UnauthorizedCard.css';
 
 /**
  * ## How it works

@@ -3,11 +3,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import './NavBar.css';
+import Button from '../Button/Button'
+import PropTypes from 'prop-types';
 import accountCircle from '../../assets/account_circle.svg';
 import { Link } from "react-router-dom";
-import Button from '../Button/Button'
 import { toast } from 'react-toastify'
-import PropTypes from 'prop-types';
 
 /**
  * ## How it works

@@ -1,6 +1,6 @@
+import './NotFound.css';
 import pageNotFoundIcon from '../../assets/page_not_found_black_24dp.svg';
 import { Link } from "react-router-dom";
-import './NotFound.css';
 
 /**
  * ## How it works
