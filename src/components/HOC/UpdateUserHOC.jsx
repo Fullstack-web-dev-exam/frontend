@@ -14,32 +14,33 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateDashboard = async (userObject) => {
-            const res = await updateUser(userObject);
-
-            if (res.error) {
-                this.setState({ error: res.error });
-            } else {
+            try {
+                await updateUser(userObject);
+            }  catch (error) {
+                this.setState({ error: error.response.data.message });
+            }
+            
+            if (!this.state.error) {
                 this.setState({ data: userObject });
                 this.props.onUpdateForm();
             }
         }
 
         updateProfile = async (userObject) => {
-            const res = await updateMyProfile(userObject);
+            try {
+                await updateMyProfile(userObject);
 
-            if (res.error) {
-                this.setState({ error: res.error });
-            } else {
+            } catch (error) {
+                this.setState({ error: error.response.data.message });
+            }
+
+            if (!this.state.error) {
                 this.setState({ data: userObject });
                 this.props.onUpdateForm();
             }
         }
 
         render() {
-            if (this.state.error) {
-                return (<p>{this.state.error}</p>)
-            }
-
             return (<WrappedComponent
                 selectedUser={this.props.selectedUser}
                 place={this.props.place}
