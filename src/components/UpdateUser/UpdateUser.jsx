@@ -156,7 +156,7 @@ class UpdateUserForm extends Component {
 
             if (this.props.place === "dashboard") {
                 await this.props.onUpdateDashboard(userObject);
-                
+
                 if (this.props.error) {
                     notifyError(`There was an error: ${this.props.error}`)
                 } else {
@@ -164,7 +164,7 @@ class UpdateUserForm extends Component {
                 }
             } else {
                 await this.props.onUpdateProfile(userObject);
-                
+
                 if (this.props.error) {
                     notifyError(`There was an error: ${this.props.error}`)
                 } else {
@@ -179,18 +179,24 @@ class UpdateUserForm extends Component {
     }
 
     passwordValidation() {
-        if (this.state.password === this.state.repeatpassword) {
-            this.setState({
-                passwordError: false
-            });
-            return true;
+        if(this.state.password && this.state.repeatpassword && this.state.oldPassword) {
+            if (this.state.password === this.state.repeatpassword) {
+                this.setState({
+                    passwordError: false
+                });
+                return true;
+            } else {
+                this.setState({
+                    passwordError: true
+                });
+                notifyError('The passwords entered do not match.')
+                return false;
+            }
         } else {
-            this.setState({
-                passwordError: true
-            });
-            notifyError('The passwords entered do not match.')
+            notifyError("You need to enter all password fields");
             return false;
         }
+        
     }
 
     //Close the red error message that pops up when the two passwords do not match
@@ -281,18 +287,6 @@ class UpdateUserForm extends Component {
 
                             {this.props.place === "profile" &&
                                 <>
-
-                                    <label htmlFor="oldPassword">old password</label>
-                                    <input
-                                        id="oldPassword"
-                                        name="oldPassword"
-                                        onChange={this.handleInputChange}
-                                        placeholder="Enter Your Old Password"
-                                        title="Eight or more characters"
-                                        type="password"
-                                        value={this.state.oldPassword}
-                                    />
-
                                     <label htmlFor="password">new password</label>
                                     <input
                                         id="password"
@@ -316,6 +310,17 @@ class UpdateUserForm extends Component {
                                         title="Eight or more characters"
                                         type="password"
                                         value={this.state.repeatpassword}
+                                    />
+
+                                    <label htmlFor="oldPassword">old password</label>
+                                    <input
+                                        id="oldPassword"
+                                        name="oldPassword"
+                                        onChange={this.handleInputChange}
+                                        placeholder="Enter Your Old Password"
+                                        title="Eight or more characters"
+                                        type="password"
+                                        value={this.state.oldPassword}
                                     />
                                 </>}
                             {this.state.passwordError && <UserFeedbackCard onClick={this.handleClosePassword} variant="error" feedbackText="The passwords entered are not the same." />}

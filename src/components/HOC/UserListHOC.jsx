@@ -46,8 +46,7 @@ function withUsersFetch(WrappedComponent) {
         }
 
         fetchData = async () => {
-            const headers = this.context.generateHeaders();
-            const res = await fetchAllUsers(headers)
+            const res = await fetchAllUsers()
 
             if (res.error) {
                 this._isMounted && this.setState({
@@ -77,8 +76,7 @@ function withUsersFetch(WrappedComponent) {
 
         deleteUser = async () => {
             const emailToDelete = { email: this.state.selectedUser.email };
-            const headers = await this.context.generateHeaders();
-            const res = await deleteUser(headers.headers, emailToDelete);
+            const res = await deleteUser(emailToDelete);
 
             if (res.error) {
                 this.setState({
