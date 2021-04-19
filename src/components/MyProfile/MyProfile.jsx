@@ -24,6 +24,7 @@ import accountCircle from '../../assets/person_black_24dp.svg';
  * 4. Because the content is a component, we can render it in the `render()` method.
  */
 function MyProfile({ selectedUser, handleEditClick }) {
+    console.log(selectedUser);
     return (
         <div className="container">
             <img src={accountCircle} alt="Account Circle icon" />
