@@ -3,7 +3,7 @@ import withUsersFetch from '../HOC/UserListHOC';
 import UserList from '../UserList/UserList';
 import AddUserForm from '../AddUser/AddUserForm';
 import Button from '../Button/Button'
-import './dashboard.css';
+import './Dashboard.css';
 import addUserBackend from '../HOC/AddUserFormHOC';
 
 class Dashboard extends Component {
