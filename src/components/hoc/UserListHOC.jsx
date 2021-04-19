@@ -28,17 +28,19 @@ function withUsersFetch(WrappedComponent) {
 
         resetPassword = async () => {
             const email = this.state.selectedUser.email;
+            this.setState({isLoading: true});
             const res = await forgot({userEmail: email});
 
             if(res.error){
-                this.setState({ error: res.error });
+                this.setState({ error: res.error, isLoading: false });
                 notifyError("Something went wrong... please try again.")
             } else {
                 notifySuccess(`An email with instructions have been sent to ${email}.`)
                 this.setState({
                     edit: false,
                     selectedUser: {},
-                    error: null
+                    error: null,
+                    isLoading: false
                 })
             }
         }
