@@ -3,7 +3,7 @@ import axios from 'axios';
 import { tokenRefresh } from './users';
 const { storeExpiry, read } = require('../helpers/refresh-token');
 
-// FIKS CORS I BACKEND
+// FIKS CORS I BACKEND?
 
 console.log("This is the API ", process.env);
 
@@ -60,12 +60,10 @@ function createAxiosResponseInterceptor(axiosInstance) {
                                 const config = error.config;
                                 return await axiosInstance({ method: config.method, url: config.url, data: config.data });
                             } catch (e) {
-                                //return window.location.href = '/403';
-                                break;
+                                return window.location.href = '/403';
                             }
                         } else {
-                            //return window.location.href = '/403';
-                            break;
+                            return window.location.href = '/403';
                         }
                     default:
                         return Promise.reject(error);

@@ -82,7 +82,7 @@ class LogInForm extends Component {
                 this.setState({ redirect: "/profile" });
             }
         } else {
-            alert("This form is not valid!");
+            notifyError("This form is not valid!");
             this.setState({ error: true });
         }
     }
