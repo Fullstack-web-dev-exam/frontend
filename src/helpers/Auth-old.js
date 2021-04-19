@@ -2,7 +2,8 @@
 // and https://codesandbox.io/s/q9m26noky6?file=/src/helpers/AuthContext.js:0-638
 import React from 'react';
 import { login } from '../api/users';
-import { clear, read, store } from './refresh-token';
+import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './storage';
+//import { getToken, setToken, getAuth, setAuth, getRole, setRole, clearLocalStorage } from './cookieStorage';
 
 const INITIAL_STATE = { auth: false, token: null, role: null };
 
@@ -12,9 +13,9 @@ class AuthProvider extends React.Component {
     state = { ...INITIAL_STATE };
 
     componentDidMount() {
-        const token = read("token");
-        const isAuth = read("auth");
-        const role = read("role");
+        const token = getToken();
+        const isAuth = getAuth();
+        const role = getRole();
 
         if (token && isAuth) {
             this.setState({ auth: true, token, role });
@@ -29,9 +30,9 @@ class AuthProvider extends React.Component {
             const token = response.data.jwtToken;
 
             this.setState({ auth: true, token, role: userRole }, () => {
-                store("token", token)
-                store("auth", true)
-                store("role", userRole)
+                setToken(token)
+                setAuth(true)
+                setRole(userRole)
             });
             return response.data;
         } catch (error) {
@@ -41,28 +42,28 @@ class AuthProvider extends React.Component {
 
     logout = () => {
         this.setState({ ...INITIAL_STATE });
-        clear();
+        clearLocalStorage();
     };
 
     generateHeaders = () => {
         const response = {};
-        const token = this.state.token || read("token");
+        const token = this.state.token || getToken();
 
         if (token) {
             response.headers = {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token.token}`
             };
         }
         return response;
     }
 
     isAuthFunc = () => {
-        return this.state.auth || read("token") != null;
+        return this.state.auth || getToken() != null;
     };
 
     isRoleSet = () => {
-        if(this.state.role === "manager" || read("role") === "manager"){
+        if(this.state.role === "manager" || getRole() === "manager"){
             return true;
         } else {
             return false;
