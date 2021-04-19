@@ -33,7 +33,7 @@ class App extends Component {
                   <Route exact path="/reset_password">
                     <ForgotPassHOC />
                   </Route>
-                  <PrivateRoute exact path="/user">
+                  <PrivateRoute exact path="/profile">
                     <h1>Your Profile</h1>
                     <MyProfileWithHOC />
                   </PrivateRoute>

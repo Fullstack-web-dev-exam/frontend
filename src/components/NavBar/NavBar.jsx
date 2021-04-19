@@ -81,7 +81,7 @@ function Nav(props) {
                             <div className="navbar dropdown">
                                 <ul className="navbar dropdown-content">
                                     <li onClick={handleMenu} className="dropdown-li">
-                                        <Link to="/user">Profile</Link>
+                                        <Link to="/profile">Profile</Link>
                                     </li>
     
                                     {props.role === "manager" &&
