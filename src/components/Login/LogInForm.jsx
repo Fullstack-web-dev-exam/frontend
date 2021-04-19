@@ -71,7 +71,6 @@ class LogInForm extends Component {
         if (this.validation()) {
             const { email, password } = this.state;
             const res = await this.context.login({ email, password });
-            console.log(res);
 
             if (res.error) {
 

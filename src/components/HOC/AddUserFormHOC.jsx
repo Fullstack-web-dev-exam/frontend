@@ -17,7 +17,6 @@ function addUserBackend(WrappedComponent) {
             try {
                 await createUser(userObject);
             } catch (error) {
-                console.log(error);
                 this.setState({
                     error: error.response.data.message
                 })
