@@ -1,3 +1,4 @@
+// https://medium.com/swlh/how-to-implement-refresh-token-functionality-front-end-eff58ce52564
 const expiryDuration = 240000;
 const LOCAL_STORAGE_PREFIX = 'plants-';
 
