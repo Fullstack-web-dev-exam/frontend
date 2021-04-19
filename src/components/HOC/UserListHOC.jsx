@@ -46,7 +46,6 @@ function withUsersFetch(WrappedComponent) {
         }
 
         fetchData = async () => {
-            //const headers = this.context.generateHeaders();
             const res = await fetchAllUsers()
 
             if (res.error) {
@@ -77,7 +76,6 @@ function withUsersFetch(WrappedComponent) {
 
         deleteUser = async () => {
             const emailToDelete = { email: this.state.selectedUser.email };
-            //const headers = await this.context.generateHeaders();
             const res = await deleteUser(emailToDelete);
 
             if (res.error) {

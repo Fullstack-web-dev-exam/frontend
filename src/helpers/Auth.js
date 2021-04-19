@@ -45,19 +45,6 @@ class AuthProvider extends React.Component {
         await tokenRevoke();
     };
 
-    /* generateHeaders = () => {
-        const response = {};
-        const token = this.state.token || read("token");
-
-        if (token) {
-            response.headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            };
-        }
-        return response;
-    } */
-
     isAuthFunc = () => {
         return this.state.auth || read("token") != null;
     };

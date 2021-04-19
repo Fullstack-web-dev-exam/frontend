@@ -26,7 +26,6 @@ function withUserBackEnd(WrappedComponent) {
 
         //The fetchData method gets the data from the back-end and saves the current user in the sate
         fetchData = async () => {
-            //const headers = this.context.generateHeaders();
             const res = await fetchUser()
 
             if (res.error) {

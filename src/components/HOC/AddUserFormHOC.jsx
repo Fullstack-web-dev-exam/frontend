@@ -13,8 +13,6 @@ function addUserBackend(WrappedComponent) {
         }
 
         onSubmit = async (userObject) => {
-            //const headers = this.context.generateHeaders();
-
             //Send the information stored in the state to the back-end
             try {
                 await createUser(userObject);
