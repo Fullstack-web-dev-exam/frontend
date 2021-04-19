@@ -38,9 +38,6 @@ The task description is a follows:
 > password is being reset. The URL will render a form to let the user
 > create a new password.
 
-## Screenshots
-![Example screenshot](./img/screenshot.png)
-
 ## Technologies
 * React – version 17.0.2
 * Axios – version 0.21.1
