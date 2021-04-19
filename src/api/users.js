@@ -22,15 +22,15 @@ const forgot = (email) => {
 
 // Gardeners
 const fetchUser = () => {
-    return axios.get('/user');
+    return axios.get('/profile');
 }
 
 const updateMyProfile = ({ name, surname, password, oldPassword}) => {
-    return axios.patch('/user', { name, surname, password, oldPassword });
+    return axios.patch('/profile', { name, surname, password, oldPassword });
 }
 
 //Admins
-const createUser = (headers, { name, surname, email, role, password }) => {
+const createUser = ({ name, surname, email, role, password }) => {
     return axios.post('/dashboard', { name, surname, email, role, password });
 }
 

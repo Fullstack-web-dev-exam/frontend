@@ -12,7 +12,7 @@ import { notifySuccess, notifyError } from '../../helpers/notification';
  * ## How it works
  * The LogInForm component is a controlled form with inputs for the 
  * user's email and their password. At the bottom, a link to `/reset_password` is provided. 
- * When a user successfully logs in they are redirected to `/user`. When the 
+ * When a user successfully logs in they are redirected to `/profile`. When the 
  * user submits the form the information saved in the state is sent to the 
  * back and via the `login` method provided by `static contextType = AuthContext;` 
  * If the user already is logged in and tries to visit the login form it 
@@ -80,7 +80,7 @@ class LogInForm extends Component {
                 notifyError("Wrong email and/or password. Please try again.")
             } else {
                 notifySuccess("You are now logged in.")
-                this.setState({ redirect: "/user" });
+                this.setState({ redirect: "/profile" });
             }
         } else {
             alert("This form is not valid!");
@@ -139,7 +139,7 @@ class LogInForm extends Component {
                 {this.context.isAuth && <div className="container loggedIn">
                     <img src={lockOpenIcon} alt="" />
                     <p>You're already logged in.</p>
-                    <Link to="/user">Visit your user page here.</Link>
+                    <Link to="/profile">Visit your user page here.</Link>
                 </div>}
             </>
         );

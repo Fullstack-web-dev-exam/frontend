@@ -14,9 +14,9 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateDashboard = async (userObject) => {
-            const headers = this.context.generateHeaders();
+            //const headers = this.context.generateHeaders();
 
-            const res = await updateUser(headers, userObject);
+            const res = await updateUser(userObject);
 
             if (res.error) {
                 this.setState({ error: res.error });
@@ -27,9 +27,9 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateProfile = async (userObject) => {
-            const headers = this.context.generateHeaders();
+            //const headers = this.context.generateHeaders();
 
-            const res = await updateMyProfile(headers, userObject);
+            const res = await updateMyProfile(userObject);
 
             if (res.error) {
                 this.setState({ error: res.error });

@@ -45,7 +45,7 @@ class AuthProvider extends React.Component {
         await tokenRevoke();
     };
 
-    generateHeaders = () => {
+    /* generateHeaders = () => {
         const response = {};
         const token = this.state.token || read("token");
 
@@ -56,7 +56,7 @@ class AuthProvider extends React.Component {
             };
         }
         return response;
-    }
+    } */
 
     isAuthFunc = () => {
         return this.state.auth || read("token") != null;
@@ -80,8 +80,7 @@ class AuthProvider extends React.Component {
                     role: this.state.role,
                     isRoleSet: this.isRoleSet,
                     login: this.login,
-                    logout: this.logout,
-                    generateHeaders: this.generateHeaders
+                    logout: this.logout
                 }}
             >
                 {this.props.children}

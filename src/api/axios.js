@@ -21,7 +21,6 @@ function createAxiosResponseInterceptor(axiosInstance) {
 
     const refreshToken = async () => {
         const response = await tokenRefresh();
-        console.log(response);
 
         storeExpiry("token", response.data.jwtToken, true);
 
