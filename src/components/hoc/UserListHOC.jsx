@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { AuthContext } from '../../helpers/Auth';
-import { fetchAllUsers, deleteUser } from '../../api/users';
-import Popup from '../Popup/Popup'
-import { toast } from 'react-toastify'
 import Loading from '../Loading/Loading';
+import Popup from '../Popup/Popup'
+import { AuthContext } from '../../helpers/Auth';
+import { fetchAllUsers, deleteUser, forgot } from '../../api/users';
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
 function withUsersFetch(WrappedComponent) {
     class UserListHOC extends Component {
@@ -24,6 +24,23 @@ function withUsersFetch(WrappedComponent) {
         async componentDidMount() {
             this._isMounted = true;
             await this.fetchData();
+        }
+
+        resetPassword = async () => {
+            const email = this.state.selectedUser.email;
+            const res = await forgot({userEmail: email});
+
+            if(res.error){
+                this.setState({ error: res.error });
+                notifyError("Something went wrong... please try again.")
+            } else {
+                notifySuccess(`An email with instructions have been sent to ${email}.`)
+                this.setState({
+                    edit: false,
+                    selectedUser: {},
+                    error: null
+                })
+            }
         }
 
         fetchData = async () => {
@@ -57,24 +74,23 @@ function withUsersFetch(WrappedComponent) {
         }
 
         deleteUser = async () => {
-            const deletedEmail = { email: this.state.selectedUser.email };
+            const emailToDelete = { email: this.state.selectedUser.email };
             const headers = await this.context.generateHeaders();
-            const res = await deleteUser(headers.headers, deletedEmail);
-
-            await this.fetchData();
+            const res = await deleteUser(headers.headers, emailToDelete);
 
             if (res.error) {
                 this.setState({
                     error: res.error
                 })
-                this.notifyError();
+                notifyError("Something went wrong... please try again.")
             } else {
                 this.setState({
                     delete: false,
                     selectedUser: {},
                     error: null
-                })
-                this.notifySuccess();
+                });
+                await this.fetchData();
+                notifySuccess("The user has been deleted. 🗑️");
             }
         }
 
@@ -95,18 +111,6 @@ function withUsersFetch(WrappedComponent) {
             })
         }
 
-        notifySuccess = () => {
-            toast.success("The user has been deleted. 🗑️", {
-                position: toast.POSITION.BOTTOM_RIGHT
-            });
-        };
-
-        notifyError = () => {
-            toast.error("Something went wrong... please try again.", {
-                position: toast.POSITION.BOTTOM_RIGHT
-            });
-        };
-
         render() {
             if (this.state.isLoading) {
                 return (<Loading />);
@@ -116,10 +120,13 @@ function withUsersFetch(WrappedComponent) {
                 <>
                     <WrappedComponent handleEditClick={this.selectEdit} handleDeleteClick={this.selectDelete} users={this.state.users} {...this.props} />
                     {this.state.edit &&
+                        
+                        //Update user form
                         <Popup
                             onAbortClick={this.cancelAction}
                             onEditUser={this.editUser}
                             onUpdateForm={this.fetchData}
+                            onResetClick={this.resetPassword}
                             place="dashboard"
                             popupVariant="edit"
                             user={this.state.selectedUser}

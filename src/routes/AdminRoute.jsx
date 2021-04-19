@@ -12,7 +12,7 @@ const AdminRoute = ({ children, ...rest }) => (
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/401",
+                            pathname: "/403",
                             state: { from: location }
                         }}
                     />

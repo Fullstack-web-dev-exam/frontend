@@ -1,5 +1,17 @@
-import PropTypes from 'prop-types';
 import './Button.css';
+import PropTypes from 'prop-types';
+
+/**
+ * ## How it works
+ * The button component is independent. 
+ * It returns an `<button>` HTML tag with different attributes provided via props when calling the component. 
+ * Classes are applied via props to generate different visual styles.
+ * 
+ * ## Usage
+ *  1. The Button component can be used by first importing it from `src/components/Button/Button`.
+ *  2. Write `<Button />` where you want the button to appear on the page when rendered.
+ *  3. Provide the `<Button />` component with relevant props. Such a 'label' and 'variant'. (See `Button.propTypes` for more details)
+ */
 
 function Button(props) {
     const { variant, type, onClick, disabled, label, size, active } = props;
@@ -39,7 +51,12 @@ Button.propTypes = {
     /** The OnClick eventHandler. */
     onClick: PropTypes.func,
 
-    /** The width of the button. */
+    /** The width of the button.
+     * 
+     * 'full' takes 100% of the parent's container's width. 
+     * 
+     * 'half' takes 49% of the parent's container's width (Great for button side-by-side).
+    */
     size: PropTypes.oneOf(['full', 'half']),
 
     /** The type of the button (HTML type attribute). */

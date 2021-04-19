@@ -1,10 +1,57 @@
 import React, { Component } from 'react';
-import editUserForm from '../../assets/edit_black_24dp.svg';
-import { AuthContext } from '../../helpers/Auth';
 import Button from '../Button/Button'
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
-import { toast } from 'react-toastify'
 import PropTypes from 'prop-types';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
+import editUserFormIcon from '../../assets/edit_black_24dp.svg';
+import { AuthContext } from '../../helpers/Auth';
+import { toast } from 'react-toastify';
+import { notifySuccess, notifyError } from '../../helpers/notification';
+
+/**
+ * ## How it works
+ * The `UpdateUserForm` component is a controlled form that has inputs depending on where it is rendered. 
+ * The form allows the user to either update their own information, including first name, surname, and password. 
+ * If the logged-in user is a manager, they can update the information of gardeners, including email, first name, surname, role and password. 
+ * When the form is rendered it already includes some of the information of the user. 
+ * It gets this data from the '`UpdateUserHOC`' located in '`src/components/HOC/UserListHOC`'. 
+ * This HOC file also contains the functionality for sending the data from the front-end to the back-end, 
+ * for example, the '`updateProfile`' and '`updateDashboard`' methods that are passed down to the component.
+ * A default state is also available (where there is no place specified). 
+ * This unused state only renders input fields for first name and surname.
+ * 
+ * ## Usage
+ * @summary `UpdateUserHOC` contains the functionality and UpdateUser only displays data and calls methods from inside `UpdateUserHOC`.
+ * 
+ * The component can be used in two ways. Either on the logged-in user's profile or the dashboard view.
+ * 
+ * ### Profile view
+ * If the UpdateUser component is used on the profile page, make sure to have the `MyProfileHOC` and `MyProfile` component 
+ * working, otherwise, it will not work. This is because the `UpdateUser` form is rendered inside the `MyProfileHOC`.
+ * 
+ * 1. Import `UpdateUser` from '`src/components/UpdateUser/UpdateUser`' in `MyProfileHOC`.
+ * 
+ * 2. Because we are using the `UpdateUser` form, we also need to import the `UpdateUserHOC` from '`src/components/HOC/UpdateUserHOC`'
+ * 
+ * 3. Define a constant inside `MyProfileHOC` that is equal to `UpdateUser` wrapped by `UpdateUserHOC`. For example: `const UpdateUserHOC = updateUserBackend(UpdateUser);`
+ * 
+ * 4. Because the constant created is equal to an component, we can render it inside the `return` statement inside the render method of `MyProfileHOC`
+ * 
+ * ### Dashboard view
+ * If the `UpdateUser` component is used on the dashboard page, make sure to have the `UserListHOC`, `UserList`, `UserListItem`, and 
+ * lastly the `Popup` components working, otherwise, it will not work. This is because the `UpdateUser` form is rendered inside 
+ * a `Popup` component located in the `UserListHOC` file.
+ * 
+ * 1. In the `Popup` component file (`src/components/Popup/Popup`) import the `UpdateUserHOC` file (`src/components/HOC/UpdateUserHOC`) 
+ *    and the `UpdateUser` component from (`src/components/UpdateUser/UpdateUser`)
+ * 
+ * 2. Import the `Popup` component (`src/components/Popup/Popup`) in the `UserListHOC` file
+ * 
+ * 3. Define a constant inside `Popup` that is equal to `UpdateUser` wrapped by `UpdateUserHOC`. For example: 
+ *    `const UpdateUserHOC = updateUserBackend(UpdateUser);`
+ * 
+ * 4. Because the constant created is equal to a component, we can render it inside the return statement inside 
+ *    the render method of `Popup`. The form will now be rendered as a popup 'above' the other content.
+ */
 
 class UpdateUserForm extends Component {
     static contextType = AuthContext;
@@ -106,15 +153,24 @@ class UpdateUserForm extends Component {
 
         if (this.generalValidation() && this.passwordValidation()) {
             const userObject = this.getPayload()
+
             if (this.props.place === "dashboard") {
-                this.props.onUpdateDashboard(userObject);
-                this.notifySuccess();
+                await this.props.onUpdateDashboard(userObject);
+                
+                if (this.props.error) {
+                    notifyError(`There was an error: ${this.props.error}`)
+                } else {
+                    notifySuccess('The user has been updated')
+                }
             } else {
-                this.props.onUpdateProfile(userObject);
-                this.notifySuccess();
+                await this.props.onUpdateProfile(userObject);
+                
+                if (this.props.error) {
+                    notifyError(`There was an error: ${this.props.error}`)
+                } else {
+                    notifySuccess('The user has been updated')
+                }
             }
-
-
         }
     }
 
@@ -132,7 +188,7 @@ class UpdateUserForm extends Component {
             this.setState({
                 passwordError: true
             });
-            this.passwordError()
+            notifyError('The passwords entered do not match.')
             return false;
         }
     }
@@ -145,18 +201,21 @@ class UpdateUserForm extends Component {
         this.passwordInput.current.focus();
     }
 
+    //part of 'react-toastify'
     notifySuccess = () => {
         toast.success("The user has been updated", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //part of 'react-toastify'
     notifyError = () => {
         toast.error("The form did not pass validation", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+    //part of 'react-toastify'
     passwordError = () => {
         toast.error("The passwords entered do not match.", {
             position: toast.POSITION.BOTTOM_RIGHT
@@ -167,101 +226,106 @@ class UpdateUserForm extends Component {
         return (
             <>
                 <div className="container">
-                    <img src={editUserForm} alt="" />
+                    <img src={editUserFormIcon} alt="" />
                     <form ref={this.form} onSubmit={this.handleSubmit} method="POST">
                         <fieldset>
                             <legend>Update {this.pronoun} user information</legend>
-                                {this.props.place === "dashboard" &&
-                                    <>
-                                        <label htmlFor="email">email</label>
-                                        <input
-                                            id="email"
-                                            name="email"
-                                            onChange={this.handleInputChange}
-                                            placeholder="Enter Your New Email"
-                                            type="text"
-                                            value={this.state.email}
-                                        />
-                                    </>}
+                            {this.props.place === "dashboard" &&
+                                <>
+                                    <label htmlFor="email">email</label>
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        onChange={this.handleInputChange}
+                                        placeholder="Enter Your New Email"
+                                        type="email"
+                                        value={this.state.email}
+                                    />
+                                </>}
 
-                                <label htmlFor="firstname">first name</label>
-                                <input
-                                    id="firstname"
-                                    name="firstname"
-                                    onChange={this.handleInputChange}
-                                    placeholder="Enter Your New First Name"
-                                    ref={this.firstnameInput}
-                                    type="text"
-                                    value={this.state.firstname}
-                                />
+                            <label htmlFor="firstname">first name</label>
+                            <input
+                                id="firstname"
+                                name="firstname"
+                                onChange={this.handleInputChange}
+                                placeholder="Enter Your New First Name"
+                                ref={this.firstnameInput}
+                                type="text"
+                                value={this.state.firstname}
+                            />
 
-                                <label htmlFor="surname">surname</label>
-                                <input
-                                    id="surname"
-                                    name="surname"
-                                    onChange={this.handleInputChange}
-                                    placeholder="Enter Your New Surname"
-                                    type="text"
-                                    value={this.state.surname}
-                                />
+                            <label htmlFor="surname">surname</label>
+                            <input
+                                id="surname"
+                                name="surname"
+                                onChange={this.handleInputChange}
+                                placeholder="Enter Your New Surname"
+                                type="text"
+                                value={this.state.surname}
+                            />
 
-                                {this.props.place === "dashboard" &&
-                                    <>
-                                        <label htmlFor="role">role</label>
-                                        <select
-                                            id="role"
-                                            name="role"
-                                            onChange={this.handleInputChange}
-                                            value={this.state.role}
-                                        >
-                                            <option value="">Choose role</option>
-                                            <option value="gardener">Gardener</option>
-                                            <option value="manager">Manager</option>
-                                        </select>
-                                    </>}
+                            {this.props.place === "dashboard" &&
+                                <>
+                                    <label htmlFor="role">role</label>
+                                    <select
+                                        id="role"
+                                        name="role"
+                                        onChange={this.handleInputChange}
+                                        value={this.state.role}
+                                    >
+                                        <option value="">Choose role</option>
+                                        <option value="gardener">Gardener</option>
+                                        <option value="manager">Manager</option>
+                                    </select>
+                                </>}
 
-                                {this.props.place === "profile" &&
-                                    <>
+                            {this.props.place === "profile" &&
+                                <>
 
-                                        <label htmlFor="oldPassword">old password</label>
-                                        <input
-                                            id="oldPassword"
-                                            name="oldPassword"
-                                            onChange={this.handleInputChange}
-                                            placeholder="Enter Your Old Password"
-                                            title="Eight or more characters"
-                                            type="password"
-                                            value={this.state.oldPassword}
-                                        />
+                                    <label htmlFor="oldPassword">old password</label>
+                                    <input
+                                        id="oldPassword"
+                                        name="oldPassword"
+                                        onChange={this.handleInputChange}
+                                        placeholder="Enter Your Old Password"
+                                        title="Eight or more characters"
+                                        type="password"
+                                        value={this.state.oldPassword}
+                                    />
 
-                                        <label htmlFor="password">new password</label>
-                                        <input
-                                            id="password"
-                                            name="password"
-                                            onChange={this.handleInputChange}
-                                            pattern=".{8,}"
-                                            placeholder="Enter Your New Password"
-                                            ref={this.passwordInput}
-                                            title="Eight or more characters"
-                                            type="password"
-                                            value={this.state.password}
-                                        />
+                                    <label htmlFor="password">new password</label>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        onChange={this.handleInputChange}
+                                        pattern=".{8,}"
+                                        placeholder="Enter Your New Password"
+                                        ref={this.passwordInput}
+                                        title="Eight or more characters"
+                                        type="password"
+                                        value={this.state.password}
+                                    />
 
-                                        <label htmlFor="repeatpassword">repeat new password</label>
-                                        <input
-                                            id="repeatpassword"
-                                            name="repeatpassword"
-                                            onChange={this.handleInputChange}
-                                            pattern=".{8,}"
-                                            placeholder="Repeat Your New Password"
-                                            title="Eight or more characters"
-                                            type="password"
-                                            value={this.state.repeatpassword}
-                                        />
-                                    </>}
+                                    <label htmlFor="repeatpassword">repeat new password</label>
+                                    <input
+                                        id="repeatpassword"
+                                        name="repeatpassword"
+                                        onChange={this.handleInputChange}
+                                        pattern=".{8,}"
+                                        placeholder="Repeat Your New Password"
+                                        title="Eight or more characters"
+                                        type="password"
+                                        value={this.state.repeatpassword}
+                                    />
+                                </>}
                             {this.state.passwordError && <UserFeedbackCard onClick={this.handleClosePassword} variant="error" feedbackText="The passwords entered are not the same." />}
                             <Button type="submit" label="update" />
-                            {this.props.place === 'dashboard' && <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick} />}
+                            {this.props.place === 'dashboard' &&
+                                <>
+                                    <Button type="button" label="reset password" variant="danger" onClick={this.props.onResetClick} />
+                                    <Button type="button" label="cancel" variant="danger-outlined" onClick={this.props.onAbortClick} />
+                                </>
+                            }
 
                         </fieldset>
                     </form>
@@ -271,13 +335,18 @@ class UpdateUserForm extends Component {
     }
 }
 
-UpdateUserForm.propTypes = {
-    /** Checks if the button should be active (visually only).
-     * Currently, only the 'secondary-outlined" receives styles when active is set.
-    */
-    place: PropTypes.oneOf(['profile', 'dashboard']).isRequired,
+UpdateUserForm.defaultProps = {
+    place: 'none'
+}
 
-    /** Checks if the button should be disabled (HTML disabled attribute). */
+UpdateUserForm.propTypes = {
+    /** 
+     * The place props decides what input fields to show. On the users profile password fields are 
+     * rendered, but not an email input. If the place is dashboard a email input is rendered, but no password fields.
+    */
+    place: PropTypes.oneOf(['profile', 'dashboard', 'none']).isRequired,
+
+    /** Fills the form with the current information of the user, making it easy to edit the information. */
     selectedUser: PropTypes.shape({
         email: PropTypes.string,
         name: PropTypes.string,
@@ -285,14 +354,17 @@ UpdateUserForm.propTypes = {
         surname: PropTypes.string,
     }).isRequired,
 
-    /** The text to display on the button. */
+    /** eventHandler to update a user that is not the currently logged in user. */
     onUpdateDashboard: PropTypes.func,
 
-    /** The OnClick eventHandler. */
+    /** eventHandler to update the currently logged in user. */
     onUpdateProfile: PropTypes.func,
 
-    /** The width of the button. */
-    onAbortClick: PropTypes.func
+    /** eventHandler to exit the editing process (pressing cancel button -> clears the selected user and closes the form) */
+    onAbortClick: PropTypes.func,
+
+    /** eventHandler to reset the users password */
+    onResetClick: PropTypes.func
 }
 
 export default UpdateUserForm;

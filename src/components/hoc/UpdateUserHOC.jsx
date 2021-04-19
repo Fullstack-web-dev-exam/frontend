@@ -18,7 +18,7 @@ function updateUserBackend(WrappedComponent) {
 
             const res = await updateUser(headers, userObject);
 
-            if(res.error){
+            if (res.error) {
                 this.setState({ error: res.error });
             } else {
                 this.setState({ data: userObject });
@@ -31,7 +31,7 @@ function updateUserBackend(WrappedComponent) {
 
             const res = await updateMyProfile(headers, userObject);
 
-            if(res.error){
+            if (res.error) {
                 this.setState({ error: res.error });
             } else {
                 this.setState({ data: userObject });
@@ -44,7 +44,15 @@ function updateUserBackend(WrappedComponent) {
                 return (<p>{this.state.error}</p>)
             }
 
-            return (<WrappedComponent selectedUser={this.props.selectedUser} place={this.props.place} onUpdateDashboard={this.updateDashboard} onUpdateProfile={this.updateProfile} onAbortClick={this.props.onAbortClick}/>);
+            return (<WrappedComponent
+                selectedUser={this.props.selectedUser}
+                place={this.props.place}
+                onResetClick={this.props.onResetClick}
+                onUpdateDashboard={this.updateDashboard}
+                onUpdateProfile={this.updateProfile}
+                onAbortClick={this.props.onAbortClick}
+                error={this.state.error}
+            />);
         }
     }
 

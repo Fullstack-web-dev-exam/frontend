@@ -6,9 +6,7 @@
   padding: 0;
   overflow: auto;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,12 +16,13 @@ main {
 }
 
 .container {
-  max-width: 550px;
-  min-width: 240px;
-  margin: 2% auto 0 auto;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   border-radius: 10px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  margin: 2% auto 0 auto;
+  max-width: 550px;
+  min-width: 240px;
+  overflow:hidden;
   padding: 1em;
 }
 
@@ -39,19 +38,18 @@ fieldset {
 }
 
 legend {
-  text-align: center;
   font-size: 2em;
   margin: .5em auto;
+  text-align: center;
 }
 
 a {
-  color: var(--secondary);
-  transition: .3s;
+  color: var(--sDark);
   text-decoration: none;
+  transition: .3s;
 }
 
 a:hover {
-  color: var(--sDark);
   text-decoration: underline;
 }
 
@@ -59,12 +57,13 @@ input[type=text],
 input[type=password],
 input[type=email],
 select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0 24px;
-  display: inline-block;
   border: 1px solid var(--gray4);
   box-sizing: border-box;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 0 24px;
+  padding: 12px 20px;
+  width: 100%;
 }
 
 label,
@@ -87,7 +86,7 @@ li {
   list-style-type: none;
 }
 
-.low-emphasis {
+.low-emphasis-text {
   color: var(--gray2)
 }
 

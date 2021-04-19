@@ -6,6 +6,7 @@ import '../../index.css'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from '../../helpers/Auth'
 
+
 //The default export metadata controls how Storybook lists your stories and provides information used by addons.
 export default {
     title: 'Components/LogInForm',
@@ -24,7 +25,7 @@ export default {
 
     //👇 We can specify which controls get used by declaring a custom argType
     argTypes: {
-        isAuth: true
+
     }
 }
 
@@ -32,7 +33,4 @@ export default {
 const Template = args => <LogInForm {...args} />
 
 //👇 Each story then reuses that template
-export const Primary = Template.bind({})
-
-
-Primary.args = {}
+export const LoggedOut = Template.bind({})

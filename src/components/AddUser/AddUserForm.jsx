@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import './AddUserForm.css';
+import Button from '../Button/Button';
+import PropTypes from 'prop-types';
+import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
 import addUserIcon from '../../assets/person_add_black_24dp.svg';
-import Button from '../Button/Button'
-import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard'
-import { toast } from 'react-toastify'
+import { notifySuccess, notifyError } from '../../helpers/notification';
 
+/**
+ * ## How it works
+ * The AddUserForm component returns a form where the user can add a new user to the database/system. 
+ * Because it communicates with the backend, it gets its `onSubmitHandler()` from `AddUserFormHOC`.
+ * 
+ * ## Usage
+ * 1. Import AddUserFormHOC from `src/components/HOC/AddUserFormHOC`
+ * 2. Import AddUserForm from `src/components/AddUser/AddUserForm`
+ * 3. Define a constant that is equal to `addUserBackend(AddUserForm)`. 
+ *    Because `addUserBackend(AddUserForm)` returns a component, we can return the constant (that now is equal to a component) in the render method. 
+ *    The result is a form that can communicate with the backend.
+ * 4. Place the returned component where you want the `AddUserForm` to render on the page.
+ */
 class AddUserForm extends Component {
 
     constructor(props) {
@@ -19,6 +33,7 @@ class AddUserForm extends Component {
             passwordError: false,
             submitted: false
         }
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,6 +58,7 @@ class AddUserForm extends Component {
     }
 
     //HandleSubmit runs two validators, first checking if the passwords match, thereafter a more general form validator
+    //Then call the onSubmitHandler prop and send the state to the database.
     async handleSubmit(event) {
         event.preventDefault();
 
@@ -54,20 +70,26 @@ class AddUserForm extends Component {
                 role: this.state.role,
                 password: this.state.password
             }
+            //add the information from the state to database
             await this.props.onSubmitHandler(userObject);
 
-            this.setState({
-                firstname: '',
-                surname: '',
-                email: '',
-                role: 'gardener',
-                password: '',
-                repeatpassword: '',
-                submitted: true
-            })
-            this.notifySuccess();
+            if (this.props.error) {
+                notifyError(this.props.error);
+                return
+            } else {
+                notifySuccess(`The user ${this.state.firstname} ${this.state.surname} has been added.`);
+                this.setState({
+                    firstname: '',
+                    surname: '',
+                    email: '',
+                    role: 'gardener',
+                    password: '',
+                    repeatpassword: '',
+                    submitted: true
+                })
+            }
         } else {
-            this.notifyError();
+            notifyError('There was an error.');
         }
     }
 
@@ -85,7 +107,7 @@ class AddUserForm extends Component {
             this.setState({
                 passwordError: true
             });
-            this.passwordError()
+            notifyError('The passwords entered do not match.')
             return false;
         }
     }
@@ -98,27 +120,6 @@ class AddUserForm extends Component {
         });
         this.passwordInput.current.focus();
     }
-
-    //Part of 'react-toastify'
-    notifySuccess = () => {
-        toast.success("The user has been added", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-
-    //Part of 'react-toastify'
-    notifyError = () => {
-        toast.error("There was an error", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-
-    //Part of 'react-toastify'
-    passwordError = () => {
-        toast.error("The passwords entered do not match.", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
 
     render() {
         return (
@@ -162,10 +163,8 @@ class AddUserForm extends Component {
                                         id="email"
                                         name="email"
                                         onChange={this.handleInputChange} value={this.state.email}
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         placeholder="Enter Their Email"
                                         required
-                                        title="Please enter a valid email"
                                         type="email"
                                     />
                                 </div>
@@ -215,6 +214,7 @@ class AddUserForm extends Component {
 
                             {this.state.passwordError && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The passwords entered are not the same." />}
                             {this.state.submitted && <UserFeedbackCard variant="success" onClick={this.handleClose} feedbackText="The user has been added" />}
+                            {this.props.error && <UserFeedbackCard variant="error" onClick={this.handleClose} feedbackText="The email is already in use" />}
 
                             <Button label="add new user" size="full" variant="primary" type="submit" />
                         </fieldset>
@@ -223,6 +223,10 @@ class AddUserForm extends Component {
             </>
         );
     }
+}
+
+AddUserForm.propTypes = {
+    onSubmitHandler: PropTypes.func,
 }
 
 export default AddUserForm;

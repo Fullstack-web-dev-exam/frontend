@@ -24,6 +24,6 @@ export default {
 const Template = args => <ForgotPasswordEmailForm {...args} />
 
 //👇 Each story then reuses that template
-export const Primary = Template.bind({})
+export const Default = Template.bind({})
 
-Primary.args = {}
+Default.args = {}

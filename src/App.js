@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import AdminRoute from './routes/AdminRoute';
-import LogInForm from './components/Login/LogInForm';
-import NavBar from './components/NavBar/NavBar';
-import NotFound from './components/NotFound/NotFound';
-import UnauthorizedCard from './components/UnauthorizedCard/UnauthorizedCard';
-import PrivateRoute from './routes/PrivateRoute';
-import withUsersBackEnd from './components/HOC/MyProfileHOC';
-import MyProfile from './components/MyProfile/MyProfile';
-import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
-import forgotBackend from './components/HOC/ForgotPassHOC';
-import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminRoute from './routes/AdminRoute';
+import Dashboard from './components/Dashboard/Dashboard';
+import ForgotPasswordEmailForm from './components/ForgotPasswordEmailForm/ForgotPasswordEmailForm';
+import LogInForm from './components/Login/LogInForm';
+import MyProfile from './components/MyProfile/MyProfile';
+import NavBar from './components/NavBar/NavBar';
+import PrivateRoute from './routes/PrivateRoute';
+import StatusCard from './components/StatusCard/StatusCard';
+import forgotBackend from './components/HOC/ForgotPassHOC';
+import navBarBackend from './components/HOC/NavBarHOC';
+import withUserBackEnd from './components/HOC/MyProfileHOC';
 import { AuthConsumer } from './helpers/Auth';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard';
-import navBarBackend from './components/HOC/NavBarHOC';
+import { ToastContainer, Slide } from 'react-toastify';
 
 class App extends Component {
   render() {
 
-    const MyProfileWithHOC = withUsersBackEnd(MyProfile);
+    const MyProfileWithHOC = withUserBackEnd(MyProfile);
     const ForgotPassHOC = forgotBackend(ForgotPasswordEmailForm);
     const NavBarHOC = navBarBackend(NavBar);
-
 
     return (
       <AuthConsumer>
@@ -41,6 +39,7 @@ class App extends Component {
                   </PrivateRoute>
                   <PrivateRoute exact path="/dashboard">
                     <AdminRoute >
+                      <h1>Dashboard</h1>
                       <Dashboard />
                     </AdminRoute>
                   </PrivateRoute>
@@ -53,11 +52,11 @@ class App extends Component {
                   <Route exact path="/">
                     <h1>Home page</h1>
                   </Route>
-                  <Route exact path="/401">
-                    <UnauthorizedCard />
+                  <Route exact path="/403">
+                    <StatusCard statusCode={403} statusText="Forbidden" />
                   </Route>
                   <Route>
-                    <NotFound />
+                    <StatusCard statusCode={404} statusText="Page Not Found" />
                   </Route>
                 </Switch>
               </main>

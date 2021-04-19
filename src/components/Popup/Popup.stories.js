@@ -17,7 +17,9 @@ export default {
     },
     decorators: [story =>
         <AuthProvider>
+            <div style={{ height: '650px' }}>
                 {story()}
+            </div>
         </AuthProvider>],
 
     //👇 We can specify which controls get used by declaring a custom argType

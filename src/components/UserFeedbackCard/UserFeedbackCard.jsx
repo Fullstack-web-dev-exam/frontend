@@ -1,5 +1,21 @@
-import PropTypes from 'prop-types';
 import './UserFeedbackCard.css';
+import PropTypes from 'prop-types';
+
+/**
+ * ## How it works
+ * The user `UserFeedbackCard` component is a simple component that displays an error message or a success 
+ * message informing the user about which state the application is in. It can display an error message 
+ * on a red background, or a success message on a blue background. The values displayed are provided by props.
+ * 
+ * ## Usage
+ * To use the `UserFeedbackCard` component on a page:
+ * 
+ * 1. Import the `UserFeedbackCard` component from '`src/components/UserFeedbackCard/UserFeedbackCard`'
+ * 
+ * 2. Write `<UserfeedbackCard />` where you want to render some feedback. 
+ * 
+ * 3. Provide appropriate to the component such as variant and text.
+ */
 
 function UserFeedbackCard(props) {
     const { variant, onClick, feedbackText } = props;

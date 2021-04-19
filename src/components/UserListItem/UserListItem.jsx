@@ -2,6 +2,23 @@ import './UserListItem.css';
 import Button from '../Button/Button'
 import PropTypes from 'prop-types';
 
+/**
+ * ## How it works
+ * The UserListItem is responsible for displaying a single user that it receives from its props. 
+ * It displays the name, surname, email, and role of a user. It also renders two buttons letting 
+ * a user edit the information or delete the user. If the user displayed is a gardener the edit 
+ * and delete buttons will be disabled.
+ * 
+ * ## Usage
+ * The component is supposed to be inside a map function inside `UserList`
+ * 
+ * 1. Import `UserListItem` (`src/components/UserListItem/UserListItem`) in the `UserList` (`src/components/UserList/UserList`) file. 
+ * 
+ * 2. Write `<UserListItem />` inside the map function in the `UserList` file.
+ * 
+ * 3. Provide the `<UserListItem />` with the appropriate props such as `user` and event handlers.
+ */
+
 function UserListItem({ user, handleDeleteClick, handleEditClick }) {
     return (<li>
         <div className="container userlist">
