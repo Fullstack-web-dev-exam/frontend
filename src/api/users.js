@@ -7,6 +7,10 @@ const tokenRefresh = () => {
     return axios.post('/refresh-token');
 };
 
+const tokenRevoke = () => {
+    return axios.post('revoke-token');
+}
+
 // Anonymous
 const login = (email, password) => {
     return axios.post('/login', { email, password });
@@ -44,6 +48,7 @@ const deleteUser = ({ email }) => {
 
 export {
     tokenRefresh,
+    tokenRevoke,
     login,
     forgot,
     updateMyProfile,
