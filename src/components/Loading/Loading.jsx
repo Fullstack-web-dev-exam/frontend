@@ -8,8 +8,8 @@ const BounceAnimation = keyframes`
 `;
 
 const DotWrapper = styled.div`
-    display: flex;
     align-items: flex-end;
+    display: flex;
     justify-content: center;
     margin-top: 4.5em;
 `;
@@ -17,9 +17,9 @@ const DotWrapper = styled.div`
 const Dot = styled.div`
     background-color: black;
     border-radius: 50%;
-    width: 10px;
     height: 10px;
     margin: 0 5px;
+    width: 10px;
     
     animation: ${BounceAnimation} 0.5s linear infinite;
     animation-delay: ${props => props.delay};

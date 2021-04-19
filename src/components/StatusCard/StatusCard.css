@@ -4,9 +4,9 @@
 }
 
 .big-number {
-    font-size: 5em;
+    color: var(--primary);
     display: block;
-    color: var(--primary)
+    font-size: 5em;
 }
 
 .big-number.orange {
