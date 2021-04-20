@@ -58,8 +58,7 @@ To install the application follow these instructions. (Assuming you have the bac
  6. Your browser will now open with an instance of the application running on localhost.
 
  ### Storybook
- 1. To start Storybook in development mode run `npm run storybook`.
- 2. To locally run the static/built version of Storybook run `npx localhost ./storybook-static`, the visit the URL the terminal returns.
+ 1. To locally run the static/built version of Storybook run `npx localhost ./storybook-static`, the visit the URL the terminal returns.
 
 ## Features
 
