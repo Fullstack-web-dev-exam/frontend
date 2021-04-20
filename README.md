@@ -48,6 +48,7 @@ The task description is a follows:
 ## Setup
 To install the application follow these instructions. (Assuming you have the back-end part of the application).
 
+### Main application
  1. Download the files from GitHub.
  2. Open the project folder in an external editor. We have used Visual.
     Studio Code during development.
@@ -55,6 +56,10 @@ To install the application follow these instructions. (Assuming you have the bac
  4. When doing `npm install`, you may need to add the `--legacy-peer-deps` flag if you want Storybook to function properly ([https://stackoverflow.com/a/66620869](https://stackoverflow.com/a/66620869)).
  5. Run the `npm start` command to start the application.
  6. Your browser will now open with an instance of the application running on localhost.
+
+ ### Storybook
+ 1. To start Storybook in development mode run `npm run storybook`.
+ 2. To locally run the static/built version of Storybook run `npx localhost ./storybook-static`, the visit the URL the terminal returns.
 
 ## Features
 
