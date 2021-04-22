@@ -1,6 +1,7 @@
 # Final project
 IDG2100 Full-stack Web development
 Group 1
+https://stackoverflow.com/questions/53768470/problems-with-babel-loader-in-react-create-app
 
 ## Table of contents
 * [General info](#general-info)
