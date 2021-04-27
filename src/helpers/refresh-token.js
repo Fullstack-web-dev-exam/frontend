@@ -40,7 +40,7 @@ const readExpiry = (key) => {
 };
 
 const clear = () => {
-    localStorage.clear();
+    window.localStorage.clear();
     return null;
 }
 
