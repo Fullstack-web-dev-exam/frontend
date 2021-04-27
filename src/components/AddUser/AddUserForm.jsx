@@ -57,7 +57,7 @@ class AddUserForm extends Component {
         });
     }
 
-    //HandleSubmit runs two validators, first checking if the passwords match, thereafter a more general form validator
+    //HandleSubmit runs two validators, first checking if the passwords match, after that, a more general form validator.
     //Then call the onSubmitHandler prop and send the state to the database.
     async handleSubmit(event) {
         event.preventDefault();
