@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import UserFeedbackCard from '../UserFeedbackCard/UserFeedbackCard';
 import passwordIcon from '../../assets/password_black_24dp.svg';
 import { notifySuccess, notifyError } from '../../helpers/notification';
-import { emailIsValid} from '../../helpers/validation';
+import { emailIsValid } from '../../helpers/validation';
 
 /**
  * ## How it works

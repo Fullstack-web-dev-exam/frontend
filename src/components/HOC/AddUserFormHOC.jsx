@@ -24,9 +24,15 @@ function addUserBackend(WrappedComponent) {
             } 
         }
 
+        removeError = () => {
+            this.setState({
+                error: null
+            });
+        }
+
         render() { 
             return (
-                <WrappedComponent onSubmitHandler={this.onSubmit} error={this.state.error}/>
+                <WrappedComponent onSubmitHandler={this.onSubmit} error={this.state.error} removeErrorHandler={this.removeError}/>
             );
         }
     }
