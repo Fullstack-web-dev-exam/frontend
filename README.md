@@ -51,7 +51,7 @@ To install the application follow these instructions. (Assuming you have the bac
 
 ### Main application
  1. Download the files from GitHub.
- 2. Open the project folder in an external editor. We have used Visual.
+ 2. Open the project folder in an external editor. We have used Visual
     Studio Code during development.
  3. Open a terminal in the root folder of the project and run `npm install` to install the project dependencies.
  4. When doing `npm install`, you might need to add the `--legacy-peer-deps` flag if you want Storybook to function properly ([https://stackoverflow.com/a/66620869](https://stackoverflow.com/a/66620869)).
