@@ -13,14 +13,15 @@ function addUserBackend(WrappedComponent) {
         }
 
         onSubmit = async (userObject) => {
+            
             //Send the information stored in the state to the back-end
-            try {
+             try {
                 await createUser(userObject);
             } catch (error) {
                 this.setState({
-                    error: error.response.data.message
+                    error: error.response.data.error
                 })
-            }
+            } 
         }
 
         render() { 

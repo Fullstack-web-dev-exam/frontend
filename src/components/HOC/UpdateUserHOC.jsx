@@ -18,7 +18,7 @@ function updateUserBackend(WrappedComponent) {
             try {
                 await updateUser(userObject);
             }  catch (error) {
-                this.setState({ error: error.response.data.message });
+                this.setState({ error: error.response.data.error });
             }
             
             if (!this.state.error) {
@@ -33,7 +33,7 @@ function updateUserBackend(WrappedComponent) {
                 await updateMyProfile(userObject);
 
             } catch (error) {
-                this.setState({ error: error.response.data.message });
+                this.setState({ error: error.response.data.error });
             }
 
             if (!this.state.error) {
