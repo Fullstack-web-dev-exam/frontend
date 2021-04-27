@@ -14,10 +14,11 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateDashboard = async (userObject) => {
+            this.setState({error: null});
             try {
                 await updateUser(userObject);
             }  catch (error) {
-                this.setState({ error: error.response.data.message });
+                this.setState({ error: error.response.data.error });
             }
             
             if (!this.state.error) {
@@ -27,11 +28,12 @@ function updateUserBackend(WrappedComponent) {
         }
 
         updateProfile = async (userObject) => {
+            this.setState({error: null});
             try {
                 await updateMyProfile(userObject);
 
             } catch (error) {
-                this.setState({ error: error.response.data.message });
+                this.setState({ error: error.response.data.error });
             }
 
             if (!this.state.error) {

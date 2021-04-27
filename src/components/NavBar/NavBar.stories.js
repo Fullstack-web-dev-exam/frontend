@@ -15,7 +15,6 @@ export default {
         }
     },
     decorators: [story =>
-        
             <Router>
                 <div style={{ height: '130px' }}>
                     {story()}
@@ -36,7 +35,6 @@ const Template = args => <NavBar {...args} />
 export const LoggedOut = Template.bind({})
 export const LoggedInAsManager = Template.bind({})
 export const LoggedInAsGardener = Template.bind({})
-
 
 LoggedOut.args = {
     auth: false

@@ -1,6 +1,7 @@
 # Final project
 IDG2100 Full-stack Web development
 Group 1
+https://stackoverflow.com/questions/53768470/problems-with-babel-loader-in-react-create-app
 
 ## Table of contents
 * [General info](#general-info)
@@ -48,13 +49,23 @@ The task description is a follows:
 ## Setup
 To install the application follow these instructions. (Assuming you have the back-end part of the application).
 
+### Main application
  1. Download the files from GitHub.
  2. Open the project folder in an external editor. We have used Visual.
     Studio Code during development.
  3. Open a terminal in the root folder of the project and run `npm install` to install the project dependencies.
- 4. When doing `npm install`, you may need to add the `--legacy-peer-deps` flag if you want Storybook to function properly ([https://stackoverflow.com/a/66620869](https://stackoverflow.com/a/66620869)).
+ 4. When doing `npm install`, you might need to add the `--legacy-peer-deps` flag if you want Storybook to function properly ([https://stackoverflow.com/a/66620869](https://stackoverflow.com/a/66620869)).
  5. Run the `npm start` command to start the application.
  6. Your browser will now open with an instance of the application running on localhost.
+
+ ### Storybook
+ #### Static version
+ 1. To locally run the static/built version of Storybook run `npx localhost ./storybook-static`, the visit the URL the terminal returns.
+
+ #### Development version
+ 1. To run Storybook in its development mode run `npm run storybook` in the terminal. The storybook will automatically open in a new tab.
+
+We recommend checking out the "docs" part in storybook as it lists most of the information.
 
 ## Features
 
@@ -75,7 +86,7 @@ To install the application follow these instructions. (Assuming you have the bac
 ## Status
 
  - Project start: Apr 7, 2021.
- - Project end: **SETT IN DATO** lmao.
+ - Project end: Apr 30, 2021.
 
 The project is finished. Big chunks of the code are planned to be reused in another exam, but this repository will no longer be updated.
 

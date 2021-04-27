@@ -8,7 +8,7 @@ const tokenRefresh = () => {
 };
 
 const tokenRevoke = () => {
-    return axios.post('revoke-token');
+    return axios.post('/revoke-token');
 }
 
 // Anonymous

@@ -1,0 +1,530 @@
+.add-user-grid-container {
+    display: grid;
+    grid-gap: 5px 1em;
+    gap: 5px 1em;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+        "first-name-grid-item surname-grid-item"
+        "email-grid-item email-grid-item"
+        "role-grid-item role-grid-item"
+        "password-grid-item repeat-password-grid-item";
+}
+
+.first-name-grid-item {
+    grid-area: first-name-grid-item;
+}
+
+.surname-grid-item {
+    grid-area: surname-grid-item;
+}
+
+.email-grid-item {
+    grid-area: email-grid-item;
+}
+
+.role-grid-item {
+    grid-area: role-grid-item;
+}
+
+.password-grid-item {
+    grid-area: password-grid-item;
+}
+
+.repeat-password-grid-item {
+    grid-area: repeat-password-grid-item;
+}
+
+
+/* Portrait phone */
+@media only screen and (max-width: 375px) and (orientation: portrait) {
+    .add-user-grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-areas:
+        "first-name-grid-item" 
+        "surname-grid-item"
+        "email-grid-item"
+        "role-grid-item"
+        "password-grid-item" 
+        "repeat-password-grid-item";
+    }
+}
+/*
+* BUTTONS GENERAL
+*/
+
+.button {
+    /* Typography*/
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    /* Box model */
+    box-sizing: border-box;
+    margin: 8px 0;
+    padding: .9em 0;
+
+    /* Visual */
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover:enabled {
+    box-shadow: 0 0 .5em rgba(33, 33, 33, .3);
+}
+
+.button:disabled {
+    /* Visual */
+    opacity: 50%;
+    background-color: var(--gray4);
+    cursor: not-allowed;
+    color: #333;
+}
+
+/*
+* BUTTONS PRIMARY
+*/
+
+.primary {
+    background-color: var(--primary)
+}
+
+.primary:enabled:hover {
+    background-color: var(--pDark)
+}
+
+/*
+* BUTTONS SECONDARY
+*/
+
+.secondary:enabled {
+    background-color: var(--secondary)
+}
+
+.secondary:enabled:hover {
+    background-color: var(--sDark)
+}
+
+/*
+* BUTTONS SECONDARY OUTLINED
+*/
+
+.secondary-outlined:enabled {
+    background-color: var(--background);
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.secondary-outlined:enabled:hover {
+    background-color: var(--background);
+    border: 2px solid var(--sDark);
+    color: var(--sDark);
+}
+
+.secondary-outlined.active:enabled {
+    text-decoration: underline;
+    background-color: var(--secondary);
+    color: var(--background);
+}
+
+.secondary-outlined.active:enabled:hover {
+    text-decoration: underline;
+    background-color: var(--secondary);
+    color: var(--background);
+}
+
+/*
+* BUTTONS DANGER
+*/
+
+.danger {
+    background-color: var(--red)
+}
+
+.danger:enabled:hover {
+    background-color: var(--rDark);
+}
+
+/*
+* BUTTONS DANGER OUTLINED
+*/
+
+.danger-outlined {
+    background-color: var(--background);
+    border: 2px solid var(--red);
+    color: var(--red);
+}
+
+.danger-outlined:enabled:hover {
+    background-color: var(--background);
+    border: 2px solid var(--rDark);
+    color: var(--rDark);
+}
+
+/*
+* BUTTONS SIZING
+*/
+
+.full-size {
+    width: 100%;
+}
+
+.half-size {
+    width: 49%;
+    /* better for flex */
+}
+.user-feedback {
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    margin: 8px 0 24px;
+    padding: 12px 20px;
+}
+
+.user-feedback.error{
+    background-color: var(--red);
+}
+
+.user-feedback.success {
+    background-color: var(--secondary);
+}
+:root {
+    --primary: #2E7D32;
+    --pLight: #60AD5E;
+    --pDark: #005005;
+    --secondary: #0277BD;
+    --sLight: #58A5F0;
+    --sDark: #004C8C;
+    --tertiary: #795548;
+    --tLight: #A98274;
+    --tDark: #4B2C20;
+    --red: #D32F2F;
+    --rDark: #9A0007;
+    --orange: #FF9800;
+    --oDark: #C66900;
+    --gray6: #F2F2F2;
+    --gray5: #E0E0E0;
+    --gray4: #BDBDBD;
+    --gray3: #828282;
+    --gray2: #4F4F4F;
+    --gray1: #333333;
+    --background: #F9F9FA;
+}
+*>body {
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  margin: 1em 5vw;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  margin: 2% auto 0 auto;
+  max-width: 550px;
+  min-width: 240px;
+  overflow:hidden;
+  padding: 1em;
+}
+
+.container img {
+  display: block;
+  margin: auto;
+  width: 2em;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  font-size: 2em;
+  margin: .5em auto;
+  text-align: center;
+}
+
+a {
+  color: var(--sDark);
+  text-decoration: none;
+  transition: .3s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+select {
+  border: 1px solid var(--gray4);
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 0 24px;
+  padding: 12px 20px;
+  width: 100%;
+}
+
+label,
+strong {
+  text-transform: capitalize;
+}
+
+.user-list-item-buttons {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.low-emphasis-text {
+  color: var(--gray2)
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* part of react tostify */
+.Toastify__toast--success {
+  background: var(--primary) !important;
+}
+
+.Toastify__toast--error {
+  background: var(--red) !important;
+}
+.user-list {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+
+.user-list li {
+    margin: 1em;
+}
+.container h3 {
+    text-transform: capitalize;
+}
+
+.container.userlist {
+    width: 290px;
+}
+.user-list-item-buttons {
+    margin: 0 auto;
+    max-width: 430px;
+}
+/* This seems to break the pupup, no idea why... */
+.popup-userlist {
+    /* positioning */
+    display: grid;
+    left: 0;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+
+    /* size */
+    height: 100%;
+    width: 100%;
+
+    /* miscellaneous */
+    background-color: rgba(0, 0, 0, .4);
+    overflow: auto;
+}
+
+.buttons-side-by-side {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    max-width: 430px;
+    margin: 0 auto;
+}
+.forgot-password-email-form input{
+    margin-bottom: 12px;
+}
+
+.forgot-password-email-form p{
+    margin-bottom: 2em;
+}
+
+.form-explain{
+    font-size: small;
+    margin-bottom: 2em;
+    margin-top: 0;
+}
+/* Add a hover effect for submit button */
+button:hover:enabled {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+.loggedIn {
+    text-align: center;
+}
+
+.loggedIn p {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+
+.loggedIn img {
+    width: 2em;
+}
+.container {
+    width: unset;
+}
+.navbar {
+    -webkit-align-items: center;
+            align-items: center;
+    background-color: var(--primary);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    min-height: 55.33px;
+}
+
+.navbar span {
+    color: var(--background);
+    margin-left: auto;
+    text-transform: capitalize;
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    
+}
+
+.navbar h1 {
+    color: var(--background);
+    font-size: large;
+    padding: 0 0.9em;
+}
+
+.navbar a {
+    color: var(--background);
+    padding: 0 0.9em;
+    text-decoration: none;
+}
+
+.navbar a button {
+    width: 5em;
+}
+
+.navbar * {
+    font-size: 0.9em;
+}
+
+.navbar ul {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+    list-style-type: none;
+    margin: auto 0;
+    padding: auto;
+}
+
+.navbar ul li {
+    margin: 0 1em;
+}
+
+.navbar div img {
+    width: 3em;
+}
+
+.navbar div img:hover {
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.navbar.dropdown {
+    display: inline-block;
+    margin-top: 48.33px;
+    position: fixed;
+}
+
+/* Dropdown Content */
+.navbar.dropdown-content {
+    background-color: var(--gray6);
+    border-radius: 10px;
+    box-shadow: 0px 1em 2em 0px rgba(0, 0, 0, 0.3);
+    min-width: 160px;
+    position: absolute;
+    right:0;
+    z-index: 1;
+}
+
+.navbar.dropdown-content li {
+    margin: 0;
+    width: 100%;
+}
+
+.navbar.dropdown-content a {
+    border-radius: 10px;
+    color: black;
+    display: block;
+    font-size: 1.5em;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.navbar.dropdown-content a:hover {
+    background-color: var(--pDark);
+    color: white;
+    text-decoration: underline;
+}
+
+.navbar-icon img{
+    height: 100%;
+    padding: 0 0.9em;
+}
+.status-card h1,
+.status-card p {
+    text-align: center;
+}
+
+.big-number {
+    color: var(--primary);
+    display: block;
+    font-size: 5em;
+}
+
+.big-number.orange {
+    color: var(--orange)
+}
+
+.big-number.red {
+    color: var(--red)
+}
+
+/*# sourceMappingURL=main.831fb60a.chunk.css.map*/
