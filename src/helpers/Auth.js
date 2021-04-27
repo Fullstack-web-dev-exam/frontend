@@ -40,9 +40,9 @@ class AuthProvider extends React.Component {
     };
 
     logout = async () => {
+        await tokenRevoke();
         this.setState({ ...INITIAL_STATE });
         clear();
-        await tokenRevoke();
     };
 
     isAuthFunc = () => {
