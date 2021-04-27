@@ -31,7 +31,7 @@ import updateUserBackend from '../HOC/UpdateUserHOC';
 */
 
 function Popup(props) {
-    const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser, onResetClick, place} = props
+    const { popupVariant, onUpdateForm, user, onAbortClick, onDeleteUser, onResetClick, place } = props
 
     const UpdateUserHOC = updateUserBackend(UpdateUser);
     return (

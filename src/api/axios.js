@@ -31,7 +31,7 @@ function createAxiosResponseInterceptor(axiosInstance) {
     axiosInstance.interceptors.request.use(
         function (config) {
             const token = read('token');
-            if(token){
+            if (token) {
                 config.headers['Authorization'] = 'Bearer ' + read('token');
             }
             console.log(`${config.method.toUpperCase()} Request made to ${config.url} with data:`, config.data);

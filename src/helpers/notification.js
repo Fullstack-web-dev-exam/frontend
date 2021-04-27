@@ -14,7 +14,7 @@ function notifySuccess(message) {
  * ### Negative toast message
  * @param {string} message 
  */
-function notifyError(message){
+function notifyError(message) {
     toast.error(message, {
         position: toast.POSITION.BOTTOM_RIGHT
     });

@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
  * 
  * 1. Import the `UserFeedbackCard` component from '`src/components/UserFeedbackCard/UserFeedbackCard`'
  * 
- * 2. Write `<UserfeedbackCard />` where you want to render some feedback. 
+ * 2. Write `<UserFeedbackCard />` where you want to render some feedback. 
  * 
  * 3. Provide appropriate to the component such as variant and text.
  */

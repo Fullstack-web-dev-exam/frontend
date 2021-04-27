@@ -22,7 +22,7 @@ main {
   margin: 2% auto 0 auto;
   max-width: 550px;
   min-width: 240px;
-  overflow:hidden;
+  overflow: hidden;
   padding: 1em;
 }
 
@@ -94,7 +94,7 @@ li {
   font-weight: bold;
 }
 
-/* part of react tostify */
+/* part of react toastify */
 .Toastify__toast--success {
   background: var(--primary) !important;
 }

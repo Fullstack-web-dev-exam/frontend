@@ -35,7 +35,7 @@ function Nav(props) {
     const handleLogOut = () => {
         props.handleLogOut();
         notifySuccess("You are now logged out. Goodbye 👋");
-        
+
     }
 
     const handleClickOutside = e => {
@@ -74,21 +74,21 @@ function Nav(props) {
                 <>
                     <span>{props.role}</span>
                     <div onClick={handleMenu} className="navbar-icon" ref={node}>
-                    
+
                         <img src={accountCircle} alt="Account Circle icon" onClick={handleMenu} />
-    
+
                         {open &&
                             <div className="navbar dropdown">
                                 <ul className="navbar dropdown-content">
                                     <li onClick={handleMenu} className="dropdown-li">
                                         <Link to="/profile">Profile</Link>
                                     </li>
-    
+
                                     {props.role === "manager" &&
                                         <li onClick={handleMenu}>
                                             <Link to="/dashboard">Dashboard</Link>
                                         </li>}
-    
+
                                     <li onClick={function () { handleLogOut(); handleMenu(); }}>
                                         <Link to="/login">Log out</Link>
                                     </li>
@@ -119,7 +119,7 @@ Nav.propTypes = {
     handleLogOut: PropTypes.func,
 
     /**
-     * The role is the current role of the logged in user. It decides if the user can accsess the dashboard or not.
+     * The role is the current role of the logged in user. It decides if the user can access the dashboard or not.
      */
     role: PropTypes.oneOf(['gardener', 'manager']),
 }

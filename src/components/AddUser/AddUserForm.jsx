@@ -96,12 +96,12 @@ class AddUserForm extends Component {
 
     generalValidation() {
 
-        if(!emailIsValid(this.state.email)){
+        if (!emailIsValid(this.state.email)) {
             notifyError('Invalid email');
             return false
         }
 
-        if(emailIsValid(this.state.email) && this.form.current.reportValidity()){
+        if (emailIsValid(this.state.email) && this.form.current.reportValidity()) {
             return true;
         }
     }

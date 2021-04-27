@@ -50,7 +50,7 @@ class AuthProvider extends React.Component {
     };
 
     isRoleSet = () => {
-        if(this.state.role === "manager" || read("role") === "manager"){
+        if (this.state.role === "manager" || read("role") === "manager") {
             return true;
         } else {
             return false;

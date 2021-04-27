@@ -53,7 +53,7 @@ MyProfile.propTypes = {
         role: PropTypes.oneOf(['gardener', 'manager', 'N/A']),
         surname: PropTypes.string,
     }),
-    
+
     /** handleEditClick is the handler for when the user presses the edit button.  */
     handleEditClick: PropTypes.func.isRequired
 }

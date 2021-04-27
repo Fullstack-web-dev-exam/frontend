@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 
 function StatusCard(props) {
     const { statusCode, statusText } = props;
-    
+
     let color;
     let icon;
 
