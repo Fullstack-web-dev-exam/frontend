@@ -8,7 +8,7 @@ const { storeExpiry, read } = require('../helpers/refresh-token');
 let axiosInstance = axios;
 if (process.env && process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
     axiosInstance = axios.create({
-        withCredentials: false,
+        withCredentials: true,
         baseURL: process.env.REACT_APP_BACKEND
     });
 } else {
