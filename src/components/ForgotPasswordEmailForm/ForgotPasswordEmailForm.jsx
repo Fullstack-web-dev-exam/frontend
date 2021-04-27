@@ -45,21 +45,21 @@ class ForgotPasswordEmailForm extends Component {
         this.emailInput = React.createRef();
     }
 
+    //
     handleSubmit = async (event) => {
         event.preventDefault();
 
         if (this.validation()) {
             this.setState({ formSubmitted: true });
-            
+
             const email = this.state.email;
 
             notifySuccess(`An email with further instructions is sent to '${email}'.`)
 
             await this.props.onSubmitHandler(email);
 
-
         } else {
-            this.setState({ error: "The form is not valid!" });
+            this.setState({ error: "The form did not pass validation." });
             notifyError("The form did not pass validation.")
         }
     }
@@ -74,6 +74,7 @@ class ForgotPasswordEmailForm extends Component {
         });
     }
 
+    //closing a UserFeedbackcard
     handleClose() {
         this.setState({
             error: '',
