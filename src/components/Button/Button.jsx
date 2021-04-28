@@ -27,6 +27,8 @@ function Button(props) {
     )
 }
 
+//#region JSDoc for Storybook JSDoc for Storybook & default props
+
 Button.defaultProps = {
     active: false,
     disabled: false,
@@ -65,5 +67,7 @@ Button.propTypes = {
     /** The variant of the button changes the color. */
     variant: PropTypes.oneOf(['primary', 'secondary', 'secondary-outlined', 'danger', 'danger-outlined']).isRequired,
 }
+
+//#endregion
 
 export default Button;

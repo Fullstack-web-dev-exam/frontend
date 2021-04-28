@@ -33,6 +33,8 @@ function UserListItem({ user, handleDeleteClick, handleEditClick }) {
     </li>)
 }
 
+//#region JSDoc for Storybook & default props
+
 UserListItem.defaultProps = {
     user: {
         role: 'gardener'
@@ -55,5 +57,7 @@ UserListItem.propTypes = {
     /** handleDeleteClick is the handler for when the user presses the delete button.  */
     handleDeleteClick: PropTypes.func
 }
+
+//#endregion 
 
 export default UserListItem;

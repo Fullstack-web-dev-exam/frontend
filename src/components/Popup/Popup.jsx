@@ -57,6 +57,8 @@ function Popup(props) {
     );
 }
 
+//#region JSDoc for Storybook & default props
+
 Popup.defaultProps = {
     place: 'dashboard'
 }
@@ -85,5 +87,7 @@ Popup.propTypes = {
 
     place: PropTypes.oneOf(['dashboard']).isRequired,
 }
+
+//#endregion
 
 export default Popup;

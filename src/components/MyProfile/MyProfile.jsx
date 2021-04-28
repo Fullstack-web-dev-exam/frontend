@@ -3,7 +3,6 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import accountCircle from '../../assets/person_black_24dp.svg';
 
-
 /**
  * ## How it works
  * The `MyProfile` component displays the information of the user currently logged in. 
@@ -35,6 +34,8 @@ function MyProfile({ selectedUser, handleEditClick }) {
     );
 }
 
+//#region JSDoc for Storybook & default props
+
 MyProfile.defaultProps = {
     selectedUser: {
         email: 'N/A',
@@ -57,5 +58,7 @@ MyProfile.propTypes = {
     /** handleEditClick is the handler for when the user presses the edit button.  */
     handleEditClick: PropTypes.func.isRequired
 }
+
+//#endregion
 
 export default MyProfile;

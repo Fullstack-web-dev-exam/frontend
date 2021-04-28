@@ -342,6 +342,8 @@ class UpdateUserForm extends Component {
     }
 }
 
+//#region JSDoc for Storybook & default props
+
 UpdateUserForm.defaultProps = {
     place: 'none'
 }
@@ -373,5 +375,7 @@ UpdateUserForm.propTypes = {
     /** eventHandler to reset the users password */
     onResetClick: PropTypes.func
 }
+
+//#endregion
 
 export default UpdateUserForm;

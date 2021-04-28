@@ -34,7 +34,6 @@
     grid-area: repeat-password-grid-item;
 }
 
-
 /* Portrait phone */
 @media only screen and (max-width: 375px) and (orientation: portrait) {
     .add-user-grid-container {
