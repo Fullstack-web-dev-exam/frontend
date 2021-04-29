@@ -45,6 +45,8 @@ class AuthProvider extends React.Component {
             await tokenRevoke();
             clear();
         } catch (error) {
+            console.log("error logout");
+            clear();
             return error.response.data;
         }
     };
