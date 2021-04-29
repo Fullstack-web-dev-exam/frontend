@@ -102,6 +102,8 @@ function Nav(props) {
     );
 }
 
+//#region JSDoc for Storybook & default props
+
 Nav.defaultProps = {
     auth: false,
     role: 'gardener',
@@ -123,5 +125,7 @@ Nav.propTypes = {
      */
     role: PropTypes.oneOf(['gardener', 'manager']),
 }
+
+//#endregion
 
 export default Nav;

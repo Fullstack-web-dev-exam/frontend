@@ -29,6 +29,8 @@ function UserFeedbackCard(props) {
     )
 }
 
+//#region JSDoc for Storybook & default props
+
 UserFeedbackCard.defaultProps = {
     feedbackText: 'This is your feedback text'
 }
@@ -43,5 +45,7 @@ UserFeedbackCard.propTypes = {
     /** The OnClick eventHandler */
     onClick: PropTypes.func
 }
+
+//#endregion
 
 export default UserFeedbackCard;
