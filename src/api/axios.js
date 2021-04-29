@@ -1,7 +1,7 @@
 // https://medium.com/swlh/how-to-implement-refresh-token-functionality-front-end-eff58ce52564
 import axios from 'axios';
 import { tokenRefresh } from './users';
-const { storeExpiry, read } = require('../helpers/refresh-token');
+const { storeExpiry, read, clear } = require('../helpers/refresh-token');
 
 //console.log("This is the API ", process.env);
 
@@ -62,9 +62,11 @@ function createAxiosResponseInterceptor(axiosInstance) {
                                 const config = error.config;
                                 return await axiosInstance({ method: config.method, url: config.url, data: config.data });
                             } catch (e) {
+                                clear();
                                 return window.location.href = '/403';
                             }
                         } else {
+                            clear();
                             return window.location.href = '/403';
                         }
                     default:
