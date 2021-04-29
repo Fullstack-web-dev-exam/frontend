@@ -2,6 +2,10 @@
 IDG2100 Full-stack Web development
 Group 1
 
+You can log in with the user johnsmith@example.com and the password 'testing1'.
+
+(most passwords are 'testing1')
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
