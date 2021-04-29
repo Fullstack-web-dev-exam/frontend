@@ -41,11 +41,11 @@ class AuthProvider extends React.Component {
 
     logout = async () => {
         this.setState({ ...INITIAL_STATE });
-        const res = await tokenRevoke();
-        if(res.error) {
+        try {
+            await tokenRevoke();
             clear();
-        } else {
-            clear();
+        } catch (error) {
+            return error.response.data;
         }
     };
 
