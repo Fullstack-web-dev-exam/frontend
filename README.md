@@ -85,7 +85,7 @@ We recommend checking out the "docs" part in storybook as it lists most of the i
 ## Status
 
  - Project start: Apr 7, 2021.
- - Project end: Apr 27, 2021.
+ - Project end: Apr 29, 2021.
 
 The project is finished. Big chunks of the code are planned to be reused in another exam, but this repository will no longer be updated.
 
